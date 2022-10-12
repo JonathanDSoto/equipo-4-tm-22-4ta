@@ -84,6 +84,7 @@ Class AuthController{
 			$_SESSION['id']= $response->data->id;
 			$_SESSION['name']= $response->data->name;
 			$_SESSION['lastname']= $response->data->lastname;
+			$_SESSION['email']= $response->data->email;
 			$_SESSION['avatar']= $response->data->avatar;
 			$_SESSION['token']= $response->data->token;
 
@@ -123,6 +124,7 @@ Class AuthController{
 			$_SESSION['id']= $response->data->id;
 			$_SESSION['name']= $response->data->name;
 			$_SESSION['lastname']= $response->data->lastname;
+			$_SESSION['email']= $response->data->email;
 			$_SESSION['avatar']= $response->data->avatar;
 			$_SESSION['token']= $response->data->token;
 
