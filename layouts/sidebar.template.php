@@ -1,17 +1,8 @@
         <div class="app-menu navbar-menu">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <!-- Dark Logo-->
-                <a href="index.html" class="logo logo-dark">
-                    <span class="logo-sm">
-                        <img src="<?= BASE_PATH ?>public/images/logo-sm.png" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="<?= BASE_PATH ?>public/images/logo-dark.png" alt="" height="17">
-                    </span>
-                </a>
                 <!-- Light Logo-->
-                <a href="index.html" class="logo logo-light">
+                <a href="#" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="<?= BASE_PATH ?>public/images/logo-sm.png" alt="" height="22">
                     </span>
@@ -67,7 +58,7 @@
                         
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="widgets.html">
+                            <a class="nav-link menu-link" href="#">
                                 <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Cupones</span>
                             </a>
                         </li> 
@@ -80,27 +71,27 @@
                                 <ul class="nav nav-sm flex-column">
 
                                     <li class="nav-item">
-                                        <a href="maps-google.html" class="nav-link" data-key="t-google">
+                                        <a href="#" class="nav-link" data-key="t-google">
                                             Altas
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="maps-vector.html" class="nav-link" data-key="t-vector">
+                                        <a href="#" class="nav-link" data-key="t-vector">
                                             Bajas
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="maps-leaflet.html" class="nav-link" data-key="t-leaflet">
+                                        <a href="#" class="nav-link" data-key="t-leaflet">
                                             Modificaciones
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="maps-google.html" class="nav-link" data-key="t-google">
+                                        <a href="#" class="nav-link" data-key="t-google">
                                             Consultas
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="maps-google.html" class="nav-link" data-key="t-google">
+                                        <a href="#" class="nav-link" data-key="t-google">
                                             Vista de detalle
                                         </a>
                                     </li>

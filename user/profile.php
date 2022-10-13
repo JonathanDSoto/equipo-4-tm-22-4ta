@@ -1,16 +1,5 @@
 <?php 
-
-	include "../app/ProductsController.php";
-	include "../app/BrandController.php";
-
-	$productController = new ProductsController();
-
-	$brandController = new BrandController();
-
-	// $products = $productController->getProducts();
-	// $brands = $brandController->getBrands();
-
-	#echo json_encode($_SESSION);
+    include_once "../app/config.php";
 ?> 
 
 <!doctype html>
@@ -67,7 +56,6 @@
                                     <p class="text-white-75">Role usuario</p>
                                 </div>
                             </div>
-
                         </div>
                         <!--end row-->
                     </div>
@@ -75,7 +63,6 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div>
-                            
                                 <div class="tab-content pt-4 text-muted">
                                     <div class="tab-pane active" id="overview-tab" role="tabpanel">
                                         <div class="row">
@@ -105,7 +92,7 @@
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
-                                                            <a class="btn btn-success" href="profile-settings.php">Editar Perfil</a>
+                                                            <a class="btn btn-success col-12" href="profile-settings.php">Editar Perfil</a>
                                                         </div>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->
