@@ -198,7 +198,7 @@ Class AuthController{
 		$response = json_decode($response);
 
 		if ( isset($response->code) && $response->code > 0) {
-			header("Location:".BASE_PATH."products");
+			header("Location:".BASE_PATH);
 		}else{
 			#var_dump($response);
 			header("Location:".BASE_PATH."?error=true");
