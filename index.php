@@ -69,11 +69,11 @@
                                     <p class="text-muted">Inicia sesión para ingresar.</p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form action="https://themesbrand.com/velzon/html/material/index.html">
+                                    <form action="<?= BASE_PATH ?>auth" method="POST">
 
                                         <div class="mb-3">
                                             <label for="username" class="form-label">Correo electrónico</label>
-                                            <input type="text" class="form-control" id="username" placeholder="ejemplo@ejemplo.com">
+                                            <input type="text" class="form-control" id="email" placeholder="ejemplo@ejemplo.com" name="email" >
                                         </div>
 
                                         <div class="mb-3">
@@ -82,7 +82,7 @@
                                             </div>
                                             <label class="form-label" for="password-input">Contraseña</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" class="form-control pe-5 password-input" placeholder="*******" id="password-input">
+                                                <input type="password" class="form-control pe-5 password-input" placeholder="*******" id="password" name="password" >
                                                 <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted shadow-none password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                             </div>
                                         </div>
@@ -94,6 +94,8 @@
 
                                         <div class="mt-4">
                                             <button class="btn btn-success w-100" type="submit">Iniciar sesión</button>
+                                            <input type="hidden" name="action" action="access" value="access">
+                                            <input type="hidden" name="global_token" value="<?= $_SESSION['global_token'] ?>">
                                         </div>
 
                                         
