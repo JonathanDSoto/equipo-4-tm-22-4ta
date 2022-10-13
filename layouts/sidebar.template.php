@@ -34,35 +34,33 @@
                         
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="widgets.html">
+                            <a class="nav-link menu-link" href="#">
                                 <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Usuarios</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#">
+                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Clientes</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                                <i class="mdi mdi-speedometer"></i> <span data-key="t-dashboards">Dashboards</span>
+                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-dashboards">Catalogos</span>
                             </a>
                             <div class="collapse menu-dropdown" id="sidebarDashboards">
                                 <ul class="nav nav-sm flex-column">
+
                                     <li class="nav-item">
-                                        <a href="dashboard-analytics.html" class="nav-link" data-key="t-analytics"> Analytics </a>
+                                        <a href="#" class="nav-link" data-key="t-analytics"> Categorias </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="dashboard-crm.html" class="nav-link" data-key="t-crm"> CRM </a>
+                                        <a href="#" class="nav-link" data-key="t-crm"> Marcas </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="index.html" class="nav-link" data-key="t-ecommerce"> Ecommerce </a>
+                                        <a href="#" class="nav-link" data-key="t-ecommerce"> Tags </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-crypto.html" class="nav-link" data-key="t-crypto"> Crypto </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-projects.html" class="nav-link" data-key="t-projects"> Projects </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-nft.html" class="nav-link" data-key="t-nft"> NFT</a>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                         </li> <!-- end Dashboard Menu -->
@@ -70,7 +68,7 @@
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="widgets.html">
-                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Widgets</span>
+                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Cupones</span>
                             </a>
                         </li> 
 
@@ -80,25 +78,36 @@
                             </a>
                             <div class="collapse menu-dropdown" id="sidebarMaps">
                                 <ul class="nav nav-sm flex-column">
+
                                     <li class="nav-item">
                                         <a href="maps-google.html" class="nav-link" data-key="t-google">
-                                            Categorías
+                                            Altas
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="maps-vector.html" class="nav-link" data-key="t-vector">
-                                            Marcas
+                                            Bajas
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="maps-leaflet.html" class="nav-link" data-key="t-leaflet">
-                                            Etiquetas
+                                            Modificaciones
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="maps-google.html" class="nav-link" data-key="t-google">
+                                            Consultas
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="maps-google.html" class="nav-link" data-key="t-google">
+                                            Vista de detalle
+                                        </a>
+                                    </li>
+
                                 </ul>
                             </div>
                         </li>
- 
 
                     </ul>
                 </div>

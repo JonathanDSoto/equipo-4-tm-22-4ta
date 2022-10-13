@@ -40,8 +40,6 @@
         <!-- ============================================================== -->
         <div class="main-content">
 
-            <?php include "../layouts/bread.template.php"; ?>
-
             <!-- End Page-content -->
 
             <div class="row"> 
