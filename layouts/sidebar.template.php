@@ -2,7 +2,7 @@
             <!-- LOGO -->
             <div class="navbar-brand-box">
                 <!-- Light Logo-->
-                <a href="<?php BASE_PATH?> productos" class="logo logo-light">
+                <a href="<?= BASE_PATH?>productos" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="<?= BASE_PATH ?>public/images/logo-sm.png" alt="" height="30">
                     </span>

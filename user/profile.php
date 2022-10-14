@@ -11,7 +11,7 @@
     <?php include '../layouts/head.template.php' ?>
 
     <!-- swiper css -->
-    <link rel="stylesheet" href="<?php BASE_PATH ?>/libs/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="<?= BASE_PATH ?>/libs/swiper/swiper-bundle.min.css">
 
 </head>
 
@@ -92,7 +92,7 @@
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
-                                                            <a class="btn btn-success col-12" href="<?php BASE_PATH ?> editar-perfil">Editar Perfil</a>
+                                                            <a class="btn btn-success col-12" href="<?= BASE_PATH ?> editar-perfil">Editar Perfil</a>
                                                         </div>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->
