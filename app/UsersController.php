@@ -64,7 +64,7 @@ if (isset($_POST['action'])) {
 
 
 Class UsersController{
-    
+
 //Usuarios
     public function getUsuarios()
         {
@@ -98,7 +98,7 @@ Class UsersController{
 
             if ( isset($response->code) && $response->code > 0) {
 
-                header("Location:".BASE_PATH."products");
+                header("Location:".BASE_PATH."productos");
             }else{
                 #var_dump($response);
                 header("Location:".BASE_PATH."?error=true");
@@ -146,7 +146,7 @@ Class UsersController{
 
 		if ( isset($response->code) && $response->code > 0) {
 
-			header("Location:".BASE_PATH."products");
+			header("Location:".BASE_PATH."productos");
 		}else{
 			#var_dump($response);
 			header("Location:".BASE_PATH."?error=true");
@@ -186,7 +186,7 @@ Class UsersController{
 
 		if ( isset($response->code) && $response->code > 0) {
 
-			header("Location:".BASE_PATH."products");
+			header("Location:".BASE_PATH."productos");
 		}else{
 			#var_dump($response);
 			header("Location:".BASE_PATH."?error=true");
@@ -230,7 +230,7 @@ Class UsersController{
 
 		if ( isset($response->code) && $response->code > 0) {
 
-			header("Location:".BASE_PATH."products");
+			header("Location:".BASE_PATH."productos");
 		}else{
 			#var_dump($response);
 			header("Location:".BASE_PATH."?error=true");
@@ -270,7 +270,7 @@ Class UsersController{
 
         if ( isset($response->code) && $response->code > 0) {
 
-            header("Location:".BASE_PATH."products");
+            header("Location:".BASE_PATH."productos");
         }else{
             #var_dump($response);
             header("Location:".BASE_PATH."?error=true");
@@ -310,7 +310,7 @@ Class UsersController{
 
         if ( isset($response->code) && $response->code > 0) {
 
-            header("Location:".BASE_PATH."products");
+            header("Location:".BASE_PATH."productos");
         }else{
             #var_dump($response);
             header("Location:".BASE_PATH."?error=true");
