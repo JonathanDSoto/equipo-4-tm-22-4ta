@@ -21,20 +21,20 @@
     <div id="layout-wrapper">
 
         <?php include '../layouts/nav.template.php'?>
-
     </div>
     <!-- ========== App Menu ========== -->
-        
-        <?php include '../layouts/sidebar.template.php' ?>
-     
-        <div class="vertical-overlay"></div>
+    
+    <?php include '../layouts/sidebar.template.php' ?>
+    
+    <div class="vertical-overlay"></div>
+    
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+            <?php include '../layouts/bread.templete.php'?>
 
-        <!-- ============================================================== -->
-        <!-- Start right Content here -->
-        <!-- ============================================================== -->
-        <div class="main-content">
-
-            <div class="page-content">
+            <div class="page-content mt-m-n5">
                 <div class="container-fluid">
                     <div class="profile-foreground position-relative mx-n4 mt-n4">
                         <div class="profile-wid-bg">
@@ -92,7 +92,7 @@
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
-                                                            <a class="btn btn-success col-12" href="profile-settings.php">Editar Perfil</a>
+                                                            <a class="btn btn-success col-12" href="<?php BASE_PATH ?> editar-perfil">Editar Perfil</a>
                                                         </div>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->

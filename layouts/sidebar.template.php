@@ -2,7 +2,7 @@
             <!-- LOGO -->
             <div class="navbar-brand-box">
                 <!-- Light Logo-->
-                <a href="#" class="logo logo-light">
+                <a href="<?php BASE_PATH?> productos" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="<?= BASE_PATH ?>public/images/logo-sm.png" alt="" height="22">
                     </span>
@@ -32,6 +32,11 @@
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#">
                                 <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Clientes</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="<?php BASE_PATH ?> productos">
+                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Productos</span>
                             </a>
                         </li>
 

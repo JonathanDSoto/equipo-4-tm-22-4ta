@@ -4,4 +4,20 @@ RewriteEngine on
 #Rutas
 RewriteRule ^auth$ app/AuthController.php
 
-RewriteRule ^products/details/(.+)/$ products/details.php?slug=$1
+
+# Login
+RewriteRule ^iniciar-sesion$ index.php
+RewriteRule ^iniciar-sesion/error$ index.php?error=true
+
+
+
+# Productos
+RewriteRule ^productos$ products/index.php
+
+
+
+
+# PERFIL
+RewriteRule ^perfil$ user/profile.php
+RewriteRule ^editar-perfil$ user/profile-settings.php
+

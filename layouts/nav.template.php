@@ -132,7 +132,7 @@
 		                    <div class="dropdown-menu dropdown-menu-end">
 		                        <!-- item-->
 		                        <h6 class="dropdown-header">Bienvenido <?= $_SESSION['name'] ?>!</h6>
-		                        <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Perfil</span></a>
+		                        <a class="dropdown-item" href="<?php BASE_PATH ?> perfil"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Perfil</span></a>
 		                        <div class="dropdown-divider"></div>
 								<form action="<?= BASE_PATH ?>auth" method="POST">
 		                        	<button type class="dropdown-item" type="submit"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Cerrar sesión</span></button>

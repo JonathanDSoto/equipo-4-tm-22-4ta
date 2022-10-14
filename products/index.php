@@ -29,9 +29,9 @@
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
+            <?php include '../layouts/bread.templete.php'?>
 
             <!-- End Page-content -->
-
             <div class="row"> 
 
                 <div class="col-xl-12 col-lg-12">
