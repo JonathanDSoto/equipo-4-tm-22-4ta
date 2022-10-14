@@ -148,13 +148,7 @@ Class AuthController{
 			CURLOPT_CUSTOMREQUEST => 'POST',
 			CURLOPT_POSTFIELDS => array('email' => $email),
 			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer '.$_SESSION['token'],
-				'Cookie: XSRF-TOKEN=eyJpdiI6IlJ4U29JTXBpWGZwMWpja3pGc3p2Y3c9PSIsInZhbHVlIjoic0hxSU51ZUcvdFpCc1o4S3JMcTVHRStad2YvWE9XQnEwQ3FreD
-				U4eDZ4Y041UktaU2ZJaGsxcEdCbUhGL0RncW9ZVWJ6UG5Da0FaOFZRVEhxbGk4THZpNEdLSnk1WEFRcjZmbmx3dVFIQjV0Rll2d0F5cXR1a0VaaFhTWmx4TW0iLCJtY
-				WMiOiI2ZDJmNzI0ZTVkZjQwNzFmN2Y5M2UyNjM3MWRkOWI3ZGU5MTJmNjJiZTgzZTgyNGQxZmYxYWU2ZWU4YmExYTUxIiwidGFnIjoiIn0%3D; laravel_session=ey
-				JpdiI6Im5LN2o4S1dVb1h6RkJpRXRJOHFqRmc9PSIsInZhbHVlIjoiSHMrTjBNelU1aFZuWGJjcTJDbkFMVFhlZjE3L3R2UDJkSnhDRlJkREVYMUd1UE1ydGw5bTIvckN4
-				NHpvemVlNlpja2RoNzVBVG1VY1BEWm11QzZGcTlIYjNOdTJyUXFhb0wveUtEVytiNFlXazlmMFNaSnJaSzJJSTVRY21LNXYiLCJtYWMiOiI0ZjUzY2Q0MTY1YTkwMjg2ZjRkMjN
-				lZWUwOTc5NjRiYzYxZGQxNjI3MTJiMDljOTQ0YmYzZjk4M2FkMWMzMTk3IiwidGFnIjoiIn0%3D'
+				'Authorization: Bearer '.$_SESSION['token']
 			),
 		  ));
 		$response = curl_exec($curl); 
