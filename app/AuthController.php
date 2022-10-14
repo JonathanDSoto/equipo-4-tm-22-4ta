@@ -31,14 +31,6 @@ if (isset($_POST['action'])) {
 				
 				$authController->registroUser($name,$lastname,$email,$phone_number,$created_by,$role,$password);
 			break;
-			case 'passwordRecuperado':
-				$authController = new AuthController();
-
-
-				$email = strip_tags($_POST['email']);
-
-				$authController->forgotPassword($email);
-			break;
 			case 'cerrarSesion':
 				$authController = new AuthController();
 
@@ -85,6 +77,9 @@ Class AuthController{
 			$_SESSION['name']= $response->data->name;
 			$_SESSION['lastname']= $response->data->lastname;
 			$_SESSION['email']= $response->data->email;
+			$_SESSION['phone_number']= $response->data->phone_number;
+			$_SESSION['created_by']= $response->data->created_by;
+			$_SESSION['role']= $response->data->role;
 			$_SESSION['avatar']= $response->data->avatar;
 			$_SESSION['token']= $response->data->token;
 
@@ -125,6 +120,9 @@ Class AuthController{
 			$_SESSION['name']= $response->data->name;
 			$_SESSION['lastname']= $response->data->lastname;
 			$_SESSION['email']= $response->data->email;
+			$_SESSION['phone_number']= $response->data->phone_number;
+			$_SESSION['created_by']= $response->data->created_by;
+			$_SESSION['role']= $response->data->role;
 			$_SESSION['avatar']= $response->data->avatar;
 			$_SESSION['token']= $response->data->token;
 
@@ -134,40 +132,6 @@ Class AuthController{
 			header("Location:".BASE_PATH."?error=true");
 		}
 
-	}
-	//Recuperar contraseña
-	public function forgotPassword($email){
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/forgot-password',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'POST',
-			CURLOPT_POSTFIELDS => array('email' => $email),
-			CURLOPT_HTTPHEADER => array(
-			  'Cookie: XSRF-TOKEN=eyJpdiI6IlJ4U29JTXBpWGZwMWpja3pGc3p2Y3c9PSIsInZhbHVlIjoic0hxSU51ZUcvdFpCc1o4S3JMcTVHRStad2YvWE9XQnEwQ3FreDU4e
-			  DZ4Y041UktaU2ZJaGsxcEdCbUhGL0RncW9ZVWJ6UG5Da0FaOFZRVEhxbGk4THZpNEdLSnk1WEFRcjZmbmx3dVFIQjV0Rll2d0F5cXR1a0VaaFhTWmx4TW0iLCJtYWMiOi
-			  I2ZDJmNzI0ZTVkZjQwNzFmN2Y5M2UyNjM3MWRkOWI3ZGU5MTJmNjJiZTgzZTgyNGQxZmYxYWU2ZWU4YmExYTUxIiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6
-			  Im5LN2o4S1dVb1h6RkJpRXRJOHFqRmc9PSIsInZhbHVlIjoiSHMrTjBNelU1aFZuWGJjcTJDbkFMVFhlZjE3L3R2UDJkSnhDRlJkREVYMUd1UE1ydGw5bTIvckN4NHpvemV
-			  lNlpja2RoNzVBVG1VY1BEWm11QzZGcTlIYjNOdTJyUXFhb0wveUtEVytiNFlXazlmMFNaSnJaSzJJSTVRY21LNXYiLCJtYWMiOiI0ZjUzY2Q0MTY1YTkwMjg2ZjRkMjNlZW
-			  UwOTc5NjRiYzYxZGQxNjI3MTJiMDljOTQ0YmYzZjk4M2FkMWMzMTk3IiwidGFnIjoiIn0%3D'
-			),
-		  ));
-		$response = curl_exec($curl); 
-		curl_close($curl);
-		$response = json_decode($response);
-
-		if ( isset($response->code) && $response->code > 0) {
-			header("Location:".BASE_PATH."products");
-		}else{
-			#var_dump($response);
-			header("Location:".BASE_PATH."?error=true");
-		}
 	}
 	//Cerrar sesion
 	public function logout($email){
@@ -198,7 +162,7 @@ Class AuthController{
 		$response = json_decode($response);
 
 		if ( isset($response->code) && $response->code > 0) {
-			header("Location:".BASE_PATH);
+			header("Location:".BASE_PATH."iniciar-sesion");
 		}else{
 			#var_dump($response);
 			header("Location:".BASE_PATH."?error=true");
