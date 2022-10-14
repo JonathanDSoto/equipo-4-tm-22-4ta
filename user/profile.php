@@ -51,8 +51,8 @@
                             <!--end col-->
                             <div class="col">
                                 <div class="p-2">
-                                    <h3 class="text-white mb-1">Usuario: <?= $_SESSION['name'] ?></h3>
-                                    <p class="text-white-75">Rol: <?= $_SESSION['role'] ?></p>
+                                    <h3 class="text-white mb-1"><?= $_SESSION['name'] ?></h3>
+                                    <p class="text-white-75"><?= $_SESSION['role'] ?></p>
                                 </div>
                             </div>
                         </div>
