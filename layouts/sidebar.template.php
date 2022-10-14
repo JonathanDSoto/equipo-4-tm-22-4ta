@@ -4,10 +4,10 @@
                 <!-- Light Logo-->
                 <a href="<?php BASE_PATH?> productos" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="<?= BASE_PATH ?>public/images/logo-sm.png" alt="" height="22">
+                        <img src="<?= BASE_PATH ?>public/images/logo-sm.png" alt="" height="30">
                     </span>
                     <span class="logo-lg">
-                        <img src="<?= BASE_PATH ?>public/images/logo-light.png" alt="" height="17">
+                        <img src="<?= BASE_PATH ?>public/images/logo-sm.png" alt="" height="70">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
