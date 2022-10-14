@@ -83,7 +83,7 @@ Class AuthController{
 			$_SESSION['avatar']= $response->data->avatar;
 			$_SESSION['token']= $response->data->token;
 
-			header("Location:".BASE_PATH."products");
+			header("Location:".BASE_PATH."productos");
 		}else{
 			#var_dump($response);
 			header("Location:".BASE_PATH."?error=true");
@@ -126,7 +126,7 @@ Class AuthController{
 			$_SESSION['avatar']= $response->data->avatar;
 			$_SESSION['token']= $response->data->token;
 
-			header("Location:".BASE_PATH."products");
+			header("Location:".BASE_PATH."productos");
 		}else{
 			#var_dump($response);
 			header("Location:".BASE_PATH."?error=true");
@@ -136,7 +136,20 @@ Class AuthController{
 	//Cerrar sesion
 	public function logout($email){
 		$curl = curl_init();
-
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/logout',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => array('email' => 'jsoto@uabcs.mx'),
+			CURLOPT_HTTPHEADER => array(
+			  'Authorization: Bearer 49|Fe0K8JKVeW2hzY9103KmWvpCNebEkfchDuMjQrkS'
+			),
+		  ));
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/logout',
 			CURLOPT_RETURNTRANSFER => true,
