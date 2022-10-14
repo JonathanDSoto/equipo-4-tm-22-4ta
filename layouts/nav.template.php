@@ -125,7 +125,7 @@
 		                            <img class="rounded-circle header-profile-user" src="<?= $_SESSION['avatar'] ?>" alt="Header Avatar">
 		                            <span class="text-start ms-xl-2">
 		                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?= $_SESSION['name'] ?></span>
-		                                <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">{{Aqui va rol}}</span>
+		                                <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text"><?= $_SESSION['role'] ?></span>
 		                            </span>
 		                        </span>
 		                    </button>

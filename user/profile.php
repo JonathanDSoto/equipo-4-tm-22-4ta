@@ -45,14 +45,14 @@
                         <div class="row g-4">
                             <div class="col-auto">
                                 <div class="avatar-lg">
-                                    <img src="<?= BASE_PATH ?>public/images/users/avatar-1.jpg" alt="user-img" class="img-thumbnail rounded-circle" />
+                                    <img src="<?= $_SESSION['avatar'] ?>" alt="user-img" class="img-thumbnail rounded-circle" />
                                 </div>
                             </div>
                             <!--end col-->
                             <div class="col">
                                 <div class="p-2">
-                                    <h3 class="text-white mb-1">Nombre usuario</h3>
-                                    <p class="text-white-75">Role usuario</p>
+                                    <h3 class="text-white mb-1">Usuario: <?= $_SESSION['name'] ?></h3>
+                                    <p class="text-white-75">Rol: <?= $_SESSION['role'] ?></p>
                                 </div>
                             </div>
                         </div>
@@ -75,19 +75,19 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Nombre completo :</th>
-                                                                        <td class="text-muted">Anna Adame</td>
+                                                                        <td class="text-muted"><?= $_SESSION['name'] ?> <?= $_SESSION['lastname'] ?></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Numero celular :</th>
-                                                                        <td class="text-muted">+(1) 987 6543</td>
+                                                                        <td class="text-muted"><?= $_SESSION['phone_number'] ?></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Correo electrónico :</th>
-                                                                        <td class="text-muted">daveadame@velzon.com</td>
+                                                                        <td class="text-muted"><?= $_SESSION['email'] ?></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Rol</th>
-                                                                        <td class="text-muted">Admin</td>
+                                                                        <td class="text-muted"><?= $_SESSION['role'] ?></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
