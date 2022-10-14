@@ -270,7 +270,7 @@ Class UsersController{
 
         if ( isset($response->code) && $response->code > 0) {
 
-            header("Location:".BASE_PATH."productos");
+            header("Location:".BASE_PATH."iniciar-sesion");
         }else{
             #var_dump($response);
             header("Location:".BASE_PATH."?error=true");
