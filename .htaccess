@@ -13,6 +13,8 @@ RewriteRule ^iniciar-sesion/error$ index.php?error=true
 
 # Productos
 RewriteRule ^productos$ products/index.php
+RewriteRule ^productos/error$ products/index.php?error=true
+RewriteRule ^productos/success$ products/index.php?success=true
 
 
 
