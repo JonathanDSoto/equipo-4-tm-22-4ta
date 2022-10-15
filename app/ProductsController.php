@@ -177,12 +177,10 @@ public function idProduct($id)
 		$response = json_decode($response);
 
 		if ( isset($response->code) && $response->code > 0) {
-
-			header("Location:..".BASE_PATH."productos?success=true");
+			header("Location:..".BASE_PATH."productos/success");
 		}else{ 
-
 			#var_dump($response);
-			header("Location:..".BASE_PATH."productos?error=true");
+			header("Location:..".BASE_PATH."productos/error");
 		}
 
 	}
@@ -215,14 +213,11 @@ public function idProduct($id)
 		$response = json_decode($response);
 
 		if ( isset($response->code) && $response->code > 0) {
-
-			header("Location:..".BASE_PATH."productos?success=true");
+			header("Location:..".BASE_PATH."productos/success");
 		}else{ 
-
 			#var_dump($response);
-			header("Location:..".BASE_PATH."productos?error=true");
+			header("Location:..".BASE_PATH."productos/error");
 		}
-
 	}
 //Eliminar un producto
 	public function remove($id)
