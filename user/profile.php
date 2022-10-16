@@ -91,7 +91,7 @@
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-                                                        <a class="btn btn-success col-12" href="<?= BASE_PATH ?> editar-perfil">Editar Perfil</a>
+                                                        <a class="btn btn-success col-12" href="<?= BASE_PATH ?>editar-perfil">Editar Perfil</a>
                                                     </div>
                                                 </div><!-- end card body -->
                                             </div><!-- end card -->
@@ -112,69 +112,7 @@
             </div><!-- container-fluid -->
         </div><!-- End Page-content -->
         
-        <div class="table-responsive mx-5 mb-5">
-            <table class="table align-middle mb-0">
-                <thead class="table-light">
-                    <tr>
-                        
-                        <th scope="col">Folio</th>
-                        <th scope="col">Nombre cliente</th>
-                        <th scope="col">Numero celular</th>
-                        <th scope="col">Cupon</th>
-                        <th scope="col">Estatus</th>
-                        <th scope="col">Pagado</th>
-                        <th scope="col">Tipo de pago</th>
-                        <th scope="col">Total</th>
-                        <th scope="col" class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        
-                        <td><a href="#" class="fw-semibold">#</a></td>
-                        <td>                            
-                            <div class="d-flex gap-2 align-items-center">
-                                <div class="flex-shrink-0">
-                                    <img src="" alt="avatar" class="avatar-xs rounded-circle" />
-                                </div>
-                                <div class="flex-grow-1">
-                                    {{Nombre}}
-                                </div>
-                            </div>
-                        </td>
-                        <td>{{Numero celular}}</td>
-                        <!-- <td class="text-danger"><i class="ri-close-circle-line fs-17 align-middle">Cancel</i></td> -->
-                        <td>{{1-0}}</td>
-                        <td class="text-success"><i class="ri-checkbox-circle-line fs-17 align-middle"></i>Pagado</td>
-                        <td>{{1-0}}</td>
-                        <td>{{tipo pago}}</td>
-                        <td>$</td>
-                        <td class="text-center row">
-                            <div class="col row-cols-12">
-                                <button class="btn btn-success">
-                                    <i class="mdi mdi-plus-thick"></i>
-                                </button>
-                                <button class="btn btn-warning">
-                                    <i class="mdi mdi-pencil"></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class="mdi mdi-trash-can-outline"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tfoot class="table-light ">
-                        <tr>
-                            <td colspan="7">Total</td>
-                            <td text-end>$</td>
-                            <td colspan="4"></td>
-                        </tr>
-                    </tfoot>
-                    
-            </tbody>
-        </table>
-        <!-- end table -->
-        </div>
+        
     </div>
     <!-- end table responsive -->
         
@@ -188,12 +126,6 @@
             </div>
         </div>
     </div>
-
-    
-
-    
-
-    
 
     <?php include '../layouts/scripts.template.php' ?>
     <!-- swiper js -->

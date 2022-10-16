@@ -15,6 +15,7 @@ RewriteRule ^iniciar-sesion/error$ index.php?error=true
 RewriteRule ^productos$ products/index.php
 RewriteRule ^productos/error$ products/index.php?error=true
 RewriteRule ^productos/success$ products/index.php?success=true
+RewriteRule ^agregar-producto$ products/add-product.php
 
 
 
@@ -22,4 +23,9 @@ RewriteRule ^productos/success$ products/index.php?success=true
 # PERFIL
 RewriteRule ^perfil$ user/profile.php
 RewriteRule ^editar-perfil$ user/profile-settings.php
+
+
+# Usuarios
+
+RewriteRule ^usuarios$ user/users.php
 
