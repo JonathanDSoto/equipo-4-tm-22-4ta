@@ -78,59 +78,7 @@
         </div>
     </div>
  
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar producto</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Nombre</span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Slug</span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Descripción</span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Features</span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Cover</span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1">Brand</span>
-                  <select name="brand_id" class="form-select">
-                    <option value="xd">xd</option>
-                  </select>
-            </div>
-            <div class="input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1">Tags</span>
-                  <select name="brand_id" class="form-select">
-                    <option value="xd">xd</option>
-                  </select>
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">@</span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-success">Gurdar</button>
-        </div>
-        </div>
-    </div>
-    </div>
+   
     <?php include "../layouts/scripts.template.php"; ?>
 
     <!-- nouisliderribute js -->
