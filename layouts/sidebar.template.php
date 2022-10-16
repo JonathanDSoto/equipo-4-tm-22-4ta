@@ -70,7 +70,7 @@
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#sidebarMaps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMaps">
-                                <i class="mdi mdi-map-marker-outline"></i> <span data-key="t-maps">Catálogos</span>
+                                <i class="mdi mdi-map-marker-outline"></i> <span data-key="t-maps">Ordenes</span>
                             </a>
                             <div class="collapse menu-dropdown" id="sidebarMaps">
                                 <ul class="nav nav-sm flex-column">

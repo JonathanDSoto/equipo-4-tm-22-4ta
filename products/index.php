@@ -40,17 +40,18 @@
                     <div class="col">
                         <div class="card h-100">
                             <img src="<?=BASE_PATH?>/public/images/mac-img.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">Nombre producto</h5>
-                                    <p class="card-text text-truncate d-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet suscipit beatae totam facere eligendi similique sequi ratione ipsum hic cupiditate.</p><a href="#" id="">Ver más</a>
-                                    <hr>
-                                    <p class="text-end me-4  text-dark">$999</p>
-                                    <div class="row">
-                                        <button type="button" class="m-auto btn btn-info col-6">Ver más</button>
-                                        <button type="button" class="m-auto btn btn-danger col-4">Añadir <i class="mdi mdi-cart"></i> </button>
-                                    </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Nombre producto</h5>
+                                <p class="card-text text-truncate d-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet suscipit beatae totam facere eligendi similique sequi ratione ipsum hic cupiditate.</p><a href="#" id="">Ver más</a>
+                                <hr>
+                                <p class="text-end me-4  text-dark">$999</p>
+                                <div class="row">
+                                    <button type="button" class="btn btn-warning col-6">Editar</button>
+                                    <button type="button" class="btn btn-danger col-6">Eliminar</button>
+                                    <button type="button" class="btn btn-info col-12">Ver más</button>
                                 </div>
-                            </div>
+                            </div>  
+                        </div>
                     </div>
 
 
