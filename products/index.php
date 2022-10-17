@@ -1,5 +1,9 @@
 <?php 
     include_once "../app/config.php";
+    include '..\app\ProductsController.php';
+      $producto = new ProductsController();
+      $data = $producto->getProducts();
+      error_reporting(0);
 ?> 
 
 <!doctype html>
@@ -14,12 +18,15 @@
 
     <!-- gridjs css -->
     <link rel="stylesheet" href="<?= BASE_PATH ?>public/libs/gridjs/theme/mermaid.min.css">
+
+    <!-- Vue js -->
+    <script src="https://unpkg.com/vue@3"></script>
 </head>
 
 <body>
 
     <!-- Begin page -->
-    <div id="layout-wrapper">
+    <div id="layout-wrapper" >
 
     	<?php include "../layouts/nav.template.php"; ?>
         
@@ -28,21 +35,29 @@
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="main-content">
+        <div class="main-content" >
             <?php include '../layouts/bread.templete.php'?>
             <a href="<?=BASE_PATH?>agregar-producto" class="btn btn-success ms-5 mb-4" >Agregar producto<i class="mdi mdi-plus-thick"></i></a>
 
-            <div class="mt-1 ms-5 me-5 mb-5 ">
-                <div class="row row-cols-1 row-cols-md-5 g-4">
+            <div class="mt-1 ms-5 me-5 mb-5 " id="app">
+                <div class="row row-cols-1 row-cols-md-5 g-4" >
 
+
+                    <?php foreach($data as $producto):?>
                     <div class="col">
-                        <div class="card h-100">
-                            <img src="<?=BASE_PATH?>/public/images/mac-img.png" class="card-img-top" alt="...">
+                        <div class="card h-100" >
+                            <img src="<?php echo $producto->cover; ?>" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title text-center">Nombre producto</h5>
-                                <p class="card-text text-truncate d-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet suscipit beatae totam facere eligendi similique sequi ratione ipsum hic cupiditate.</p><a href="#" id="">Ver más</a>
+                                <h5 class="card-title text-center"><?php echo $producto->name; ?></h5>
+                                <p :class="classTruncate"><?php echo $producto->description; ?></p><a @click="cambiarClass(this)" href="#">Ver Más</a>
                                 <hr>
-                                <p class="text-end me-4  text-dark">$999</p>
+                                <p class="text-end me-4  text-dark">Precio: $<?php
+                                if ($producto->presentations[0]->price[0]->amount == null) {
+                                    echo "No Disponible";
+                                } else {
+                                    echo $producto->presentations[0]->price[0]->amount; 
+                                }
+                                 ?></p>
                                 <div class="row">
                                     <button type="button" class="btn btn-warning col-6">Editar</button>
                                     <button type="button" class="btn btn-danger col-6">Eliminar</button>
@@ -51,7 +66,7 @@
                             </div>  
                         </div>
                     </div>
-
+                    <?php endforeach; ?>
 
 
 
@@ -90,6 +105,33 @@
     <script src="../../../../unpkg.com/gridjs%405.1.0/plugins/selection/dist/selection.umd.js"></script>
     <!-- ecommerce product list -->
     <script src="<?= BASE_PATH ?>public/js/pages/ecommerce-product-list.init.js"></script>
+
+    <script type="text/javascript">
+            const { createApp } = Vue
+            const app = createApp({
+                data(){
+                    return {
+                        classTruncate:'card-text text-truncate d-block',
+                        mas: 'más',
+                    }
+                },
+                methods:{
+                    cambiarClass(target){
+                        if (this.classTruncate == 'card-text text-truncate d-block') {
+                            this.classTruncate = 'card-text';
+                            mas = 'menos';
+                        } else {
+                            this.classTruncate = 'card-text text-truncate d-block';
+                            mas = 'más';
+                        }
+                    },
+                },
+                mounted() {
+                },
+            }).mount('#app')
+
+
+        </script>
 
 
 </body>
