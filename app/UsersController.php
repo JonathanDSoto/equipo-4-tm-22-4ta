@@ -97,11 +97,11 @@ Class UsersController{
             $response = json_decode($response);
 
             if ( isset($response->code) && $response->code > 0) {
-
-                header("Location:".BASE_PATH."productos");
+                
+                return $response->data;
             }else{
-                #var_dump($response);
-                header("Location:".BASE_PATH."?error=true");
+
+                return array();
             }
 
         }
