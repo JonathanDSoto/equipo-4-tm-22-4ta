@@ -26,7 +26,7 @@ if (isset($_POST['action'])) {
 				$role = strip_tags($_POST['role']);
 				$password = strip_tags($_POST['password']);
 
-				$usersController->newUsuario($name,$lasname,$email,$phone_number,$created_by,$role,$password);
+				$usersController->newUsuario($name,$lastname,$email,$phone_number,$created_by,$role,$password);
 
 			break;
             case 'editarUsuario':
