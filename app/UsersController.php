@@ -41,7 +41,7 @@ if (isset($_POST['action'])) {
 				$password = strip_tags($_POST['password']);
                 $id = strip_tags($_POST['id']);
 
-				$usersController->editUsuario($name,$lasname,$email,$phone_number,$created_by,$role,$password,$id);
+				$usersController->editUsuario($name,$lastname,$email,$phone_number,$created_by,$role,$password,$id);
             break;
             case 'eliminarUsuario':
                 $usersController = new UsersController();
@@ -106,7 +106,7 @@ Class UsersController{
 
         }
 //Nuevo Usuario
-	public function newUsuario($name,$lasname,$email,$phone_number,$created_by,$role,$password)
+	public function newUsuario($name,$lastname,$email,$phone_number,$created_by,$role,$password)
 	{
 
 		$curl = curl_init();
@@ -122,7 +122,7 @@ Class UsersController{
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array(
             'name' => $name,
-            'lastname' => $lasname,
+            'lastname' => $lastname,
             'email' => $email,
             'phone_number' => $phone_number,
             'created_by' => $created_by,
@@ -194,7 +194,7 @@ Class UsersController{
 
 	}
 //Editar Usuario
-    public function editUsuario($name,$lasname,$email,$phone_number,$created_by,$role,$password,$id)
+    public function editUsuario($name,$lastname,$email,$phone_number,$created_by,$role,$password,$id)
 	{
 
 		$curl = curl_init();
@@ -209,7 +209,7 @@ Class UsersController{
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'PUT',
             CURLOPT_POSTFIELDS => 
-            'name='.$name.'&lastname='.$lasname.'&email='.$email.'&phone_number='.$phone_number.'&created_by='.$created_by.'&role='.$role.'&password='.$password.'&id='.$id,
+            'name='.$name.'&lastname='.$lastname.'&email='.$email.'&phone_number='.$phone_number.'&created_by='.$created_by.'&role='.$role.'&password='.$password.'&id='.$id,
             CURLOPT_HTTPHEADER => array(
               'Authorization: Bearer '.$_SESSION['token'],
               'Content-Type: application/x-www-form-urlencoded',
