@@ -79,8 +79,11 @@
                             <td>{{15-10-2022}}</td>
                             <td class="text-center row">
                                 <div class="col row-cols-12">
-                                    <button class="btn btn-warning">
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal">
                                         <i class="mdi mdi-pencil"></i>
+                                    </button>
+                                    <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editPhotoModal">
+                                        <i class="mdi mdi-camera-flip"></i>
                                     </button>
                                     <button class="btn btn-danger">
                                         <i class="mdi mdi-trash-can-outline"></i>
@@ -105,57 +108,135 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal de crear -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Crear usuario</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="#">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Nombre</span>
-                        <input type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Apellidos</span>
-                        <input type="text" class="form-control" placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Email</span>
-                        <input type="text" class="form-control" placeholder="example@example.com" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Numero</span>
-                        <input type="text" class="form-control" placeholder="Numero" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Creado por:</span>
-                        <input type="text" class="form-control" placeholder="Creado por" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Rol</span>
-                        <input type="text" class="form-control" placeholder="Rol" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Contraseña</span>
-                        <input type="password" class="form-control" placeholder="******" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                      <input type="file" class="form-control" name="uploadedfile" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Crear usuario</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Nombre</span>
+                            <input type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Apellidos</span>
+                            <input type="text" class="form-control" placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Email</span>
+                            <input type="text" class="form-control" placeholder="example@example.com" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Numero</span>
+                            <input type="text" class="form-control" placeholder="Numero" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Creado por:</span>
+                            <input type="text" class="form-control" placeholder="Creado por" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Rol</span>
+                            <input type="text" class="form-control" placeholder="Rol" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Contraseña</span>
+                            <input type="password" class="form-control" placeholder="******" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" name="uploadedfile" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success">Gurdar</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success">Gurdar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal editar -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar usuario</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Nombre</span>
+                            <input type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Apellidos</span>
+                            <input type="text" class="form-control" placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Email</span>
+                            <input type="text" class="form-control" placeholder="example@example.com" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Numero</span>
+                            <input type="text" class="form-control" placeholder="Numero" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Creado por:</span>
+                            <input type="text" class="form-control" placeholder="Creado por" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Rol</span>
+                            <input type="text" class="form-control" placeholder="Rol" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Contraseña</span>
+                            <input type="password" class="form-control" placeholder="******" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success">Gurdar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+    <!-- Modal editar foto -->
+    <div class="modal fade" id="editPhotoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar foto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#">
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" name="uploadedfile" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success">Gurdar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <?php include '../layouts/scripts.template.php' ?>
     <!-- swiper js -->
     <script src="assets/libs/swiper/swiper-bundle.min.js"></script>

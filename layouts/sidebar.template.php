@@ -25,24 +25,24 @@
                         
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#">
-                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Usuarios</span>
+                            <a class="nav-link menu-link" href="<?= BASE_PATH?>usuarios">
+                                <i class="mdi mdi-shield-account"></i> <span data-key="t-widgets">Usuarios</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#">
-                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Clientes</span>
+                                <i class="mdi mdi-shield-account-outline"></i> <span data-key="t-widgets">Clientes</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="<?php BASE_PATH ?> productos">
-                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Productos</span>
+                                <i class="mdi mdi-shopping"></i> <span data-key="t-widgets">Productos</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-dashboards">Catalogos</span>
+                                <i class="mdi mdi-book-open-blank-variant"></i> <span data-key="t-dashboards">Catalogos</span>
                             </a>
                             <div class="collapse menu-dropdown" id="sidebarDashboards">
                                 <ul class="nav nav-sm flex-column">
@@ -64,13 +64,13 @@
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#">
-                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Cupones</span>
+                                <i class="mdi mdi-cash-100"></i> <span data-key="t-widgets">Cupones</span>
                             </a>
                         </li> 
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#sidebarMaps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMaps">
-                                <i class="mdi mdi-map-marker-outline"></i> <span data-key="t-maps">Ordenes</span>
+                                <i class="mdi mdi-order-bool-descending"></i> <span data-key="t-maps">Ordenes</span>
                             </a>
                             <div class="collapse menu-dropdown" id="sidebarMaps">
                                 <ul class="nav nav-sm flex-column">
