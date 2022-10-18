@@ -3,7 +3,7 @@ RewriteEngine on
 
 #Rutas
 RewriteRule ^auth$ app/AuthController.php
-
+RewriteRule ^Controlador-usuarios$ app/UsersController.php
 
 # Login
 RewriteRule ^iniciar-sesion$ index.php
