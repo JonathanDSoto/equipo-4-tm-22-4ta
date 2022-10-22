@@ -29,7 +29,6 @@
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
-
             <div class="page-content">
                 <div class="container-fluid">
 
@@ -65,21 +64,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end card -->
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title mb-0">Cover</h5>
-                                    </div>
-                                    <div class="card-body">
-                                    <div class="input-group mb-3">
-                                        <input type="file" class="form-control" name="uploadedfile" aria-label="Username" aria-describedby="basic-addon1">
-                                    </div>
-                                    </div>
-                                </div>
-                                <!-- end card -->
-
-                                
                                 <!-- end card -->
                                 
                                 <div class="card">
@@ -117,28 +101,14 @@
                                     <!-- end card body -->
                                 </div>
                                 <!-- end card -->
+                                <div class="text-start mb-3">
+                                    <button type="submit" class="btn btn-success w-sm">Crear producto</button>
+                                </div>
                             </div>
-                            
-                            
                             
                             <!-- end col -->
                             
                             <div class="col-lg-4">
-                                
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title mb-0">Slug</h5>
-                                    </div>
-                                    <!-- end card body -->
-                                    <div class="card-body">
-                                    <div class="form-floating mb-3 mt-4">
-                                        <input type="text" id="username" name="Slug" class="form-control" placeholder="Username">
-                                        <label for="username" class="form-label">Ingresa un Slug</label>
-                                    </div>
-                                    </div>
-                                </div>
-                                <!-- end card -->
 
                                 <div class="card">
                                     <div class="card-header">
@@ -150,7 +120,8 @@
                                             <option value="Appliances">Adios</option>
                                         </select>
                                         <p class="text-muted mb-2"> 
-                                            <button class="float-end btn btn-info mt-3">Crear brand</button>
+                                            <button type="button" class="float-end btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear brand</button>
+                                            
                                         </p>
                                     </div>
                                     <!-- end card body -->
@@ -163,22 +134,30 @@
                                     <div class="card-body">
                                         <div class="hstack gap-3 align-items-start">
                                             <div class="flex-grow-1">
-                                            <select name="tags" class="form-select">
-                                                <option value="Hola">Hola</option>
-                                                <option value="adios">Adios</option>
-                                            </select>
-                                            <p class="text-muted mb-2"> 
-                                                <button class="float-end btn btn-info mt-3">Crear Tag</button>
-                                            </p>
+                                                <select name="tags" class="form-select">
+                                                    <option value="Hola">Hola</option>
+                                                    <option value="adios">Adios</option>
+                                                </select>
+                                                <p class="text-muted mb-2"> 
+                                                    <button class="float-end btn btn-info mt-3">Crear Tag</button>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- end card body -->
                                 </div>
-                                
-                                <div class="text-end mb-3">
-                                    <button type="submit" class="btn btn-success w-sm">Crear producto</button>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Cover</h5>
+                                    </div>
+                                    <div class="card-body">
+                                    <div class="input-group mb-3">
+                                        <input type="file" class="form-control" name="uploadedfile" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                    </div>
                                 </div>
+                                <!-- end card -->
+                                
                             </div>
                             <!-- end col -->
                         </div>
@@ -207,6 +186,70 @@
         </div>
     </div>
 
+
+
+    <!-- Modal Crear Brand -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form enctype="multipart/form-data" method="POST" action="<?= BASE_PATH ?>" >
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Nombre</span>
+                            <input type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" name="name" v-if="mostrar_inputs_añadir == true">
+                            
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Descripción</span>
+                            <input type="text" class="form-control" placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" name="lastname" v-if="mostrar_inputs_añadir == true">
+                            
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Slug</span>
+                            <input type="text" class="form-control" placeholder="example@example.com" aria-label="Username" aria-describedby="basic-addon1" name="email" v-if="mostrar_inputs_añadir == true">
+                            
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Numero</span>
+                            <input type="text" class="form-control" placeholder="Numero" aria-label="Username" aria-describedby="basic-addon1" name="phone_number" v-if="mostrar_inputs_añadir == true">
+                            
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Creado por:</span>
+                            <input type="text" class="form-control" placeholder="Creado por" aria-label="Username" aria-describedby="basic-addon1" name="created_by" v-if="mostrar_inputs_añadir == true">
+                            
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Rol</span>
+                            <input type="text" class="form-control" placeholder="Rol" aria-label="Username" aria-describedby="basic-addon1" name="role" v-if="mostrar_inputs_añadir == true">
+                            
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Contraseña</span>
+                            <input type="password" class="form-control" placeholder="******" aria-label="Username" aria-describedby="basic-addon1" name="password">
+                        </div>
+                        <div class="input-group mb-3" v-if="mostrar_añadir_foto == true">
+                            <input type="file" class="form-control" name="profile_photo_file" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success" @click="alertaEditar">Guardar </button>
+                            <input type="hidden" name="action" :action="accion" :value="accion">
+                            <input type="hidden" name="global_token" value="<?= $_SESSION['global_token'] ?>">
+                            <input type="hidden" name="id" :value="datos_user.id">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     
     
     

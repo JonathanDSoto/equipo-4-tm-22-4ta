@@ -31,8 +31,8 @@
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
+    
     <div class="main-content">
-        <?php include '../layouts/bread.templete.php'?>
 
         <div class="page-content mt-m-n5">
             <div class="container-fluid">
@@ -91,7 +91,6 @@
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-                                                        <a class="btn btn-success col-12" href="<?= BASE_PATH ?>editar-perfil">Editar Perfil</a>
                                                     </div>
                                                 </div><!-- end card body -->
                                             </div><!-- end card -->
