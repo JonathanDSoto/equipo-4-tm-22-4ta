@@ -14,10 +14,14 @@ if (isset($_POST['action'])) {
 				$description = strip_tags($_POST['description']);
 				$features = strip_tags($_POST['features']);
 				$brand_id = strip_tags($_POST['brand_id']);
+				$categoriesUno = strip_tags($_POST['categoriesUno']);
+				$categoriesDos = strip_tags($_POST['categoriesDos']);
+				$tagsUno = strip_tags($_POST['tagsUno']);
+				$tagsDos = strip_tags($_POST['tagsDos']);
 
 				$productController = new ProductsController();
 
-				$productController->createProduct($name,$slug,$description,$features,$brand_id);
+				$productController->createProduct($name,$slug,$description,$features,$brand_id,$categoriesUno,$categoriesDos,$tagsUno,$tagsDos);
 				 
 			break; 
 
@@ -29,10 +33,14 @@ if (isset($_POST['action'])) {
 				$features = strip_tags($_POST['features']);
 				$brand_id = strip_tags($_POST['brand_id']);
 				$id = strip_tags($_POST['id']);
+				$categoriesUno = strip_tags($_POST['categoriesUno']);
+				$categoriesDos = strip_tags($_POST['categoriesDos']);
+				$tagsUno = strip_tags($_POST['tagsUno']);
+				$tagsDos = strip_tags($_POST['tagsDos']);
 
 				$productController = new ProductsController();
 
-				$productController->updateProduct($name,$slug,$description,$features,$brand_id,$id);
+				$productController->updateProduct($name,$slug,$description,$features,$brand_id,$id,$categoriesUno,$categoriesDos,$tagsUno,$tagsDos);
 				 
 			break;
 
@@ -144,7 +152,8 @@ public function idProduct($id)
 		}
 	}
 //Crear un producto
-	public function createProduct($name,$slug,$description,$features,$brand_id)
+
+	public function createProduct($name,$slug,$description,$features,$brand_id,$categoriesUno,$categoriesDos,$tagsUno,$tagsDos)
 	{
  
 
@@ -165,7 +174,11 @@ public function idProduct($id)
 		  	'description' => $description,
 		  	'features' => $features,
 		  	'brand_id' => $brand_id,
-		  	'cover'=> new CURLFILE($_FILES['cover']['tmp_name'])
+		  	'cover'=> new CURLFILE($_FILES['cover']['tmp_name'],
+			'categories[0]' => $categoriesUno,
+			'categories[1]' => $categoriesDos,
+			'tags[0]' => $tagsUno,
+			'tags[1]' => $tagsDos)
 		  ),
 		  CURLOPT_HTTPHEADER => array(
 		    'Authorization: Bearer '.$_SESSION['token']
@@ -185,12 +198,11 @@ public function idProduct($id)
 
 	}
 //Actualizar un producto
-	public function updateProduct($name,$slug,$description,$features,$brand_id,$id)
+	public function updateProduct($name,$slug,$description,$features,$brand_id,$id,$categoriesUno,$categoriesDos,$tagsUno,$tagsDos)
 	{
  
 
 		$curl = curl_init();
-
 		curl_setopt_array($curl, array(
 		  CURLOPT_URL => 'https://crud.jonathansoto.mx/api/products',
 		  CURLOPT_RETURNTRANSFER => true,
@@ -200,7 +212,8 @@ public function idProduct($id)
 		  CURLOPT_FOLLOWLOCATION => true,
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => 'PUT',
-		  CURLOPT_POSTFIELDS => 'name='.$name.'&slug='.$slug.'&description='.$description.'&features='.$features.'&brand_id='.$brand_id.'&id='.$id,
+		  CURLOPT_POSTFIELDS => 'name='.$name.'&slug='.$slug.'&description='.$description.'&features='.$features.'&brand_id='.$brand_id.'&id='.$id
+		  .'&categories%5B0%5D='.$categoriesUno.'&categories%5B1%5D='.$categoriesDos.'&tags%5B0%5D='.$tagsUno.'&tags%5B1%5D='.$tagsDos,
 		  CURLOPT_HTTPHEADER => array(
 		    'Authorization: Bearer '.$_SESSION['token'],
 		    'Content-Type: application/x-www-form-urlencoded'
@@ -243,10 +256,10 @@ public function idProduct($id)
 		$response = json_decode($response);
 
 		if ( isset($response->code) && $response->code > 0) {
-			
+			header("Location:..".BASE_PATH."productos/success");
 			return true;
 		}else{
-
+			header("Location:..".BASE_PATH."productos/error");
 			return false;
 		}
 	}
