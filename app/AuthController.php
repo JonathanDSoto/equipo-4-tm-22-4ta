@@ -145,20 +145,6 @@ Class AuthController{
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'POST',
-			CURLOPT_POSTFIELDS => array('email' => 'jsoto@uabcs.mx'),
-			CURLOPT_HTTPHEADER => array(
-			  'Authorization: Bearer 49|Fe0K8JKVeW2hzY9103KmWvpCNebEkfchDuMjQrkS'
-			),
-		  ));
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/logout',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'POST',
 			CURLOPT_POSTFIELDS => array('email' => $email),
 			CURLOPT_HTTPHEADER => array(
 				'Authorization: Bearer '.$_SESSION['token']
@@ -170,6 +156,7 @@ Class AuthController{
 
 		if ( isset($response->code) && $response->code > 0) {
 			header("Location:".BASE_PATH."iniciar-sesion");
+			session_destroy();
 		}else{
 			#var_dump($response);
 			header("Location:".BASE_PATH."?error=true");
