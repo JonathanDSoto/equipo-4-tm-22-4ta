@@ -3,7 +3,7 @@
     include '..\app\ProductsController.php';
       $producto = new ProductsController();
       $data = $producto->getProducts();
-      error_reporting(0);
+      #error_reporting(0);
 ?> 
 
 <!doctype html>
@@ -35,7 +35,7 @@
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="main-content" >
+        <div class="main-content" id="app">
             <div class="page-content mb-n5">
                 <div class="container-fluid">
                     <!-- start page title -->
@@ -52,25 +52,17 @@
             </div>
             <a href="<?=BASE_PATH?>agregar-producto" class="btn btn-success ms-5 mb-4" >Agregar producto<i class="mdi mdi-plus-thick"></i></a>
 
-            <div class="mt-1 ms-5 me-5 mb-5 " id="app">
+            <div class="mt-1 ms-5 me-5 mb-5 ">
                 <div class="row row-cols-1 row-cols-md-5 g-4" >
 
-
-                    <?php foreach($data as $producto):?>
-                    <div class="col">
+                    <div class="col" v-for="(producto, index) in productos">
                         <div class="card h-100" >
-                            <img src="<?php echo $producto->cover; ?>" class="card-img-top" alt="...">
+                            <img :src="producto.cover" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title text-center"><?php echo $producto->name; ?></h5>
-                                <p :class="classTruncate"><?php echo $producto->description; ?></p><a @click="cambiarClass(this)" href="#">Ver Más</a>
+                                <h5 class="card-title text-center">{{producto.name}}</h5>
+                                <p :class="classTruncate">{{producto.description}}</p><a @click="cambiarClass(index)" href="#">Ver Más</a>
                                 <hr>
-                                <p class="text-end me-4  text-dark">Precio: $<?php
-                                if ($producto->presentations[0]->price[0]->amount == null) {
-                                    echo "No Disponible";
-                                } else {
-                                    echo $producto->presentations[0]->price[0]->amount; 
-                                }
-                                 ?></p>
+                                <p class="text-end me-4  text-dark">Precio: ${{producto.presentations[0]}}</p>
                                 <div class="row">
                                     <button type="button" class="btn btn-warning col-6">Editar</button>
                                     <button type="button" class="btn btn-danger col-6">Eliminar</button>
@@ -79,7 +71,6 @@
                             </div>  
                         </div>
                     </div>
-                    <?php endforeach; ?>
 
 
 
@@ -124,12 +115,13 @@
             const app = createApp({
                 data(){
                     return {
+                        productos: <?= json_encode($data);?>,
                         classTruncate:'card-text text-truncate d-block',
                         mas: 'más',
                     }
                 },
                 methods:{
-                    cambiarClass(target){
+                    cambiarClass(index){
                         if (this.classTruncate == 'card-text text-truncate d-block') {
                             this.classTruncate = 'card-text';
                             mas = 'menos';
