@@ -211,9 +211,9 @@ public function idCliente($id)
 		$response = json_decode($response);
 
 		if ( isset($response->code) && $response->code > 0) {
-			return true;
-		}else{
-			return false;
+			header("Location:..".BASE_PATH."clientes/success");
+		}else{ 
+			header("Location:..".BASE_PATH."clientes/error");
 		}
 	}
 }

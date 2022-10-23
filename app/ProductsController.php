@@ -158,7 +158,7 @@ public function idProduct($id)
  
 
 		$curl = curl_init();
-
+		
 		curl_setopt_array($curl, array(
 		  CURLOPT_URL => 'https://crud.jonathansoto.mx/api/products',
 		  CURLOPT_RETURNTRANSFER => true,
@@ -174,16 +174,16 @@ public function idProduct($id)
 		  	'description' => $description,
 		  	'features' => $features,
 		  	'brand_id' => $brand_id,
-		  	'cover'=> new CURLFILE($_FILES['cover']['tmp_name'],
+		  	'cover'=> new CURLFILE($_FILES['cover']['tmp_name']),
 			'categories[0]' => $categoriesUno,
 			'categories[1]' => $categoriesDos,
 			'tags[0]' => $tagsUno,
-			'tags[1]' => $tagsDos)
+			'tags[1]' => $tagsDos
 		  ),
 		  CURLOPT_HTTPHEADER => array(
 		    'Authorization: Bearer '.$_SESSION['token']
 		  ),
-		)); 
+		));
 
 		$response = curl_exec($curl); 
 		curl_close($curl);
@@ -195,6 +195,7 @@ public function idProduct($id)
 			#var_dump($response);
 			header("Location:..".BASE_PATH."productos/error");
 		}
+	
 
 	}
 //Actualizar un producto
