@@ -15,6 +15,7 @@
 
 <body>
 
+
     <!-- Begin page -->
     <div id="layout-wrapper">
         
@@ -83,27 +84,39 @@
                                 <!-- end card -->   
                                 <div class="card">
                                     <div class="card-header">
+                                        <h5 class="card-title mb-0">Caracteristicás</h5>
+                                    </div>
+                                    <!-- end card body -->
+                                    <div class="card-body">
+                                        <div>
+                                        <div class="form-floating">
+                                            <textarea class="form-control" name="descripción" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                            <label for="floatingTextarea">Ingresa las caracteristicás</label>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card -->  
+                                <div class="card">
+                                    <div class="card-header">
                                         <h5 class="card-title mb-0">Categorias</h5>
                                     </div>
                                     <div class="card-body">
-                                        <div class="hstack gap-3 align-items-start">
                                             <div class="flex-grow-1">
-                                            <select name="categories" class="form-select">
-                                                <option value="Hola">Hola</option>
-                                                <option value="adios">Adios</option>
-                                            </select>
-                                            <p class="text-muted mb-2"> 
-                                                <button class=" btn btn-info mt-3">Crear categorias</button>
-                                            </p>
+                                                <select name="tags" class="form-select">
+                                                    <option value="Hola">Hola</option>
+                                                    <option value="adios">Adios</option>
+                                                </select>
+                                                <select name="tags" class="form-select mt-2">
+                                                    <option value="Hola">Hola</option>
+                                                    <option value="adios">Adios</option>
+                                                </select>
                                             </div>
-                                        </div>
                                     </div>
                                     <!-- end card body -->
                                 </div>
                                 <!-- end card -->
-                                <div class="text-start mb-3">
-                                    <button type="submit" class="btn btn-success w-sm">Crear producto</button>
-                                </div>
+                                
                             </div>
                             
                             <!-- end col -->
@@ -119,10 +132,6 @@
                                             <option value="Appliances">Hola</option>
                                             <option value="Appliances">Adios</option>
                                         </select>
-                                        <p class="text-muted mb-2"> 
-                                            <button type="button" class="float-end btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear brand</button>
-                                            
-                                        </p>
                                     </div>
                                     <!-- end card body -->
                                 </div>
@@ -138,15 +147,16 @@
                                                     <option value="Hola">Hola</option>
                                                     <option value="adios">Adios</option>
                                                 </select>
-                                                <p class="text-muted mb-2"> 
-                                                    <button class="float-end btn btn-info mt-3">Crear Tag</button>
-                                                </p>
+                                                <select name="tags" class="form-select mt-2">
+                                                    <option value="Hola">Hola</option>
+                                                    <option value="adios">Adios</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- end card body -->
                                 </div>
-                                <div class="card">
+                                <div class="card mb-5">
                                     <div class="card-header">
                                         <h5 class="card-title mb-0">Cover</h5>
                                     </div>
@@ -157,9 +167,13 @@
                                     </div>
                                 </div>
                                 <!-- end card -->
-                                
                             </div>
                             <!-- end col -->
+                            <div class="w-100">
+                                <div class="text-center mb-3">
+                                    <button type="submit" class="btn btn-success w-sm btn-lg ">Crear producto</button>
+                                </div>
+                            </div>
                         </div>
                         <!-- end row -->
 
