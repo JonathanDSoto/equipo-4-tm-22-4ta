@@ -3,6 +3,13 @@ RewriteEngine on
 
 #Rutas
 RewriteRule ^auth$ app/AuthController.php
+RewriteRule ^Controlador-brand$ app/BrandController.php
+RewriteRule ^Controlador-categorias$ app/CategoriasController.php
+RewriteRule ^Controlador-clientes$ app/ClientsController.php
+RewriteRule ^Controlador-config$ app/config.php
+RewriteRule ^Controlador-levels$ app/LevelsController.php
+RewriteRule ^Controlador-ordenes$ app/OrdersController.php
+RewriteRule ^Controlador-productos$ app/ProductsController.php
 RewriteRule ^Controlador-usuarios$ app/UsersController.php
 
 # Login
@@ -22,10 +29,9 @@ RewriteRule ^agregar-producto$ products/add-product.php
 
 # PERFIL
 RewriteRule ^perfil$ user/profile.php
-RewriteRule ^editar-perfil$ user/profile-settings.php
 
 
 # Usuarios
 
 RewriteRule ^usuarios$ user/users.php
-
+RewriteRule ^clientes$ user/clients.php
