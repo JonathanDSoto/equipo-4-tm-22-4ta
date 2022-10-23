@@ -25,7 +25,10 @@ RewriteRule ^productos/success$ products/index.php?success=true
 RewriteRule ^agregar-producto$ products/add-product.php
 
 
-
+# Catalogos
+RewriteRule ^marcas$ catalogos/brands.php
+RewriteRule ^categorias$ catalogos/categorias.php
+RewriteRule ^tags$ catalogos/tags.php
 
 # PERFIL
 RewriteRule ^perfil$ user/profile.php

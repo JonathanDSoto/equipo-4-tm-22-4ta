@@ -1,9 +1,5 @@
 <?php 
     include_once "../app/config.php";
-    include '..\app\UsersController.php';
-    $usuarios = new UsersController();
-    $data = $usuarios->getUsuarios();
-    #var_dump($data);
 ?> 
 
 <!doctype html>
@@ -32,24 +28,17 @@
     
     <?php include '../layouts/sidebar.template.php' ?>
     
-    <div class="vertical-overlay"></div>
-    
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
     <div class="main-content" >
-    <div class="page-content mb-n5">
+        <div class="page-content mb-n5">
             <div class="container-fluid">
                 <!-- start page title -->
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Clientes</h4>
-                            <div class="page-title-right">
-                                <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item active">Clientes</li>
-                                </ol>
-                            </div>
+                            <h4 class="mb-sm-0">Marca</h4>
                         </div>
                     </div>
                 </div>
@@ -59,7 +48,7 @@
         </div>
             
             <button class="btn btn-success ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-                Crear cliente
+                Crear brand
                 <i class="mdi mdi-plus-thick"></i>
             </button>
             <div class="table-responsive mx-5 mb-5">
@@ -69,11 +58,9 @@
                             
                             <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Apellidos</th>
-                            <th scope="col">E-mail</th>
-                            <th scope="col">Numero telefonico</th>
-                            <th scope="col">Suscripción</td>
-                            <th scope="col">Orden</td>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Slug</th>
+                            <th scope="col">Prodcutos</th>
                             <th scope="col" class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -91,21 +78,15 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>{{lastname}}</td>
+                            <td>{{decripción}}</td>
                             <!-- <td class="text-danger"><i class="ri-close-circle-line fs-17 align-middle">Cancel</i></td> -->
-                            <td>{{email}}</td>
-                            <td>{{phone_number}}</td>
-                            <td>{{suscripción}}</td>
-                            <td><a href="#"> <i data-feather="paperclip"></i></a></td>
+                            <td>{{slug}}</td>
+                            <td><a href="#">Ver productos</a></td>
                             <td class="text-center row">
                                 <div class="col row-cols-12">
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" >
                                         <i class="mdi mdi-pencil"></i>
                                     </button>
-                                    <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editPhotoModal">
-                                        <i>Ver mas</i>
-                                    </button>
-                                    
                                     <form method="POST" action="">
                                         <button type="submit" class="btn btn-danger">
                                             <i class="mdi mdi-trash-can-outline"></i>
@@ -130,28 +111,21 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form enctype="multipart/form-data" method="POST" action="<?= BASE_PATH ?>Controlador-usuarios" >
+                        <form enctype="multipart/form-data" method="POST" action="" >
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Nombre</span>
                                 <input type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" name="name" >
                                 
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Email</span>
+                                <span class="input-group-text" id="basic-addon1">Descripción</span>
                                 <input type="text" class="form-control" placeholder="example@example.com" aria-label="Username" aria-describedby="basic-addon1" name="email">
                                 
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Numero</span>
+                                <span class="input-group-text" id="basic-addon1">Slug</span>
                                 <input type="text" class="form-control" placeholder="Numero" aria-label="Username" aria-describedby="basic-addon1" name="phone_number" >
                             
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Suscripción</span>
-                                <select name="categories" class="form-select">
-                                    <option value="Hola">Si</option>
-                                    <option value="adios">No</option>
-                                </select>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
@@ -165,8 +139,6 @@
                 </div>
             </div>
         </div>
-
-        
     </div>
     <!-- end table responsive -->
         
@@ -196,6 +168,73 @@
 
     <!--SweetAlert-->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!--script vue -->
+    <script>
+            const { createApp } = Vue
+            const app = createApp({
+                data(){
+                    return {
+
+                        users: <?php echo json_encode($data);?>,
+                        datos_user: {id: "",nombre: "", apellido: "", correo: "", numero: "", creado: "", rol: ""},
+                        titulo_modal: "",
+                        accion: "",
+                        mostrar_añadir_foto: true,
+                        id_user: {id: ""},
+                        mostrar_inputs_editar: true,
+                        mostrar_inputs_añadir: true,
+                        btn_guardar_cambios: "",
+                    }
+                },
+                methods:{
+                    editUser(user){
+                        this.titulo_modal = "Editar usuario";
+                        this.datos_user = user;
+                        this.accion = "editarUsuario";
+                        this.mostrar_añadir_foto = false;
+                        this.btn_guardar_cambios = "Cambios";
+                        this.mostrar_inputs_editar = true;
+                        this.mostrar_inputs_añadir = false;
+                    },
+                    agregarUser(){
+                        this.titulo_modal = "Agregar usuario";
+                        this.accion = "nuevoUsuario";   
+                        this.mostrar_añadir_foto = true;
+                        this.btn_guardar_cambios = "";
+                        this.mostrar_inputs_editar = false;
+                        this.mostrar_inputs_añadir = true;
+                    },
+                    editarFotoUser(user){
+                        this.id_user = user;
+                    },
+                    alertaEditar(){
+                        Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Cambios Guardados',
+                        showConfirmButton: false,
+                        timer: 10000
+                        })
+                    },
+                    alertaEliminar(){
+                        Swal.fire({
+                        position: 'center',
+                        icon: 'info',
+                        title: 'Usuario Eliminado',
+                        showConfirmButton: false,
+                        timer: 15000
+                        })
+                    },
+                },
+                mounted() {
+
+                },
+            }).mount('#app')
+
+
+        </script>
+
 
 
 </body>

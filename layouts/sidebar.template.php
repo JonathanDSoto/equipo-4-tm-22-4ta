@@ -48,13 +48,13 @@
                                 <ul class="nav nav-sm flex-column">
 
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link" data-key="t-analytics"> Categorias </a>
+                                        <a href="<?=BASE_PATH?>categorias" class="nav-link" data-key="t-analytics"> Categorias </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link" data-key="t-crm"> Marcas </a>
+                                        <a href="<?=BASE_PATH?>marcas" class="nav-link" data-key="t-crm"> Marcas </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link" data-key="t-ecommerce"> Tags </a>
+                                        <a href="<?=BASE_PATH?>tags" class="nav-link" data-key="t-ecommerce"> Tags </a>
                                     </li>
                                     
                                 </ul>
