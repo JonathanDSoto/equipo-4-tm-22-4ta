@@ -144,10 +144,10 @@ public function idCliente($id)
 
 		if ( isset($response->code) && $response->code > 0) {
 
-			header("Location:..".BASE_PATH."clientes/success");
+			header("Location:..".BASE_PATH."clientes");
 		}else{ 
 			#var_dump($response);
-			header("Location:..".BASE_PATH."clientes/error");
+			header("Location:".BASE_PATH."?error=true");
 		}
 
 	}
@@ -179,11 +179,10 @@ public function idCliente($id)
 
 		if ( isset($response->code) && $response->code > 0) {
 
-			header("Location:..".BASE_PATH."clientes/success");
+			header("Location:..".BASE_PATH."clientes");
 		}else{ 
 
-			#var_dump($response);
-			header("Location:..".BASE_PATH."clientes/error");
+			header("Location:".BASE_PATH."?error=true");
 		}
 
 	}
@@ -211,9 +210,9 @@ public function idCliente($id)
 		$response = json_decode($response);
 
 		if ( isset($response->code) && $response->code > 0) {
-			header("Location:..".BASE_PATH."clientes/success");
+			header("Location:..".BASE_PATH."clientes");
 		}else{ 
-			header("Location:..".BASE_PATH."clientes/error");
+			header("Location:".BASE_PATH."?error=true");
 		}
 	}
 }

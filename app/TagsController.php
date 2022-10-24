@@ -25,8 +25,9 @@ if (isset($_POST['action'])) {
                 $name = strip_tags($_POST['name']);
 				$description = strip_tags($_POST['description']);
 				$slug = strip_tags($_POST['slug']);
+                $id = strip_tags($_POST['id']);
 
-				$tagsController->editTags($name,$description,$slug);
+				$tagsController->editTags($name,$description,$slug,$id);
             break;
             case 'eliminarEtiqueta':
                 $tagsController = new TagsController();
@@ -147,7 +148,7 @@ Class TagsController{
 	}
 
 //Editar Etiqueta
-    public function editTags($name,$description,$slug)
+    public function editTags($name,$description,$slug,$id)
 	{
 
 		$curl = curl_init();
@@ -161,7 +162,7 @@ Class TagsController{
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'PUT',
-            CURLOPT_POSTFIELDS => 'name='.$name.'&description='.$description.'&slug='.$slug,
+            CURLOPT_POSTFIELDS => 'name='.$name.'&description='.$description.'&slug='.$slug.'&id='.$id,
             CURLOPT_HTTPHEADER => array(
                 'Authorization: Bearer '.$_SESSION['token'],
                 'Content-Type: application/x-www-form-urlencoded'
