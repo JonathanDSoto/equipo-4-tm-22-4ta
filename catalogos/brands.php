@@ -217,7 +217,7 @@
                         Swal.fire({
                         position: 'center',
                         icon: 'info',
-                        title: 'Etiqueta Eliminada',
+                        title: 'Brand Eliminada',
                         showConfirmButton: false,
                         timer: 15000
                         })
