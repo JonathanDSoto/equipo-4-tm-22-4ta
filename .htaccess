@@ -11,6 +11,9 @@ RewriteRule ^Controlador-levels$ app/LevelsController.php
 RewriteRule ^Controlador-ordenes$ app/OrdersController.php
 RewriteRule ^Controlador-productos$ app/ProductsController.php
 RewriteRule ^Controlador-usuarios$ app/UsersController.php
+RewriteRule ^Controlador-cupones$ app/CouponsController.php
+RewriteRule ^Controlador-etiquetas$ app/TagsController.php
+
 
 # Login
 RewriteRule ^iniciar-sesion$ index.php
@@ -38,3 +41,7 @@ RewriteRule ^perfil$ user/profile.php
 
 RewriteRule ^usuarios$ user/users.php
 RewriteRule ^clientes$ user/clients.php
+
+# Cupones
+
+RewriteRule ^cupones$ cupons/cupons.php
