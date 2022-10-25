@@ -60,7 +60,6 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Descripción</th>
                             <th scope="col">Slug</th>
-                            <th scope="col">Prodcutos</th>
                             <th scope="col" class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -81,7 +80,6 @@
                             <td>{{decripción}}</td>
                             <!-- <td class="text-danger"><i class="ri-close-circle-line fs-17 align-middle">Cancel</i></td> -->
                             <td>{{slug}}</td>
-                            <td><a href="#">Ver productos</a></td>
                             <td class="text-center row">
                                 <div class="col row-cols-12">
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" >
