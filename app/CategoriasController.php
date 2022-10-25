@@ -141,11 +141,9 @@ public function idCategoria($id)
 		$response = json_decode($response);
 
 		if ( isset($response->code) && $response->code > 0) {
-
-			header("Location:..".BASE_PATH."productos/success");
+			header("Location:..".BASE_PATH."categorias");
 		}else{ 
-			#var_dump($response);
-			header("Location:..".BASE_PATH."productos/error");
+			header("Location:".BASE_PATH."?error=true");
 		}
 
 	}
@@ -176,12 +174,9 @@ public function idCategoria($id)
 		$response = json_decode($response);
 
 		if ( isset($response->code) && $response->code > 0) {
-
-			header("Location:..".BASE_PATH."productos/success");
+			header("Location:..".BASE_PATH."categorias");
 		}else{ 
-
-			#var_dump($response);
-			header("Location:..".BASE_PATH."productos/error");
+			header("Location:".BASE_PATH."?error=true");
 		}
 
 	}
@@ -209,9 +204,9 @@ public function idCategoria($id)
 		$response = json_decode($response);
 
 		if ( isset($response->code) && $response->code > 0) {
-			return true;
-		}else{
-			return false;
+			header("Location:..".BASE_PATH."categorias");
+		}else{ 
+			header("Location:".BASE_PATH."?error=true");
 		}
 	}
 }

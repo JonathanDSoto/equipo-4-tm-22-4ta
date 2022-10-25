@@ -96,11 +96,11 @@ public function brand($id)
 	$response = json_decode($response);
 
 	if ( isset($response->code) && $response->code > 0) {
-
-		header("Location:".BASE_PATH."productos");
+			
+		return $response->data;
 	}else{
-		#var_dump($response);
-		header("Location:".BASE_PATH."?error=true");
+
+		return array();
 	}
 
 }
@@ -133,7 +133,7 @@ public function newBrand($name,$description,$slug)
 
 	if ( isset($response->code) && $response->code > 0) {
 
-		header("Location:".BASE_PATH."productos");
+		header("Location:".BASE_PATH."marcas");
 	}else{
 		#var_dump($response);
 		header("Location:".BASE_PATH."?error=true");
@@ -167,7 +167,7 @@ public function editBrand($name,$description,$slug,$id)
 
 	if ( isset($response->code) && $response->code > 0) {
 
-		header("Location:".BASE_PATH."productos");
+		header("Location:".BASE_PATH."marcas");
 	}else{
 		#var_dump($response);
 		header("Location:".BASE_PATH."?error=true");
@@ -199,7 +199,7 @@ public function deleteBrand($id)
 
 	if ( isset($response->code) && $response->code > 0) {
 
-		header("Location:".BASE_PATH."productos");
+		header("Location:".BASE_PATH."marcas");
 	}else{
 		#var_dump($response);
 		header("Location:".BASE_PATH."?error=true");
