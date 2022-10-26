@@ -1,5 +1,14 @@
 <?php 
     include_once "../app/config.php";
+    include '..\app\TagsController.php';
+    include '..\app\CategoriasController.php';
+    include '..\app\BrandController.php';
+    $brands = new BrandController();
+    $data_brands = $brands->getBrands();
+    $categorias = new CategoriasController();
+    $data_categorias = $categorias->getCategoria();
+    $tags = new TagsController();
+    $data_tags = $tags->getTags();
 ?> 
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -29,7 +38,7 @@
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="main-content">
+        <div class="main-content" id="app">
             <div class="page-content">
                 <div class="container-fluid">
 
@@ -50,8 +59,8 @@
                         </div>
                     </div>
                     <!-- end page title -->
-
-                    <form id="createproduct-form" autocomplete="off" class="needs-validation " novalidate>
+                    <!-- Formulario -->
+                    <form enctype="multipart/form-data" id="createproduct-form" autocomplete="off" class="needs-validation " method="POST" action="<?= BASE_PATH ?>Controlador-productos">
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="card">
@@ -60,7 +69,7 @@
                                             <label class="form-label" for="product-title-input">Nombre del producto</label>
                                             <input type="hidden" class="form-control" id="formAction" name="formAction" value="add">
                                             <input type="text" class="form-control d-none" id="product-id-input">
-                                            <input type="text" class="form-control" id="product-title-input" value="" placeholder="Ingresa el nombre del producto" required>
+                                            <input type="text" class="form-control" id="product-title-input" placeholder="Ingresa el nombre del producto" name="name" >
                                             <div class="invalid-feedback">Please Enter a product title.</div>
                                         </div>
                                     </div>
@@ -75,7 +84,7 @@
                                     <div class="card-body">
                                         <div>
                                         <div class="form-floating">
-                                            <textarea class="form-control" name="descripción" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                            <textarea class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
                                             <label for="floatingTextarea">Ingresa una descripción</label>
                                         </div>
                                         </div>
@@ -90,7 +99,7 @@
                                     <div class="card-body">
                                         <div>
                                         <div class="form-floating">
-                                            <textarea class="form-control" name="descripción" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                            <textarea class="form-control" name="features" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
                                             <label for="floatingTextarea">Ingresa las caracteristicás</label>
                                         </div>
                                         </div>
@@ -103,13 +112,13 @@
                                     </div>
                                     <div class="card-body">
                                             <div class="flex-grow-1">
-                                                <select name="tags" class="form-select">
-                                                    <option value="Hola">Hola</option>
-                                                    <option value="adios">Adios</option>
+                                                <select name="categoriesUno" class="form-select">
+                                                    <option>Selecciona Categoria</option>
+                                                    <option v-for="categoria in categories" :value="categoria.id">{{categoria.id}}.-{{categoria.name}}</option>
                                                 </select>
-                                                <select name="tags" class="form-select mt-2">
-                                                    <option value="Hola">Hola</option>
-                                                    <option value="adios">Adios</option>
+                                                <select name="categoriesDos" class="form-select mt-2">
+                                                <option>Selecciona Categoria</option>
+                                                    <option v-for="categoria in categories" :value="categoria.id">{{categoria.id}}.-{{categoria.name}}</option>
                                                 </select>
                                             </div>
                                     </div>
@@ -128,9 +137,9 @@
                                         <h5 class="card-title mb-0">Brand</h5>
                                     </div>
                                     <div class="card-body">
-                                        <select class="form-select" id="choices-category-input" name="brand" data-choices data-choices-search-false>
-                                            <option value="Appliances">Hola</option>
-                                            <option value="Appliances">Adios</option>
+                                        <select class="form-select" id="choices-category-input" name="brand_id" data-choices data-choices-search-false>
+                                            <option>Selecciona Brand/Marca</option>
+                                            <option v-for="brand in brands" :value="brand.id">{{brand.id}}.-{{brand.name}}</option>
                                         </select>
                                     </div>
                                     <!-- end card body -->
@@ -143,13 +152,13 @@
                                     <div class="card-body">
                                         <div class="hstack gap-3 align-items-start">
                                             <div class="flex-grow-1">
-                                                <select name="tags" class="form-select">
-                                                    <option value="Hola">Hola</option>
-                                                    <option value="adios">Adios</option>
+                                                <select name="tagsUno" class="form-select">
+                                                    <option>Selecciona Tag</option>
+                                                    <option v-for="tag in tags" :value="tag.id">{{tag.id}}.-{{tag.name}}</option>
                                                 </select>
-                                                <select name="tags" class="form-select mt-2">
-                                                    <option value="Hola">Hola</option>
-                                                    <option value="adios">Adios</option>
+                                                <select name="tagsDos" class="form-select mt-2">
+                                                    <option>Selecciona Tag</option>
+                                                    <option v-for="tag in tags" :value="tag.id">{{tag.id}}.-{{tag.name}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -162,7 +171,7 @@
                                     </div>
                                     <div class="card-body">
                                     <div class="input-group mb-3">
-                                        <input type="file" class="form-control" name="uploadedfile" aria-label="Username" aria-describedby="basic-addon1">
+                                        <input type="file" class="form-control" name="cover" aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                     </div>
                                 </div>
@@ -175,7 +184,7 @@
                                     <div class="card-body">
                                         <div>
                                         <div class="form-floating">
-                                            <textarea class="form-control" name="descripción" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                            <input class="form-control" name="slug" placeholder="Leave a comment here" id="floatingTextarea">
                                             <label for="floatingTextarea">Ingresa slug</label>
                                         </div>
                                         </div>
@@ -187,6 +196,9 @@
                             <div class="w-100">
                                 <div class="text-center mb-3">
                                     <button type="submit" class="btn btn-success w-sm btn-lg ">Crear producto</button>
+                                    <input type="hidden" name="action" action="create" value="create">
+                                    <input type="hidden" name="global_token" value="<?= $_SESSION['global_token'] ?>">
+
                                 </div>
                             </div>
                         </div>
@@ -222,6 +234,36 @@
     <script src="<?= BASE_PATH ?>public/libs/dropzone/dropzone-min.js"></script>
 
     <script src="<?= BASE_PATH ?>public/js/pages/ecommerce-product-create.init.js"></script>
+
+    <!-- Vue js -->
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <!--SweetAlert-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!--script vue -->
+    <script>
+            const { createApp } = Vue
+            const app = createApp({
+                data(){
+                    return {
+
+                        tags: <?php echo json_encode($data_tags);?>,
+                        brands: <?php echo json_encode($data_brands);?>,
+                        categories: <?php echo json_encode($data_categorias);?>,
+
+                    }
+                },
+                methods:{
+                },
+                mounted() {
+
+                },
+            }).mount('#app')
+
+
+        </script>
+
 
 </body>
 
