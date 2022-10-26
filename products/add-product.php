@@ -156,7 +156,7 @@
                                     </div>
                                     <!-- end card body -->
                                 </div>
-                                <div class="card mb-5">
+                                <div class="card">
                                     <div class="card-header">
                                         <h5 class="card-title mb-0">Cover</h5>
                                     </div>
@@ -167,6 +167,21 @@
                                     </div>
                                 </div>
                                 <!-- end card -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Slug</h5>
+                                    </div>
+                                    <!-- end card body -->
+                                    <div class="card-body">
+                                        <div>
+                                        <div class="form-floating">
+                                            <textarea class="form-control" name="descripción" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                            <label for="floatingTextarea">Ingresa slug</label>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card -->  
                             </div>
                             <!-- end col -->
                             <div class="w-100">
