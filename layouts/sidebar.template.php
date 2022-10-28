@@ -63,7 +63,7 @@
                         
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#">
+                            <a class="nav-link menu-link" href="<?=BASE_PATH?>cupones">
                                 <i class="mdi mdi-cash-100"></i> <span data-key="t-widgets">Cupones</span>
                             </a>
                         </li> 

@@ -26,6 +26,8 @@ RewriteRule ^productos$ products/index.php
 RewriteRule ^productos/error$ products/index.php?error=true
 RewriteRule ^productos/success$ products/index.php?success=true
 RewriteRule ^agregar-producto$ products/add-product.php
+RewriteRule ^producto//$ products/details.php?id=$1
+RewriteRule ^editar-producto/(.+)/$ products/edit-product.php?id=$1
 
 
 # Catalogos
@@ -41,6 +43,8 @@ RewriteRule ^perfil$ user/profile.php
 
 RewriteRule ^usuarios$ user/users.php
 RewriteRule ^clientes$ user/clients.php
+RewriteRule ^usuario/id$ user/userDetail.php
+
 
 # Cupones
 

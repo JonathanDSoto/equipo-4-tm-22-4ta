@@ -3,7 +3,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="<?= BASE_PATH ?>public/images/favicon.ico">
+    <link rel="shortcut icon" href="<?= BASE_PATH ?>public/images/logo-sm.png">
 
     <!-- Layout config Js -->
     <script src="<?= BASE_PATH ?>public/js/layout.js"></script>
