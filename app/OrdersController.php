@@ -1,5 +1,8 @@
 <?php
 include_once "config.php";
+include_once "AuthController.php";
+
+if($_SESSION['acceso']=="acceso"){
 
 Class OrdersController
 {
@@ -36,5 +39,7 @@ Class OrdersController
 	}
 
 }
-
+}else{
+	header("Location:".BASE_PATH."iniciar-sesion");
+}
 ?>

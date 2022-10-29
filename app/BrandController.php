@@ -1,64 +1,133 @@
 <?php
 include_once "config.php";
-if (isset($_POST['action'])) {
+include_once "AuthController.php";
 
-	if ( isset($_POST['global_token']) && 
-		$_POST['global_token'] == $_SESSION['global_token']) {
+if($_SESSION['acceso']=="acceso"){
+	if (isset($_POST['action'])) {
 
-		switch ($_POST['action']) {
-            
-			case 'nuevaBrand':
+		if ( isset($_POST['global_token']) && 
+			$_POST['global_token'] == $_SESSION['global_token']) {
+
+			switch ($_POST['action']) {
 				
-				$brandController = new BrandController();
+				case 'nuevaBrand':
+					
+					$brandController = new BrandController();
 
-                $name = strip_tags($_POST['name']);
-				$description = strip_tags($_POST['description']);
-				$slug = strip_tags($_POST['slug']);
+					$name = strip_tags($_POST['name']);
+					$description = strip_tags($_POST['description']);
+					$slug = strip_tags($_POST['slug']);
 
-				$brandController->newBrand($name,$description,$slug);
+					$brandController->newBrand($name,$description,$slug);
 
-			break;
-            case 'editarBrand':
-                $brandController = new BrandController();
+				break;
+				case 'editarBrand':
+					$brandController = new BrandController();
 
-                $name = strip_tags($_POST['name']);
-				$description = strip_tags($_POST['description']);
-				$slug = strip_tags($_POST['slug']);
-                $id = strip_tags($_POST['id']);
+					$name = strip_tags($_POST['name']);
+					$description = strip_tags($_POST['description']);
+					$slug = strip_tags($_POST['slug']);
+					$id = strip_tags($_POST['id']);
 
-				$brandController->editBrand($name,$description,$slug,$id);
-            break;
-            case 'eliminarBrand':
-                $brandController = new BrandController();
+					$brandController->editBrand($name,$description,$slug,$id);
+				break;
+				case 'eliminarBrand':
+					$brandController = new BrandController();
 
-                $id = strip_tags($_POST['id']);
+					$id = strip_tags($_POST['id']);
 
-				$brandController->deleteBrand($id);
-            break;
+					$brandController->deleteBrand($id);
+				break;
+			}
+
+		}
+	}
+
+	Class BrandController 
+	{
+	//Todos los brands
+		public function getBrands()
+		{
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/brands',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer '.$_SESSION['token']
+			),
+			));
+
+			$response = curl_exec($curl); 
+			curl_close($curl);
+			$response = json_decode($response);
+
+			if ( isset($response->code) && $response->code > 0) {
+				
+				return $response->data;
+			}else{
+
+				return array();
+			}
+		}
+	//Busqueda de brand por su id Brand
+	public function brand($id)
+	{
+
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/brands/'.$id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer '.$_SESSION['token']
+			),
+		));
+		$response = curl_exec($curl); 
+		curl_close($curl);
+		$response = json_decode($response);
+
+		if ( isset($response->code) && $response->code > 0) {
+				
+			return $response->data;
+		}else{
+
+			return array();
 		}
 
 	}
-}
-
-Class BrandController 
-{
-//Todos los brands
-	public function getBrands()
+	//Nueva Brand
+	public function newBrand($name,$description,$slug)
 	{
-		$curl = curl_init();
 
+		$curl = curl_init();
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => 'https://crud.jonathansoto.mx/api/brands',
-		  CURLOPT_RETURNTRANSFER => true,
-		  CURLOPT_ENCODING => '',
-		  CURLOPT_MAXREDIRS => 10,
-		  CURLOPT_TIMEOUT => 0,
-		  CURLOPT_FOLLOWLOCATION => true,
-		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => 'GET',
-		  CURLOPT_HTTPHEADER => array(
-		    'Authorization: Bearer '.$_SESSION['token']
-		  ),
+			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/brands',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => array(
+				'name' => $name,
+				'description' => $description,
+				'slug' => $slug),
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer '.$_SESSION['token']
+			),
 		));
 
 		$response = curl_exec($curl); 
@@ -66,147 +135,84 @@ Class BrandController
 		$response = json_decode($response);
 
 		if ( isset($response->code) && $response->code > 0) {
-			
-			return $response->data;
+
+			header("Location:".BASE_PATH."marcas");
 		}else{
-
-			return array();
+			#var_dump($response);
+			header("Location:".BASE_PATH."?error=true");
 		}
-	}
-//Busqueda de brand por su id Brand
-public function brand($id)
-{
 
-	$curl = curl_init();
-	curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://crud.jonathansoto.mx/api/brands/'.$id,
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'GET',
-		CURLOPT_HTTPHEADER => array(
-			'Authorization: Bearer '.$_SESSION['token']
-		),
-	  ));
-	$response = curl_exec($curl); 
-	curl_close($curl);
-	$response = json_decode($response);
-
-	if ( isset($response->code) && $response->code > 0) {
-			
-		return $response->data;
-	}else{
-
-		return array();
 	}
 
-}
-//Nueva Brand
-public function newBrand($name,$description,$slug)
-{
+	//Editar Brand
+	public function editBrand($name,$description,$slug,$id)
+	{
 
-	$curl = curl_init();
-	curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://crud.jonathansoto.mx/api/brands',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'POST',
-		CURLOPT_POSTFIELDS => array(
-			'name' => $name,
-			'description' => $description,
-			'slug' => $slug),
-		CURLOPT_HTTPHEADER => array(
-			'Authorization: Bearer '.$_SESSION['token']
-		),
-	));
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/brands',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'name='.$name.'&description='.$description.'&slug='.$slug.'&id='.$id,
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer '.$_SESSION['token'],
+				'Content-Type: application/x-www-form-urlencoded'
+			),
+		));
+		$response = curl_exec($curl); 
+		curl_close($curl);
+		$response = json_decode($response);
 
-	$response = curl_exec($curl); 
-	curl_close($curl);
-	$response = json_decode($response);
+		if ( isset($response->code) && $response->code > 0) {
 
-	if ( isset($response->code) && $response->code > 0) {
+			header("Location:".BASE_PATH."marcas");
+		}else{
+			#var_dump($response);
+			header("Location:".BASE_PATH."?error=true");
+		}
 
-		header("Location:".BASE_PATH."marcas");
-	}else{
-		#var_dump($response);
-		header("Location:".BASE_PATH."?error=true");
+	}
+	//Eliminar Brand
+	public function deleteBrand($id)
+	{
+
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/brands/'.$id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'DELETE',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer '.$_SESSION['token']
+			),
+		));
+
+		$response = curl_exec($curl); 
+		curl_close($curl);
+		$response = json_decode($response);
+
+		if ( isset($response->code) && $response->code > 0) {
+
+			header("Location:".BASE_PATH."marcas");
+		}else{
+			#var_dump($response);
+			header("Location:".BASE_PATH."?error=true");
+		}
+
 	}
 
-}
-
-//Editar Brand
-public function editBrand($name,$description,$slug,$id)
-{
-
-	$curl = curl_init();
-	curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://crud.jonathansoto.mx/api/brands',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'PUT',
-		CURLOPT_POSTFIELDS => 'name='.$name.'&description='.$description.'&slug='.$slug.'&id='.$id,
-		CURLOPT_HTTPHEADER => array(
-			'Authorization: Bearer '.$_SESSION['token'],
-			'Content-Type: application/x-www-form-urlencoded'
-		),
-	  ));
-	$response = curl_exec($curl); 
-	curl_close($curl);
-	$response = json_decode($response);
-
-	if ( isset($response->code) && $response->code > 0) {
-
-		header("Location:".BASE_PATH."marcas");
-	}else{
-		#var_dump($response);
-		header("Location:".BASE_PATH."?error=true");
 	}
-
-}
-//Eliminar Brand
-public function deleteBrand($id)
-{
-
-	$curl = curl_init();
-	curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://crud.jonathansoto.mx/api/brands/'.$id,
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'DELETE',
-		CURLOPT_HTTPHEADER => array(
-			'Authorization: Bearer '.$_SESSION['token']
-		),
-	  ));
-
-	$response = curl_exec($curl); 
-	curl_close($curl);
-	$response = json_decode($response);
-
-	if ( isset($response->code) && $response->code > 0) {
-
-		header("Location:".BASE_PATH."marcas");
-	}else{
-		#var_dump($response);
-		header("Location:".BASE_PATH."?error=true");
-	}
-
-}
-
+}else{
+	header("Location:".BASE_PATH."iniciar-sesion");
 }
 
 ?>

@@ -1,57 +1,92 @@
 <?php
 include_once "config.php";
+include_once "AuthController.php";
 
-if (isset($_POST['action'])) {
+if($_SESSION['acceso']=="acceso"){
+    if (isset($_POST['action'])) {
 
-	if ( isset($_POST['global_token']) && 
-		$_POST['global_token'] == $_SESSION['global_token']) {
+        if ( isset($_POST['global_token']) && 
+            $_POST['global_token'] == $_SESSION['global_token']) {
 
-		switch ($_POST['action']) {
-            
-			case 'nuevaEtiqueta':
-				
-				$tagsController = new TagsController();
+            switch ($_POST['action']) {
+                
+                case 'nuevaEtiqueta':
+                    
+                    $tagsController = new TagsController();
 
-                $name = strip_tags($_POST['name']);
-				$description = strip_tags($_POST['description']);
-				$slug = strip_tags($_POST['slug']);
+                    $name = strip_tags($_POST['name']);
+                    $description = strip_tags($_POST['description']);
+                    $slug = strip_tags($_POST['slug']);
 
-				$tagsController->newTags($name,$description,$slug);
+                    $tagsController->newTags($name,$description,$slug);
 
-			break;
-            case 'editarEtiqueta':
-                $tagsController = new TagsController();
+                break;
+                case 'editarEtiqueta':
+                    $tagsController = new TagsController();
 
-                $name = strip_tags($_POST['name']);
-				$description = strip_tags($_POST['description']);
-				$slug = strip_tags($_POST['slug']);
-                $id = strip_tags($_POST['id']);
+                    $name = strip_tags($_POST['name']);
+                    $description = strip_tags($_POST['description']);
+                    $slug = strip_tags($_POST['slug']);
+                    $id = strip_tags($_POST['id']);
 
-				$tagsController->editTags($name,$description,$slug,$id);
-            break;
-            case 'eliminarEtiqueta':
-                $tagsController = new TagsController();
+                    $tagsController->editTags($name,$description,$slug,$id);
+                break;
+                case 'eliminarEtiqueta':
+                    $tagsController = new TagsController();
 
-                $id = strip_tags($_POST['id']);
+                    $id = strip_tags($_POST['id']);
 
-				$tagsController->deleteTags($id);
-            break;
-		}
+                    $tagsController->deleteTags($id);
+                break;
+            }
 
-	}
-}
+        }
+    }
 
 
-Class TagsController{
+    Class TagsController{
 
-//Etiquetas
-    public function getTags()
+    //Etiquetas
+        public function getTags()
+            {
+
+                $curl = curl_init();
+
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://crud.jonathansoto.mx/api/tags',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'GET',
+                    CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer '.$_SESSION['token'],
+                    ),
+                ));
+
+                $response = curl_exec($curl); 
+                curl_close($curl);
+                $response = json_decode($response);
+
+                if ( isset($response->code) && $response->code > 0) {
+                    
+                    return $response->data;
+                }else{
+
+                    return array();
+                }
+
+            }
+    //Busqueda de etiquetas por su id Tags
+        public function etiqueta($id)
         {
 
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://crud.jonathansoto.mx/api/tags',
+                CURLOPT_URL => 'https://crud.jonathansoto.mx/api/tags/'.$id,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -69,153 +104,123 @@ Class TagsController{
             $response = json_decode($response);
 
             if ( isset($response->code) && $response->code > 0) {
-                
-                return $response->data;
-            }else{
 
-                return array();
+                header("Location:".BASE_PATH."usuarios");
+            }else{
+                #var_dump($response);
+                header("Location:".BASE_PATH."?error=true");
             }
 
         }
-//Busqueda de etiquetas por su id Tags
-    public function etiqueta($id)
-	{
+    //Nueva Tags
+        public function newTags($name,$description,$slug)
+        {
 
-		$curl = curl_init();
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://crud.jonathansoto.mx/api/tags',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => array(
+                    'name' => $name,
+                    'description' => $description,
+                    'slug' => $slug),
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer '.$_SESSION['token']
+                ),
+            ));
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://crud.jonathansoto.mx/api/tags/'.$id,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => array(
-            'Authorization: Bearer '.$_SESSION['token'],
-            ),
-        ));
+            $response = curl_exec($curl); 
+            curl_close($curl);
+            $response = json_decode($response);
 
-		$response = curl_exec($curl); 
-		curl_close($curl);
-		$response = json_decode($response);
+            if ( isset($response->code) && $response->code > 0) {
 
-		if ( isset($response->code) && $response->code > 0) {
+                header("Location:".BASE_PATH."tags");
+            }else{
+                #var_dump($response);
+                header("Location:".BASE_PATH."?error=true");
+            }
 
-			header("Location:".BASE_PATH."usuarios");
-		}else{
-			#var_dump($response);
-			header("Location:".BASE_PATH."?error=true");
-		}
+        }
 
-	}
-//Nueva Tags
-	public function newTags($name,$description,$slug)
-	{
+    //Editar Etiqueta
+        public function editTags($name,$description,$slug,$id)
+        {
 
-		$curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://crud.jonathansoto.mx/api/tags',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array(
-                'name' => $name,
-                'description' => $description,
-                'slug' => $slug),
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer '.$_SESSION['token']
-            ),
-          ));
+            $curl = curl_init();
 
-		$response = curl_exec($curl); 
-		curl_close($curl);
-		$response = json_decode($response);
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://crud.jonathansoto.mx/api/tags',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'PUT',
+                CURLOPT_POSTFIELDS => 'name='.$name.'&description='.$description.'&slug='.$slug.'&id='.$id,
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer '.$_SESSION['token'],
+                    'Content-Type: application/x-www-form-urlencoded'
+                ),
+            ));
 
-		if ( isset($response->code) && $response->code > 0) {
+            $response = curl_exec($curl); 
+            curl_close($curl);
+            $response = json_decode($response);
 
-			header("Location:".BASE_PATH."tags");
-		}else{
-			#var_dump($response);
-			header("Location:".BASE_PATH."?error=true");
-		}
+            if ( isset($response->code) && $response->code > 0) {
 
-	}
+                header("Location:".BASE_PATH."tags");
+            }else{
+                #var_dump($response);
+                header("Location:".BASE_PATH."?error=true");
+            }
 
-//Editar Etiqueta
-    public function editTags($name,$description,$slug,$id)
-	{
+        }
+    //Eliminar Etiqueta
+        public function deleteTags($id)
+        {
 
-		$curl = curl_init();
+            $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://crud.jonathansoto.mx/api/tags',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'PUT',
-            CURLOPT_POSTFIELDS => 'name='.$name.'&description='.$description.'&slug='.$slug.'&id='.$id,
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer '.$_SESSION['token'],
-                'Content-Type: application/x-www-form-urlencoded'
-            ),
-        ));
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://crud.jonathansoto.mx/api/tags/'.$id,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'DELETE',
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer '.$_SESSION['token'],
+                ),
+            ));
 
-		$response = curl_exec($curl); 
-		curl_close($curl);
-		$response = json_decode($response);
+            $response = curl_exec($curl); 
+            curl_close($curl);
+            $response = json_decode($response);
 
-		if ( isset($response->code) && $response->code > 0) {
+            if ( isset($response->code) && $response->code > 0) {
 
-			header("Location:".BASE_PATH."tags");
-		}else{
-			#var_dump($response);
-			header("Location:".BASE_PATH."?error=true");
-		}
+                header("Location:".BASE_PATH."tags");
+            }else{
+                #var_dump($response);
+                header("Location:".BASE_PATH."?error=true");
+            }
 
-	}
-//Eliminar Etiqueta
-    public function deleteTags($id)
-    {
-
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://crud.jonathansoto.mx/api/tags/'.$id,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'DELETE',
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer '.$_SESSION['token'],
-            ),
-        ));
-
-        $response = curl_exec($curl); 
-        curl_close($curl);
-        $response = json_decode($response);
-
-        if ( isset($response->code) && $response->code > 0) {
-
-            header("Location:".BASE_PATH."tags");
-        }else{
-            #var_dump($response);
-            header("Location:".BASE_PATH."?error=true");
         }
 
     }
-
+}else{
+    header("Location:".BASE_PATH."iniciar-sesion");
 }
 
 

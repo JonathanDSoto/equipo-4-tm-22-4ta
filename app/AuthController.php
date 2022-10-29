@@ -11,11 +11,11 @@ if (isset($_POST['action'])) {
 				
 				$authController = new AuthController();
 
-
 				$email = strip_tags($_POST['email']);
 				$password = strip_tags($_POST['password']);
-
+				
 				$authController->login($email,$password);
+				
 
 			break; 
 			case 'registro':
@@ -28,7 +28,7 @@ if (isset($_POST['action'])) {
 				$created_by = strip_tags($_POST['created_by']);
 				$role = strip_tags($_POST['role']);
 				$password = strip_tags($_POST['password']);
-				
+
 				$authController->registroUser($name,$lastname,$email,$phone_number,$created_by,$role,$password);
 			break;
 			case 'cerrarSesion':
@@ -44,6 +44,21 @@ if (isset($_POST['action'])) {
 	}
 }
 
+function validarEmail($email){
+	if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		echo '<script language="javascript">alert("Valido de email");</script>';
+	}else{
+		header("Location:".BASE_PATH."iniciar-sesion?email=error?password=error?error=true");
+		echo '<script language="javascript">alert("Error de email");</script>';
+	}
+}
+function validarEntrada(){
+	if($email=="" || strpos($email, "@")===false){
+		header("Location:".BASE_PATH."iniciar-sesion?email=error?error=true");
+	}else{
+		
+	}
+}
 //Iniciar sesion
 Class AuthController{
 
@@ -83,10 +98,12 @@ Class AuthController{
 			$_SESSION['avatar']= $response->data->avatar;
 			$_SESSION['token']= $response->data->token;
 
+			$_SESSION['acceso']="acceso";
 			header("Location:".BASE_PATH."productos");
+			$acceso='entro';
 		}else{
 			#var_dump($response);
-			header("Location:".BASE_PATH."?error=true");
+			header("Location:".BASE_PATH."?2error=true");
 		}
 
 	}
@@ -129,7 +146,7 @@ Class AuthController{
 			header("Location:".BASE_PATH."productos");
 		}else{
 			#var_dump($response);
-			header("Location:".BASE_PATH."?error=true");
+			header("Location:".BASE_PATH."?3error=true");
 		}
 
 	}
@@ -155,11 +172,12 @@ Class AuthController{
 		$response = json_decode($response);
 
 		if ( isset($response->code) && $response->code > 0) {
+			$_SESSION['acceso']="salio";
 			header("Location:".BASE_PATH."iniciar-sesion");
 			session_destroy();
 		}else{
 			#var_dump($response);
-			header("Location:".BASE_PATH."?error=true");
+			header("Location:".BASE_PATH."?4error=true");
 		}
 	}
 }

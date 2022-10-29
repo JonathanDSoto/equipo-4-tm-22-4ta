@@ -1,6 +1,8 @@
 <?php  
 include_once "config.php";
+include_once "AuthController.php";
 
+if($_SESSION['acceso']=="acceso"){
 if (isset($_POST['action'])) {
 
 	if ( isset($_POST['global_token']) && 
@@ -265,6 +267,10 @@ public function idProduct($id)
 		}
 	}
 }
+}else{
+	header("Location:".BASE_PATH."iniciar-sesion");
+}
+
 
 
 ?>
