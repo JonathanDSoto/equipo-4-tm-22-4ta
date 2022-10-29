@@ -13,8 +13,8 @@ if (isset($_POST['action'])) {
 
 				$email = strip_tags($_POST['email']);
 				$password = strip_tags($_POST['password']);
-				
-				$authController->login($email,$password);
+				validarEntrada($email);
+				//$authController->login($email,$password);
 				
 
 			break; 
@@ -52,10 +52,10 @@ function validarEmail($email){
 		echo '<script language="javascript">alert("Error de email");</script>';
 	}
 }
-function validarEntrada(){
-	if($email=="" || strpos($email, "@")===false){
-		header("Location:".BASE_PATH."iniciar-sesion?email=error?error=true");
+function validarEntrada($email){
+	if(strpos($email, '@'+'$'+'<')===false){
 	}else{
+		header("Location:".BASE_PATH."iniciar-sesion?email=error?error=true");
 		
 	}
 }
