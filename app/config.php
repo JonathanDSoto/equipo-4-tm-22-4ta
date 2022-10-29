@@ -10,5 +10,9 @@
 	if (!defined('BASE_PATH')) {
 		define('BASE_PATH','http://localhost/equipo-4-tm-22-4ta/');
 	}
-	
+	//if($_SESSION['acceso']=="acceso"){
+
+	//}else{
+	//	header("Location:".BASE_PATH."iniciar-sesion");
+	//}
 ?>

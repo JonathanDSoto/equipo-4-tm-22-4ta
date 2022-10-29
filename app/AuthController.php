@@ -13,8 +13,8 @@ if (isset($_POST['action'])) {
 
 				$email = strip_tags($_POST['email']);
 				$password = strip_tags($_POST['password']);
-				validarEntrada($email);
-				//$authController->login($email,$password);
+				//validarEntrada($email);
+				$authController->login($email,$password);
 				
 
 			break; 
