@@ -46,12 +46,12 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0">Crear cupón</h4>
+                                <h4 class="mb-sm-0">Crear producto</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item">Cupones</li>
-                                        <li class="breadcrumb-item active">Crear cupón</li>
+                                        <li class="breadcrumb-item">Productos</li>
+                                        <li class="breadcrumb-item active">Crear producto</li>
                                     </ol>
                                 </div>
 
@@ -66,11 +66,11 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="mb-3">
-                                            <label class="form-label" for="product-title-input">Nombre del cupón</label>
+                                            <label class="form-label" for="product-title-input">Nombre del producto</label>
                                             <input type="hidden" class="form-control" id="formAction" name="formAction" value="add">
                                             <input type="text" class="form-control d-none" id="product-id-input">
-                                            <input type="text" class="form-control" id="product-title-input" placeholder="Ingresa el nombre del cupón" name="name" >
-                                            <div class="invalid-feedback">Por favor favor ingresa el nombre del cupón</div>
+                                            <input type="text" class="form-control" id="product-title-input" placeholder="Ingresa el nombre del producto" name="name" >
+                                            <div class="invalid-feedback">Please Enter a product title.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -78,14 +78,14 @@
                                 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title mb-0">Codigo de descuento</h5>
+                                        <h5 class="card-title mb-0">Descripción</h5>
                                     </div>
                                     <!-- end card body -->
                                     <div class="card-body">
                                         <div>
                                         <div class="form-floating">
-                                            <input class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></input>
-                                            <label for="floatingTextarea">Ingresa el codigo del descuento</label>
+                                            <textarea class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                            <label for="floatingTextarea">Ingresa una descripción</label>
                                         </div>
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@
                                 <!-- end card -->   
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title mb-0">Porcentaje de descuento</h5>
+                                        <h5 class="card-title mb-0">Caracteristicás</h5>
                                     </div>
                                     <!-- end card body -->
                                     <div class="card-body">

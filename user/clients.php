@@ -58,10 +58,10 @@
             <!-- container-fluid -->
         </div>
             
-            <button class="btn btn-success ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+            <a href="<?php BASE_PATH ?>usuario/agregar-cliente" class="btn btn-success ms-5">
                 Crear cliente
                 <i class="mdi mdi-plus-thick"></i>
-            </button>
+            </a>
             <div class="table-responsive mx-5 mb-5">
                 <table class="table align-middle mb-0">
                     <thead class="table-light">
@@ -126,7 +126,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{titulo_modal}}</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar cliente</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -153,6 +153,7 @@
                                     <option value="adios">No</option>
                                 </select>
                             </div>
+                            
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                                 <button type="submit" class="btn btn-success">Guardar</button>

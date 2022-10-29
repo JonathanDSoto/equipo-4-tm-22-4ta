@@ -44,6 +44,7 @@ RewriteRule ^perfil$ user/profile.php
 RewriteRule ^usuarios$ user/users.php
 RewriteRule ^clientes$ user/clients.php
 RewriteRule ^usuario/id$ user/userDetail.php
+RewriteRule ^usuario/agregar-cliente$ user/add-client.php
 
 
 # Cupones
