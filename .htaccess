@@ -21,9 +21,10 @@ RewriteRule ^catalogos/categorias$ catalogos/categorias.php
 RewriteRule ^catalogos/tags$ catalogos/tags.php
 
 # Clients
-RewriteRule ^clientes/$ clients/add-client.php
+
+RewriteRule ^clientes/$ clients/clients.php
 RewriteRule ^clientes/agregar-cliente$ clients/add-client.php
-# RewriteRule ^clientes/id clients/add-client.php?
+RewriteRule ^clientes/cliente=id clients/clientDetail.php?
 
 
 # Cupons
