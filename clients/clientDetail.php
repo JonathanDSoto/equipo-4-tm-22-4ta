@@ -74,7 +74,7 @@
                                                         <table class="table table-borderless mb-0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <th class="ps-0" scope="row">Nombre completo :</th>
+                                                                    <th class="ps-0" scope="row">Nombre :</th>
                                                                     <td class="text-muted">{{nombre}} {{apellido}}</td>
                                                                 </tr>
                                                                 <tr>

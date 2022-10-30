@@ -2,7 +2,7 @@
             <!-- LOGO -->
             <div class="navbar-brand-box">
                 <!-- Light Logo-->
-                <a href="<?= BASE_PATH?>productos" class="logo logo-light">
+                <a href="<?= BASE_PATH?>productos/" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="<?= BASE_PATH ?>public/images/logo-sm.png" alt="" height="30">
                     </span>
@@ -25,17 +25,17 @@
                         
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?= BASE_PATH?>usuarios">
+                            <a class="nav-link menu-link" href="<?= BASE_PATH?>usuarios/">
                                 <i class="mdi mdi-shield-account"></i> <span data-key="t-widgets">Usuarios</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?= BASE_PATH ?>clientes">
+                            <a class="nav-link menu-link" href="<?= BASE_PATH ?>clientes/">
                                 <i class="mdi mdi-shield-account-outline"></i> <span data-key="t-widgets">Clientes</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?php BASE_PATH ?>productos">
+                            <a class="nav-link menu-link" href="<?php BASE_PATH ?>productos/">
                                 <i class="mdi mdi-shopping"></i> <span data-key="t-widgets">Productos</span>
                             </a>
                         </li>
@@ -48,13 +48,13 @@
                                 <ul class="nav nav-sm flex-column">
 
                                     <li class="nav-item">
-                                        <a href="<?=BASE_PATH?>categorias" class="nav-link" data-key="t-analytics"> Categorias </a>
+                                        <a href="<?=BASE_PATH?>catalogos/categorias" class="nav-link" data-key="t-analytics"> Categorias </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<?=BASE_PATH?>marcas" class="nav-link" data-key="t-crm"> Marcas </a>
+                                        <a href="<?=BASE_PATH?>catalogos/marcas" class="nav-link" data-key="t-crm"> Marcas </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<?=BASE_PATH?>tags" class="nav-link" data-key="t-ecommerce"> Tags </a>
+                                        <a href="<?=BASE_PATH?>catalogos/tags" class="nav-link" data-key="t-ecommerce"> Tags </a>
                                     </li>
                                     
                                 </ul>
@@ -63,47 +63,17 @@
                         
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?=BASE_PATH?>cupones">
+                            <a class="nav-link menu-link" href="<?=BASE_PATH?>cupones/">
                                 <i class="mdi mdi-cash-100"></i> <span data-key="t-widgets">Cupones</span>
                             </a>
                         </li> 
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidebarMaps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMaps">
-                                <i class="mdi mdi-order-bool-descending"></i> <span data-key="t-maps">Ordenes</span>
+                            <a class="nav-link menu-link" href="<?=BASE_PATH?>cupones/">
+                                <i class="mdi mdi-order-bool-descending"></i> <span data-key="t-widgets">Cupones</span>
                             </a>
-                            <div class="collapse menu-dropdown" id="sidebarMaps">
-                                <ul class="nav nav-sm flex-column">
+                        </li> 
 
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link" data-key="t-google">
-                                            Altas
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link" data-key="t-vector">
-                                            Bajas
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link" data-key="t-leaflet">
-                                            Modificaciones
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link" data-key="t-google">
-                                            Consultas
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link" data-key="t-google">
-                                            Vista de detalle
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </li>
 
                     </ul>
                 </div>

@@ -15,38 +15,35 @@ RewriteRule ^Controlador-cupones$ app/CouponsController.php
 RewriteRule ^Controlador-etiquetas$ app/TagsController.php
 
 
-# Login
-RewriteRule ^iniciar-sesion$ index.php
-RewriteRule ^iniciar-sesion/error$ index.php?error=true
+# Catalogos
+RewriteRule ^catalogos/marcas$ catalogos/brands.php
+RewriteRule ^catalogos/categorias$ catalogos/categorias.php
+RewriteRule ^catalogos/tags$ catalogos/tags.php
+
+# Clients
+RewriteRule ^clientes/$ clients/add-client.php
+RewriteRule ^clientes/agregar-cliente$ clients/add-client.php
+# RewriteRule ^clientes/id clients/add-client.php?
 
 
+# Cupons
+RewriteRule ^cupones/$ cupons/cupons.php
+RewriteRule ^cupones/agregar-cupon$ cupons/cupons.php
+# RewriteRule ^cupones/id$ cupons/cupons.php
 
-# Productos
-RewriteRule ^productos$ products/index.php
+# Products
+RewriteRule ^productos/$ products/index.php
 RewriteRule ^productos/error$ products/index.php?error=true
 RewriteRule ^productos/success$ products/index.php?success=true
-RewriteRule ^agregar-producto$ products/add-product.php
-RewriteRule ^producto//$ products/details.php?id=$1
-RewriteRule ^editar-producto/(.+)/$ products/edit-product.php?id=$1
+RewriteRule ^productos/agregar-producto$ products/add-product.php
 
+# User
+RewriteRule ^usuarios/$ user/users.php
+RewriteRule ^usuarios/agregar-usuario$ user/add-user.php
+RewriteRule ^usuarios/perfil$ user/profile.php
+# RewriteRule ^usuarios/id$ user/userDetail.php
 
-# Catalogos
-RewriteRule ^marcas$ catalogos/brands.php
-RewriteRule ^categorias$ catalogos/categorias.php
-RewriteRule ^tags$ catalogos/tags.php
+# Login
+RewriteRule ^iniciar-sesion/$ index.php
+RewriteRule ^iniciar-sesion/error$ index.php?error=true
 
-# PERFIL
-RewriteRule ^perfil$ user/profile.php
-
-
-# Usuarios
-
-RewriteRule ^usuarios$ user/users.php
-RewriteRule ^clientes$ user/clients.php
-RewriteRule ^usuario/id$ user/userDetail.php
-RewriteRule ^usuario/agregar-cliente$ user/add-client.php
-
-
-# Cupones
-
-RewriteRule ^cupones$ cupons/cupons.php

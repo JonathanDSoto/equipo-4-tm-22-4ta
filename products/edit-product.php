@@ -1,14 +1,5 @@
 <?php 
     include_once "../app/config.php";
-    include '..\app\TagsController.php';
-    include '..\app\CategoriasController.php';
-    include '..\app\BrandController.php';
-    $brands = new BrandController();
-    $data_brands = $brands->getBrands();
-    $categorias = new CategoriasController();
-    $data_categorias = $categorias->getCategoria();
-    $tags = new TagsController();
-    $data_tags = $tags->getTags();
 ?> 
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -19,7 +10,7 @@
     <link href="<?= BASE_PATH?>public/libs/dropzone/dropzone.css" rel="stylesheet" type="text/css" />
     <?php include "../layouts/head.template.php"; ?>
     <!-- Plugins css -->
-
+    <title>Editar Producto</title>
 </head>
 
 <body>
