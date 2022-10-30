@@ -143,7 +143,7 @@ if($_SESSION['acceso']=="acceso"){
 			$response = json_decode($response);
 
 			if ( isset($response->code) && $response->code > 0) {
-				header("Location:".BASE_PATH."categorias");
+				header("Location:".BASE_PATH."categorias/");
 			}else{ 
 				header("Location:".BASE_PATH."?error=true");
 			}
@@ -176,7 +176,7 @@ if($_SESSION['acceso']=="acceso"){
 			$response = json_decode($response);
 
 			if ( isset($response->code) && $response->code > 0) {
-				header("Location:".BASE_PATH."categorias");
+				header("Location:".BASE_PATH."categorias/");
 			}else{ 
 				header("Location:".BASE_PATH."?error=true");
 			}
@@ -206,14 +206,14 @@ if($_SESSION['acceso']=="acceso"){
 			$response = json_decode($response);
 
 			if ( isset($response->code) && $response->code > 0) {
-				header("Location:".BASE_PATH."categorias");
+				header("Location:".BASE_PATH."categorias/");
 			}else{ 
 				header("Location:".BASE_PATH."?error=true");
 			}
 		}
 	}
 }else{
-	header("Location:".BASE_PATH."iniciar-sesion");
+	header("Location:".BASE_PATH."iniciar-sesion/");
 }
 
 ?>

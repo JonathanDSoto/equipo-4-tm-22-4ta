@@ -99,7 +99,7 @@ Class AuthController{
 			$_SESSION['token']= $response->data->token;
 
 			$_SESSION['acceso']="acceso";
-			header("Location:".BASE_PATH."productos");
+			header("Location:".BASE_PATH."productos/");
 			$acceso='entro';
 		}else{
 			#var_dump($response);
@@ -143,7 +143,7 @@ Class AuthController{
 			$_SESSION['avatar']= $response->data->avatar;
 			$_SESSION['token']= $response->data->token;
 
-			header("Location:".BASE_PATH."productos");
+			header("Location:".BASE_PATH."productos/");
 		}else{
 			#var_dump($response);
 			header("Location:".BASE_PATH."?3error=true");
@@ -173,7 +173,7 @@ Class AuthController{
 
 		if ( isset($response->code) && $response->code > 0) {
 			$_SESSION['acceso']="salio";
-			header("Location:".BASE_PATH."iniciar-sesion");
+			header("Location:".BASE_PATH."iniciar-sesion/");
 			session_destroy();
 		}else{
 			#var_dump($response);

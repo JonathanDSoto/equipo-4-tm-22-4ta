@@ -192,7 +192,7 @@ public function idProduct($id)
 		$response = json_decode($response);
 
 		if ( isset($response->code) && $response->code > 0) {
-			header("Location:".BASE_PATH."agregar-producto");
+			header("Location:".BASE_PATH."productos/agregar-producto");
 		}else{ 
 			#var_dump($response);
 			header("Location:".BASE_PATH."productos/error");
@@ -268,7 +268,7 @@ public function idProduct($id)
 	}
 }
 }else{
-	header("Location:".BASE_PATH."iniciar-sesion");
+	header("Location:".BASE_PATH."iniciar-sesion/");
 }
 
 

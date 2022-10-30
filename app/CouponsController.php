@@ -124,7 +124,7 @@ if($_SESSION['acceso']=="acceso"){
 
             if ( isset($response->code) && $response->code > 0) {
 
-                header("Location:".BASE_PATH."cupones");
+                header("Location:".BASE_PATH."cupones/");
             }else{
                 #var_dump($response);
                 header("Location:".BASE_PATH."?error=true");
@@ -170,7 +170,7 @@ if($_SESSION['acceso']=="acceso"){
 
             if ( isset($response->code) && $response->code > 0) {
 
-                header("Location:".BASE_PATH."cupones");
+                header("Location:".BASE_PATH."cupones/");
             }else{
                 #var_dump($response);
                 header("Location:".BASE_PATH."?error=true");
@@ -210,7 +210,7 @@ if($_SESSION['acceso']=="acceso"){
 
             if ( isset($response->code) && $response->code > 0) {
 
-                header("Location:".BASE_PATH."cupones");
+                header("Location:".BASE_PATH."cupones/");
             }else{
                 #var_dump($response);
                 header("Location:".BASE_PATH."?error=true");
@@ -242,7 +242,7 @@ if($_SESSION['acceso']=="acceso"){
 
             if ( isset($response->code) && $response->code > 0) {
 
-                header("Location:".BASE_PATH."cupones");
+                header("Location:".BASE_PATH."cupones/");
             }else{
                 #var_dump($response);
                 header("Location:".BASE_PATH."?error=true");
@@ -252,7 +252,7 @@ if($_SESSION['acceso']=="acceso"){
 
     }
 }else{
-	header("Location:".BASE_PATH."iniciar-sesion");
+	header("Location:".BASE_PATH."iniciar-sesion/");
 }
 
 ?>

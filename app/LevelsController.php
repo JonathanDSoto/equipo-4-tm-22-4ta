@@ -208,7 +208,7 @@ if($_SESSION['acceso']=="acceso"){
 
 	}
 }else{
-	header("Location:".BASE_PATH."iniciar-sesion");
+	header("Location:".BASE_PATH."iniciar-sesion/");
 }
 
 ?>
