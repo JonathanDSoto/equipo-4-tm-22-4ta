@@ -126,12 +126,17 @@
                                 </div><!-- end card body -->
                             </div>
                     </div>
-                    <div class="col-lg-9">
+                    <div class="col-lg-12">
                         <div class="card" id="orderList">
                             <div class="card-body pt-0">
                                 
                                 <ul class="nav nav-tabs nav-tabs-custom nav-success mb-3" role="tablist">
                                     <li class="nav-item">
+                                        
+                                        <a href="" class="btn btn-success text-white mt-2" >
+                                            Registrar dirección
+                                        </a>
+                                        
                                         <a class="nav-link active All py-3" data-bs-toggle="tab" id="All" href="#home1" role="tab" aria-selected="true" style="text-decoration: none; cursor:default">
                                             <i class="ri-store-2-fill me-1 align-bottom"></i> Direcciones
                                         </a>
@@ -172,12 +177,12 @@
                                                 <td>
                                                     <ul class="list-inline hstack gap-2 mb-0">
                                                         <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
-                                                            <a href="#showModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
+                                                            <a href="#addressModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
                                                                 <i class="ri-pencil-fill fs-16"></i>
                                                             </a>
                                                         </li>
                                                         <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
-                                                            <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteOrder">
+                                                            <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteAddress">
                                                                 <i class="ri-delete-bin-5-fill fs-16"></i>
                                                             </a>
                                                         </li>
@@ -200,85 +205,17 @@
                                 </div>
 
 
-                                <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-light p-3">
-                                                <h5 class="modal-title" id="exampleModalLabel">Editar orden</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
-                                            </div>
-                                            <form action="#">
-                                                <div class="modal-body">
-                                                    <input type="hidden" id="id-field" />
-
-                                                    <div class="mb-3" id="modal-id">
-                                                        <label for="orderId" class="form-label">Folio</label>
-                                                        <input type="text" id="orderId" class="form-control" placeholder="ID" readonly />
-                                                    </div>
-
-                                                    <div class="mb-3">
-                                                        <label for="customername-field" class="form-label">Total</label>
-                                                        <input type="text" id="customername-field" class="form-control" placeholder="Enter name" required />
-                                                    </div>
-
-                                                    <div class="mb-3">
-                                                        <label for="productname-field" class="form-label">Pagado</label>
-                                                        <select class="form-control" data-trigger name="productname-field" id="productname-field">
-                                                            <option value="">Product</option>
-                                                            <option value="Puma Tshirt">Puma Tshirt</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="mb-3">
-                                                        <label for="date-field" class="form-label">Cliente id</label>
-                                                        <input type="text" id="amount-field" class="form-control" placeholder="Direccion id" required />
-                                                    </div>
-
-                                                    <div class="row gy-4 mb-3">
-                                                        <div class="col-md-6">
-                                                            <div>
-                                                                <label for="amount-field" class="form-label">Dirección id</label>
-                                                                <input type="text" id="amount-field" class="form-control" placeholder="Direccion id" required />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div>
-                                                                <label for="payment-field" class="form-label">Metodo de pago</label>
-                                                                <select class="form-control" data-trigger name="payment-method" id="payment-field">
-                                                                    <option value="Efectivo">Efectivo</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <label for="delivered-status" class="form-label">Status</label>
-                                                        <select class="form-control" data-trigger name="delivered-status" id="delivered-status">
-                                                            <option value="Pendiente">Pendiente</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <div class="hstack gap-2 justify-content-end">
-                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-success" id="add-btn">Add Order</button>
-                                                        <button type="button" class="btn btn-success" id="edit-btn">Update</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                
 
                                 <!-- Modal delete -->
-                                <div class="modal fade flip" id="deleteOrder" tabindex="-1" aria-hidden="true">
+                                <div class="modal fade flip" id="deleteAddress" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-body p-5 text-center">
                                                 <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px"></lord-icon>
                                                 <div class="mt-4 text-center">
-                                                    <h4>Estas seguro que deseas eliminar esta orden?</h4>
-                                                    <p class="text-muted fs-15 mb-4">Eliminar su orden eliminará toda su información de nuestra base de datos.</p>
+                                                    <h4>Estas seguro que deseas eliminar esta dirección?</h4>
+                                                    <p class="text-muted fs-15 mb-4">Eliminar su dirección eliminará toda su información de nuestra base de datos.</p>
                                                     <div class="hstack gap-2 justify-content-center remove">
                                                         <button class="btn btn-link link-success fw-medium text-decoration-none" id="deleteRecord-close" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Cerrar</button>
                                                         <button class="btn btn-danger" id="delete-record">Si, eliminar</button>
@@ -378,6 +315,8 @@
                                 </div>
 
 
+                                
+                                <!-- Modal ordenes -->
                                 <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
@@ -402,14 +341,14 @@
                                                     <div class="mb-3">
                                                         <label for="productname-field" class="form-label">Pagado</label>
                                                         <select class="form-control" data-trigger name="productname-field" id="productname-field">
-                                                            <option value="">Product</option>
-                                                            <option value="Puma Tshirt">Puma Tshirt</option>
+                                                            <option value="Si">Si</option>
+                                                            <option value="No">No</option>
                                                         </select>
                                                     </div>
 
                                                     <div class="mb-3">
                                                         <label for="date-field" class="form-label">Cliente id</label>
-                                                        <input type="text" id="amount-field" class="form-control" placeholder="Direccion id" required />
+                                                        <input type="text" id="amount-field" class="form-control" placeholder="Cliente id" required />
                                                     </div>
 
                                                     <div class="row gy-4 mb-3">
@@ -424,6 +363,8 @@
                                                                 <label for="payment-field" class="form-label">Metodo de pago</label>
                                                                 <select class="form-control" data-trigger name="payment-method" id="payment-field">
                                                                     <option value="Efectivo">Efectivo</option>
+                                                                    <option value="Efectivo">Efectivo</option>
+                                                                    <option value="Efectivo">Efectivo</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -433,7 +374,88 @@
                                                         <label for="delivered-status" class="form-label">Status</label>
                                                         <select class="form-control" data-trigger name="delivered-status" id="delivered-status">
                                                             <option value="Pendiente">Pendiente</option>
+                                                            <option value="Pendiente">Pendiente</option>
+                                                            <option value="Pendiente">Pendiente</option>
+                                                            <option value="Pendiente">Pendiente</option>
+                                                            <option value="Pendiente">Pendiente</option>
+                                                            <option value="Pendiente">Pendiente</option>
                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="hstack gap-2 justify-content-end">
+                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-success" id="add-btn">Add Order</button>
+                                                        <button type="button" class="btn btn-success" id="edit-btn">Update</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal address -->
+                                <div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-light p-3">
+                                                <h5 class="modal-title" id="exampleModalLabel">Editar direccion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+                                            </div>
+                                            <form action="#">
+                                                <div class="modal-body">
+                                                    <input type="hidden" id="id-field" />
+
+                                                    <div class="mb-3" id="modal-id">
+                                                        <label for="orderId" class="form-label">Nombre</label>
+                                                        <input type="text" id="orderId" class="form-control" placeholder="Ingresa el nombre del cliente" required />
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="customername-field" class="form-label">Apellidos</label>
+                                                        <input type="text" id="customername-field" class="form-control" placeholder="Ingresa el apellido del cliente" required />
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="productname-field" class="form-label">Calle y Numero</label>
+                                                        <input type="text" id="amount-field" class="form-control" placeholder="Ingresa la calle y nomuero del cliente" required />
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="date-field" class="form-label">Codigo postal</label>
+                                                        <input type="text" id="amount-field" class="form-control" placeholder="Ingresa el codgio postal del cliente" required />
+                                                    </div>
+
+                                                    <div class="row gy-4 mb-3">
+                                                        <div class="col-md-6">
+                                                            <div>
+                                                                <label for="amount-field" class="form-label">Ciudad</label>
+                                                                <input type="text" id="amount-field" class="form-control" placeholder="Ingresa la ciudad del cliente" required />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div>
+                                                                <label for="payment-field" class="form-label">Estado</label>
+                                                                <input type="text" id="amount-field" class="form-control" placeholder="Ingresa el estado del cliente" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div>
+                                                        <label for="delivered-status" class="form-label">Numero Celular</label>
+                                                        <input type="text" id="amount-field" class="form-control" placeholder="Ingresa el numero celular del cliente" required />
+                                                    </div>
+                                                    <div class="mt">
+                                                        <label for="delivered-status" class="form-label">Direccion de facturado</label>
+                                                        <select class="form-control">
+                                                            <option value="Si">Si</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </div>
+                                                    <div>
+                                                        <label for="delivered-status" class="form-label">Client ID</label>
+                                                        <input type="text" id="amount-field" class="form-control" placeholder="Ingresa el id del cliente" required/>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">

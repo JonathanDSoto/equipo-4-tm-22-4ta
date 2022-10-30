@@ -42,7 +42,7 @@ RewriteRule ^productos/agregar-producto$ products/add-product.php
 RewriteRule ^usuarios/$ user/users.php
 RewriteRule ^usuarios/agregar-usuario$ user/add-user.php
 RewriteRule ^usuarios/perfil$ user/profile.php
-# RewriteRule ^usuarios/id$ user/userDetail.php
+RewriteRule ^usuarios/usuario=id$ user/userDetail.php
 
 # Login
 RewriteRule ^iniciar-sesion/$ index.php
