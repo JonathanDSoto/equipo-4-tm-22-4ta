@@ -35,7 +35,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?php BASE_PATH ?>productos/">
+                            <a class="nav-link menu-link" href="<?= BASE_PATH ?>productos/">
                                 <i class="mdi mdi-shopping"></i> <span data-key="t-widgets">Productos</span>
                             </a>
                         </li>
