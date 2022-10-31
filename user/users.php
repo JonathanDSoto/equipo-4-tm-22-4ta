@@ -82,7 +82,7 @@
                     <tbody>
                         <tr v-for="(user, index) in users">
                             
-                            <td><a href="#" class="fw-semibold">{{user.id}}</a></td>
+                            <td><a :href="'<?= BASE_PATH?>usuarios/usuario='+user.id" class="fw-semibold">{{user.id}}</a></td>
                             <td>                            
                                 <div class="d-flex gap-2 align-items-center">
                                     <div class="flex-shrink-0">
