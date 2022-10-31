@@ -60,9 +60,9 @@
                     </div>
                     <!-- end page title -->
                     <!-- Formulario -->
-                    <form enctype="multipart/form-data" id="createproduct-form" autocomplete="off" class="needs-validation " method="POST" action="<?= BASE_PATH ?>Controlador-productos">
+                    <form enctype="multipart/form-data" id="#" autocomplete="off" class="needs-validation " method="POST" action="<?= BASE_PATH ?>Controlador-productos">
                         <div class="row">
-                            <div class="col-lg-8">
+                            <div class="col-lg-4">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="mb-3">
@@ -100,105 +100,162 @@
                                         <div>
                                         <div class="form-floating">
                                             <textarea class="form-control" name="features" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                                            <label for="floatingTextarea">Ingresa las caracteristicás</label>
+                                            <label for="floatingTextarea">Ingresa el porcentaje de descuento</label>
                                         </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end card -->  
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title mb-0">Categorias</h5>
-                                    </div>
-                                    <div class="card-body">
-                                            <div class="flex-grow-1">
-                                                <select name="categoriesUno" class="form-select">
-                                                    <option>Selecciona Categoria</option>
-                                                    <option v-for="categoria in categories" :value="categoria.id">{{categoria.id}}.-{{categoria.name}}</option>
-                                                </select>
-                                                <select name="categoriesDos" class="form-select mt-2">
-                                                <option>Selecciona Categoria</option>
-                                                    <option v-for="categoria in categories" :value="categoria.id">{{categoria.id}}.-{{categoria.name}}</option>
-                                                </select>
-                                            </div>
-                                    </div>
-                                    <!-- end card body -->
-                                </div>
-                                <!-- end card -->
-                                
-                            </div>
-                            
-                            <!-- end col -->
-                            
-                            <div class="col-lg-4">
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title mb-0">Brand</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <select class="form-select" id="choices-category-input" name="brand_id" data-choices data-choices-search-false>
-                                            <option>Selecciona Brand/Marca</option>
-                                            <option v-for="brand in brands" :value="brand.id">{{brand.id}}.-{{brand.name}}</option>
-                                        </select>
-                                    </div>
-                                    <!-- end card body -->
-                                </div>
-                                <!-- end card -->
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title mb-0">Tags</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="hstack gap-3 align-items-start">
-                                            <div class="flex-grow-1">
-                                                <select name="tagsUno" class="form-select">
-                                                    <option>Selecciona Tag</option>
-                                                    <option v-for="tag in tags" :value="tag.id">{{tag.id}}.-{{tag.name}}</option>
-                                                </select>
-                                                <select name="tagsDos" class="form-select mt-2">
-                                                    <option>Selecciona Tag</option>
-                                                    <option v-for="tag in tags" :value="tag.id">{{tag.id}}.-{{tag.name}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end card body -->
-                                </div>
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title mb-0">Cover</h5>
-                                    </div>
-                                    <div class="card-body">
-                                    <div class="input-group mb-3">
-                                        <input type="file" class="form-control" name="cover" aria-label="Username" aria-describedby="basic-addon1">
-                                    </div>
-                                    </div>
-                                </div>
-                                <!-- end card -->
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title mb-0">Slug</h5>
+                                        <h5 class="card-title mb-0">Minimo de monto requerido</h5>
                                     </div>
                                     <!-- end card body -->
                                     <div class="card-body">
                                         <div>
                                         <div class="form-floating">
-                                            <input class="form-control" name="slug" placeholder="Leave a comment here" id="floatingTextarea">
-                                            <label for="floatingTextarea">Ingresa slug</label>
+                                            <input class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></input>
+                                            <label for="floatingTextarea">Ingresa el minimo de monto requerido</label>
                                         </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end card -->  
+                                
+                                
+                                
+                                
+                            </div>
+                            
+                            
+                            <div class="col-lg-4">
+                                
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Minimo de productos</h5>
+                                    </div>
+                                    <!-- end card body -->
+                                    <div class="card-body">
+                                        <div>
+                                        <div class="form-floating">
+                                            <input class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></input>
+                                            <label for="floatingTextarea">Ingresa el minimo de productos</label>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Día de alta</h5>
+                                    </div>
+                                    <!-- end card body -->
+                                    <div class="card-body">
+                                        <div>
+                                        <div class="input-group mb-3">
+                                            <input class=" form-control" type="date" name="" value="2018-07-22" style="color: #1D1D1D; font-size: 14px; border:1px solid #ECF0F1; background-color: white; width:100px">
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Día de baja</h5>
+                                    </div>
+                                    <!-- end card body -->
+                                    <div class="card-body">
+                                        <div>
+                                        <div class="input-group mb-3">
+                                            <input class=" form-control" type="date" name="" value="2018-07-22" style="color: #1D1D1D; font-size: 14px; border:1px solid #ECF0F1; background-color: white; width:100px">
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Solo para primera compra</h5>
+                                    </div>
+                                    <!-- end card body -->
+                                    <div class="card-body">
+                                        <select class="form-control">
+                                            <option value=""><--Selecciona una opción--></option>
+                                            <option value="">Si</option>
+                                            <option value="">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+
                             </div>
                             <!-- end col -->
-                            <div class="w-100">
-                                <div class="text-center mb-3">
-                                    <button type="submit" class="btn btn-success w-sm btn-lg ">Crear producto</button>
-                                    <input type="hidden" name="action" action="create" value="create">
-                                    <input type="hidden" name="global_token" value="<?= $_SESSION['global_token'] ?>">
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Máximo de usos</h5>
+                                    </div>
+                                    <!-- end card body -->
+                                    <div class="card-body">
+                                        <div>
+                                        <div class="form-floating">
+                                            <input class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></input>
+                                            <label for="floatingTextarea">Ingresa el máximo de usos</label>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="product-title-input">Veces usado</label>
+                                            <input type="text" class="form-control" id="product-title-input" name="name" value="0" readonly >
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Tipo de cupón</h5>
+                                    </div>
+                                    <!-- end card body -->
+                                    <div class="card-body">
+                                        <select class="form-control">
+                                            <option value=""><--Selecciona una opción--></option>
+                                            <option value="Cupón de descuento">Cupón de descuento</option>
+                                            <option value="Cupón de descuento fijo">Cupón de descuento fijo</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="input-group mb-3">
+                                            <h5 class="ms-1">Solo para uso de primera compra</h5>
+                                            <div class="w-100"></div>
+                                            <div class="form-check form-check-inline ms-1">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                <label class="form-check-label" for="inlineCheckbox1">Si</label>
+                                            </div>
+                                            <div class="form-check form-check-inline ms-1">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                <label class="form-check-label" for="inlineCheckbox1">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="input-group mb-3">
+                                            <h5 class="ms-1" id="basic-addon1">Status del cupón de descuento</h5>
+                                            <div class="w-100"></div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                <label class="form-check-label" for="inlineCheckbox1">Activo</label>
+                                            </div>
+                                            <div class="form-check form-check-inline ms-1">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                <label class="form-check-label" for="inlineCheckbox1">Inactivo</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mb-3 mt-2">
+                                    <button type="submit" class="btn btn-success w-sm btn-lg  ">Crear cupón</button>
                                 </div>
                             </div>
                         </div>

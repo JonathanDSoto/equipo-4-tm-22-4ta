@@ -35,19 +35,24 @@
 
             <div class="page-content">
                 <div class="container-fluid">
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                <h4 class="mb-sm-0">Ordenes</h4>
+
+                                <div class="page-title-right">
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 <div class="row">
                         <div class="col-lg-12">
                         
 
-                            <div class="alert alert-success alert-dismissible alert-solid alert-label-icon shadow fade show" role="alert">
-                                <i class="ri-check-double-line label-icon"></i><strong>¡Accion exitosa!</strong> - La acción fue realizada correctamente
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                            <!-- Danger Alert -->
-                            <div class="alert alert-danger alert-dismissible alert-solid alert-label-icon shadow fade show" role="alert">
-                                <i class="ri-error-warning-line label-icon"></i><strong>¡Accion no exitosa!</strong> - La acción no fue realizada, ocurrio un error
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
+                            
 
                             <div class="card" >
                                 <div class="card-header  border-0">
@@ -59,6 +64,15 @@
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
+                                    <div class="alert alert-success alert-dismissible alert-solid alert-label-icon shadow fade show" role="alert">
+                                        <i class="ri-check-double-line label-icon"></i><strong>¡Accion exitosa!</strong> - La acción fue realizada correctamente
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    <!-- Danger Alert -->
+                                    <div class="alert alert-danger alert-dismissible alert-solid alert-label-icon shadow fade show" role="alert">
+                                        <i class="ri-error-warning-line label-icon"></i><strong>¡Accion no exitosa!</strong> - La acción no fue realizada, ocurrio un error
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
                                     <div>
                                         <ul class="nav nav-tabs nav-tabs-custom nav-success mb-3" role="tablist">
                                             <li class="nav-item">

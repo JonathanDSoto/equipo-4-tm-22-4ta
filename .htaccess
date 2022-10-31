@@ -30,8 +30,8 @@ RewriteRule ^clientes/cliente=(.+)$ clients/clientDetail.php?id=$1
 
 # Cupons
 RewriteRule ^cupones/$ cupons/cupons.php
-RewriteRule ^cupones/agregar-cupon$ cupons/cupons.php
-# RewriteRule ^cupones/id$ cupons/cupons.php
+RewriteRule ^cupones/agregar-cupon$ cupons/add-cupons.php
+RewriteRule ^cupones/id$ cupons/details.php
 
 # Ordenes
 
