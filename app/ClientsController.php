@@ -30,13 +30,14 @@ if($_SESSION['acceso']=="acceso"){
 					$email = strip_tags($_POST['email']);
 					$password = strip_tags($_POST['password']);
 					$phone_number = strip_tags($_POST['phone_number']);
+					$is_suscribed = strip_tags($_POST['is_suscribed']);
 					$level_id = strip_tags($_POST['level_id']);
 					$id = strip_tags($_POST['id']);
 
 
 					$clientsController = new ClientsController();
 
-					$clientsController->updateCliente($name,$email,$password,$phone_number,$level_id,$id);
+					$clientsController->updateCliente($name,$email,$password,$phone_number,$is_suscribed,$level_id,$id);
 					
 				break;
 
@@ -157,7 +158,7 @@ if($_SESSION['acceso']=="acceso"){
 
 		}
 	//Actualizar una cliente
-		public function updateCategoria($name,$email,$password,$phone_number,$level_id,$id)
+		public function updateCategoria($name,$email,$password,$phone_number,$is_suscribed,$level_id,$id)
 		{
 
 			$curl = curl_init();
@@ -171,7 +172,7 @@ if($_SESSION['acceso']=="acceso"){
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'PUT',
-			CURLOPT_POSTFIELDS => 'name='.$name.'&email='.$email.'&password='.$password.'&phone_number='.$phone_number.'&level_id='.$level_id.'&id='.$id,
+			CURLOPT_POSTFIELDS => 'name='.$name.'&email='.$email.'&password='.$password.'&phone_number='.$phone_number.'&is_suscribed='.$is_suscribed.'&level_id='.$level_id.'&id='.$id,
 			CURLOPT_HTTPHEADER => array(
 				'Authorization: Bearer '.$_SESSION['token'],
 				'Content-Type: application/x-www-form-urlencoded'
