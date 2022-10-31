@@ -1,8 +1,8 @@
 <?php 
     include_once "../app/config.php";
-    include '..\app\UsersController.php';
-    $usuarios = new UsersController();
-    $data = $usuarios->getUsuarios();
+    include '..\app\CouponsController.php';
+    $cupones = new CouponsController();
+    $data = $cupones->getCoupons();
     #var_dump($data);
 ?> 
 
@@ -94,21 +94,21 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="list form-check-all">
-                                                    <tr>
-                                                        <td><a href="" class="fw-medium link-primary">{{ID}}</a></td>
-                                                        <td>isael</td>
-                                                        <td>isael</td>
-                                                        <td>isael</td>
-                                                        <td>isael</td>
-                                                        <td>isael</td>
-                                                        <td>isael</td>
-                                                        <td>isael</td>
-                                                        <td>isael</td>
-                                                        <td>isael</td>
-                                                        <td>isael</td>
-                                                        <td>isael</td>
-                                                        <td>isael</td>
-                                                        <td>isael</td>
+                                                    <tr v-for="(cupon, index) in cupones">
+                                                        <td><a href="" class="fw-medium link-primary">{{cupon.id}}</a></td>
+                                                        <td>{{cupon.name}}</td>
+                                                        <td>{{cupon.code}}</td>
+                                                        <td>{{cupon.percentage_discount}}</td>
+                                                        <td>{{cupon.amount_discount}}</td>
+                                                        <td>{{cupon.min_amount_required}}</td>
+                                                        <td>{{cupon.min_product_required}}</td>
+                                                        <td>{{cupon.start_date}}</td>
+                                                        <td>{{cupon.end_date}}</td>
+                                                        <td>{{cupon.max_uses}}</td>
+                                                        <td>{{cupon.count_uses}}</td>
+                                                        <td><p v-if="cupon.valid_only_first_purchase == 1">Válido</p><p v-if="cupon.valid_only_first_purchase == 0">No Válido</p></td>
+                                                        <td><p v-if="cupon.status == 1">Activo</p><p v-if="cupon.status == 0">Inactivo</p></td>
+                                                        <td>{{cupon.couponable_type}}</td>
                                                         
                                                         <td>
                                                             <ul class="list-inline hstack gap-2 mb-0">
@@ -118,12 +118,12 @@
                                                                     </a>
                                                                 </li>
                                                                 <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
-                                                                    <a href="#exampleModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
+                                                                    <a href="#exampleModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn" @click="editarCupon(cupon)">
                                                                         <i class="ri-pencil-fill fs-16"></i>
                                                                     </a>
                                                                 </li>
                                                                 <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
-                                                                    <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteOrder">
+                                                                    <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteOrder" @click="eliminarCupon(cupon)">
                                                                         <i class="ri-delete-bin-5-fill fs-16"></i>
                                                                     </a>
                                                                 </li>
@@ -151,60 +151,60 @@
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h3 class="modal-title " id="exampleModalLabel">{{Titulo modal}}</h3>
+                                                    <h3 class="modal-title " id="exampleModalLabel">Editar Cupón</h3>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form enctype="multipart/form-data" method="POST" action="<?= BASE_PATH ?>Controlador-usuarios" >
+                                                    <form enctype="multipart/form-data" method="POST" action="<?= BASE_PATH ?>Controlador-cupones" >
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">Nombre</span>
-                                                            <input type="text" class="form-control" placeholder="cupon OP 20%" aria-label="Username" aria-describedby="basic-addon1" >
+                                                            <input type="text" class="form-control" placeholder="cupon OP 20%" aria-label="Username" aria-describedby="basic-addon1" name="name" :value="datos_cupon.name">
                                                         </div>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">Codigo</span>
-                                                            <input type="text" class="form-control" placeholder="20PERCEN22" aria-label="Username" aria-describedby="basic-addon1" >
+                                                            <input type="text" class="form-control" placeholder="20PERCEN22" aria-label="Username" aria-describedby="basic-addon1" name="code" :value="datos_cupon.code">
                                                             
                                                         </div>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">Porcentaje de descuento</span>
-                                                            <input type="number" class="form-control" placeholder="20" aria-label="Username" aria-describedby="basic-addon1" name="phone_number" >
+                                                            <input type="number" class="form-control" placeholder="20" aria-label="Username" aria-describedby="basic-addon1" name="percentage_discount" :value="datos_cupon.percentage_discount">
                                                         
                                                         </div>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">Monto de descuento</span>
-                                                            <input type="number" class="form-control" placeholder="1000" aria-label="Username" aria-describedby="basic-addon1" name="email" >
+                                                            <input type="number" class="form-control" placeholder="1000" aria-label="Username" aria-describedby="basic-addon1" name="amount_discount" :value="datos_cupon.amount_discount">
                                                             
                                                         </div>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">Monto minimo</span>
-                                                            <input type="number" class="form-control" placeholder="1000" aria-label="Username" aria-describedby="basic-addon1" name="created_by" >
+                                                            <input type="number" class="form-control" placeholder="1000" aria-label="Username" aria-describedby="basic-addon1" name="min_amount_required" :value="datos_cupon.min_amount_required">
                                                             
                                                         </div>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">Minimo de productos</span>
-                                                            <input type="number" class="form-control" placeholder="10" aria-label="Username" aria-describedby="basic-addon1" name="role" >
+                                                            <input type="number" class="form-control" placeholder="10" aria-label="Username" aria-describedby="basic-addon1" name="min_product_required" :value="datos_cupon.min_product_required">
                                                             
                                                         </div>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">Día de alta</span>
-                                                            <input class=" form-control" type="date" name="" value="2018-07-22" style="color: #1D1D1D; font-size: 14px; border:1px solid #ECF0F1; background-color: white; width:100px">
+                                                            <input class=" form-control" type="date" name="start_date" :value="datos_cupon.start_date" style="color: #1D1D1D; font-size: 14px; border:1px solid #ECF0F1; background-color: white; width:100px">
                                                         </div>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">Día de baja</span>
-                                                            <input class=" form-control" type="date" name="" value="2018-07-22" style="color: #1D1D1D; font-size: 14px; border:1px solid #ECF0F1; background-color: white; width:100px">
+                                                            <input class=" form-control" type="date" name="end_date" :value="datos_cupon.end_date" style="color: #1D1D1D; font-size: 14px; border:1px solid #ECF0F1; background-color: white; width:100px">
                                                         </div>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">Máximo de usos</span>
-                                                            <input type="number" class="form-control" placeholder="100" aria-label="Username" aria-describedby="basic-addon1" >
+                                                            <input type="number" class="form-control" name="max_uses" :value="datos_cupon.max_uses" placeholder="100" aria-label="Username" aria-describedby="basic-addon1" >
                                                         </div>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">Veces usado</span>
-                                                            <input type="number" class="form-control" placeholder="0" aria-label="Username" aria-describedby="basic-addon1" >
+                                                            <input type="number" class="form-control" name="count_uses" :value="datos_cupon.count_uses" placeholder="0" aria-label="Username" aria-describedby="basic-addon1" >
                                                         </div>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">Tipo de cupón</span>
-                                                            <select class="form-control" id="">
-                                                                <option value=""><--Selecciona una opción--></option>
+                                                            <select class="form-control" id="" name="couponable_type" :value="datos_cupon.couponable_type">
+                                                                <option><--Selecciona una opción--></option>
                                                                 <option value="Cupon de descuento">Cupon de descuento</option>
                                                                 <option value="Cupon de descuento fijo">Cupon de descuento fijo</option>
                                                             </select>
@@ -216,11 +216,11 @@
                                                                     <h5 class="ms-1">Solo para uso de primera compra</h5>
                                                                     <div class="w-100"></div>
                                                                     <div class="form-check form-check-inline ms-1">
-                                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" :value="datos_cupon.valid_only_first_purchase" name="valid_only_first_purchase" value="1">
                                                                         <label class="form-check-label" for="inlineCheckbox1">Si</label>
                                                                     </div>
                                                                     <div class="form-check form-check-inline ms-1">
-                                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" :value="datos_cupon.valid_only_first_purchase" name="valid_only_first_purchase" value="0">
                                                                         <label class="form-check-label" for="inlineCheckbox1">No</label>
                                                                     </div>
                                                                 </div>
@@ -230,11 +230,11 @@
                                                                     <h5 class="ms-1" id="basic-addon1">Status del cupón de descuento</h5>
                                                                     <div class="w-100"></div>
                                                                     <div class="form-check form-check-inline">
-                                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" :value="datos_cupon.status" name="status" value="1">
                                                                         <label class="form-check-label" for="inlineCheckbox1">Activo</label>
                                                                     </div>
                                                                     <div class="form-check form-check-inline ms-1">
-                                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" :value="datos_cupon.status" name="status" value="0">
                                                                         <label class="form-check-label" for="inlineCheckbox1">Inactivo</label>
                                                                     </div>
                                                                 </div>
@@ -242,10 +242,10 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                                                            <button type="submit" class="btn btn-success">Guardar</button>
-                                                            <input type="hidden" name="action">
+                                                            <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                                                            <input type="hidden" name="action" action="editarCupon" value="editarCupon">
                                                             <input type="hidden" name="global_token" value="<?= $_SESSION['global_token'] ?>">
-                                                            <input type="hidden" name="id" >
+                                                            <input type="hidden" name="id" :value="datos_cupon.id">
                                                         </div>
                                                     </form>
                                                 </div>
@@ -263,10 +263,10 @@
                                                         <p class="text-muted fs-15 mb-4">Eliminar el cupón eliminará toda su información de nuestra base de datos.</p>
                                                         <div class="hstack gap-2 justify-content-center remove">
                                                             <button class="btn btn-link link-success fw-medium text-decoration-none" id="deleteRecord-close" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Cerrar</button>
-                                                            <form method="POST" action="<?= BASE_PATH ?>">
+                                                            <form method="POST" action="<?= BASE_PATH ?>Controlador-cupones">
                                                                 <button type="submit" class="btn btn-danger" id="delete-record">Si, eliminar
-                                                                <input type="hidden" name="action">
-                                                                <input type="hidden" name="id" >
+                                                                <input type="hidden" name="action" action="eliminarCupon" value="eliminarCupon">
+                                                                <input type="hidden" name="id" :value="id_cupon_eliminar.id">
                                                                 <input type="hidden" name="global_token" value="<?= $_SESSION['global_token'] ?>">
 
                                                                 </button>
@@ -336,6 +336,33 @@
 
     <!--SweetAlert-->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!--script vue -->
+    <script>
+            const { createApp } = Vue
+            const app = createApp({
+                data(){
+                    return {
+                        cupones: <?= json_encode($data); ?>,
+                        id_cupon_eliminar: {id: ""},
+                        datos_cupon: {id: "", name: "", code: "", porcentaje_descuento: "", monto_descuento: "", monto_minimo:"", minimo_productos:"", dia_alta:"", dia_baja:"", maximo_usos:"", veces_usado:"", tipo: "", primera_compra:"", status: ""},
+                    }
+                },
+                methods:{
+                    eliminarCupon(cupon){
+                        this.id_cupon_eliminar = cupon;
+                    },
+                    editarCupon(cupon){
+                        this.datos_cupon = cupon;
+                    }
+                },
+                mounted() {
+
+                },
+            }).mount('#app')
+
+
+        </script>
 </body>
 
 
