@@ -69,8 +69,8 @@
                         </li> 
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?=BASE_PATH?>cupones/">
-                                <i class="mdi mdi-order-bool-descending"></i> <span data-key="t-widgets">Cupones</span>
+                            <a class="nav-link menu-link" href="<?=BASE_PATH?>ordenes/">
+                                <i class="mdi mdi-order-bool-descending"></i> <span data-key="t-widgets">Ordenes</span>
                             </a>
                         </li> 
 

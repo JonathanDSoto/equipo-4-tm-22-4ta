@@ -116,7 +116,7 @@
                                             </span>
                                         </div>
                                         <div class="flex-grow-1 ms-3">
-                                            <p class="text-uppercase fw-medium text-white-50 mb-3">Ventas totales</p>
+                                            <p class="text-uppercase fw-medium text-white-50 mb-3">Compras totales</p>
                                             <h4 class="fs-4 mb-3 text-white"><span class="counter-value" data-target="2045">0</span></h4>
                                             <p class="text-white-50 mb-0">From 1930 last year</p>
                                         </div>

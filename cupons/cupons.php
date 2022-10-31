@@ -202,7 +202,11 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Tipo de cupón</span>
-                                <input type="number" class="form-control" placeholder="0" aria-label="Username" aria-describedby="basic-addon1" >
+                                <select class="form-control" id="">
+                                    <option value=""><--Selecciona una opción--></option>
+                                    <option value="Cupon de descuento">Cupon de descuento</option>
+                                    <option value="Cupon de descuento fijo">Cupon de descuento fijo</option>
+                                </select>
                             </div>
 
                             <div class="row">

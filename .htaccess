@@ -24,13 +24,18 @@ RewriteRule ^catalogos/tags$ catalogos/tags.php
 
 RewriteRule ^clientes/$ clients/clients.php
 RewriteRule ^clientes/agregar-cliente$ clients/add-client.php
-RewriteRule ^clientes/cliente=id clients/clientDetail.php?
+RewriteRule ^clientes/cliente=(.+)$ clients/clientDetail.php?id=$1
 
 
 # Cupons
 RewriteRule ^cupones/$ cupons/cupons.php
 RewriteRule ^cupones/agregar-cupon$ cupons/cupons.php
 # RewriteRule ^cupones/id$ cupons/cupons.php
+
+# Ordenes
+
+RewriteRule ^ordenes/$ orders/orders.php
+RewriteRule ^ordenes/orden=(.+)$ orders/orders.php?id=$1
 
 # Products
 RewriteRule ^productos/$ products/index.php

@@ -140,10 +140,10 @@
 
     <?php include '../layouts/scripts.template.php' ?>
     <!-- swiper js -->
-    <script src="assets/libs/swiper/swiper-bundle.min.js"></script>
+    <script src="<?= BASE_PATH?>public/libs/swiper/swiper-bundle.min.js"></script>
 
     <!-- profile init js -->
-    <script src="assets/js/pages/profile.init.js"></script>
+    <script src="<?= BASE_PATH?>public/js/pages/profile.init.js"></script>
 
 </body>
 
