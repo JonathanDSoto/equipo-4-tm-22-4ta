@@ -223,6 +223,15 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Monto descuento</h5>
+                                    </div>
+                                    <!-- end card body -->
+                                    <div class="card-body">
+                                        <input type="text" class="form-control" placeholder="Monto descuento">
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-6">

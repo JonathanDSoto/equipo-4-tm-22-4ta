@@ -36,19 +36,21 @@ RewriteRule ^cupones/id$ cupons/details.php
 # Ordenes
 
 RewriteRule ^ordenes/$ orders/orders.php
-RewriteRule ^ordenes/orden=([a-zA-Z0-9]+)$ orders/orders.php?id=$1
+RewriteRule ^ordenes/orden=([0-9]+)$ orders/orderDetail.php?id=$1
 
 # Products
 RewriteRule ^productos/$ products/index.php
 RewriteRule ^productos/error$ products/index.php?error=true
 RewriteRule ^productos/success$ products/index.php?success=true
 RewriteRule ^productos/agregar-producto$ products/add-product.php
+RewriteRule ^productos/producto=([0-9]+)=([A-Za-z]+)$ products/details.php?$1?$2
+
 
 # User
 RewriteRule ^usuarios/$ user/users.php
 RewriteRule ^usuarios/agregar-usuario$ user/add-user.php
 RewriteRule ^usuarios/perfil$ user/profile.php
-RewriteRule ^usuarios/usuario=([a-zA-Z0-9]+)$ user/userDetail.php?id=$1
+RewriteRule ^usuarios/usuario=([0-9]+)$ user/userDetail.php?id=$1
 
 # Login
 RewriteRule ^iniciar-sesion/$ index.php
