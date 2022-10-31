@@ -174,7 +174,7 @@ if($_SESSION['acceso']=="acceso"){
 
 	}
 	//Eliminar Level
-	public function deleteBrand($id)
+	public function deleteLevel($id)
 	{
 
 		$curl = curl_init();

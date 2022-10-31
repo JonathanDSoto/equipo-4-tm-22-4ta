@@ -54,14 +54,45 @@ if($_SESSION['acceso']=="acceso"){
 
 	Class ClientsController
 	{
-	// Todos los clientes
-		public function getClientes()
-		{
+		// Todos los clientes
+			public function getClientes()
+			{
 
-			$curl = curl_init();
+				$curl = curl_init();
 
-			curl_setopt_array($curl, array(
-				CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients',
+				curl_setopt_array($curl, array(
+					CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients',
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_ENCODING => '',
+					CURLOPT_MAXREDIRS => 10,
+					CURLOPT_TIMEOUT => 0,
+					CURLOPT_FOLLOWLOCATION => true,
+					CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+					CURLOPT_CUSTOMREQUEST => 'GET',
+					CURLOPT_HTTPHEADER => array(
+						'Authorization: Bearer '.$_SESSION['token']
+					),
+				));
+
+				$response = curl_exec($curl); 
+				curl_close($curl);
+				$response = json_decode($response);
+
+				if ( isset($response->code) && $response->code > 0) {
+					
+					return $response->data;
+				}else{
+
+					return array();
+				}
+			}
+		//Busqueda de cliente por su id
+		public function idCliente($id)
+			{
+				$curl = curl_init();
+
+				curl_setopt_array($curl, array(
+				CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients/'.$id,
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_ENCODING => '',
 				CURLOPT_MAXREDIRS => 10,
@@ -72,58 +103,67 @@ if($_SESSION['acceso']=="acceso"){
 				CURLOPT_HTTPHEADER => array(
 					'Authorization: Bearer '.$_SESSION['token']
 				),
-			));
+				));
 
-			$response = curl_exec($curl); 
-			curl_close($curl);
-			$response = json_decode($response);
+				$response = curl_exec($curl); 
+				curl_close($curl);
+				$response = json_decode($response);
 
-			if ( isset($response->code) && $response->code > 0) {
-				
-				return $response->data;
-			}else{
+				if ( isset($response->code) && $response->code > 0) {
+					
+					return $response->data;
+				}else{
 
-				return array();
+					return array();
+				}
 			}
-		}
-	//Busqueda de cliente por su id
-	public function idCliente($id)
-		{
-			$curl = curl_init();
 
-			curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients/'.$id,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer '.$_SESSION['token']
-			),
-			));
+		//Crear una cliente
+			public function createCliente($name,$email,$password,$phone_number,$is_suscribed,$level_id)
+			{
+		
+				$curl = curl_init();
+				curl_setopt_array($curl, array(
+					CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients',
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_ENCODING => '',
+					CURLOPT_MAXREDIRS => 10,
+					CURLOPT_TIMEOUT => 0,
+					CURLOPT_FOLLOWLOCATION => true,
+					CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+					CURLOPT_CUSTOMREQUEST => 'POST',
+					CURLOPT_POSTFIELDS => array(
+					'name' => $name,
+					'email' => $email,
+					'password' => $password,
+					'phone_number' => $phone_number,
+					'is_suscribed' => $is_suscribed,
+					'level_id' => $level_id),
+					CURLOPT_HTTPHEADER => array(
+						'Authorization: Bearer '.$_SESSION['token']
+					),
+				));
 
-			$response = curl_exec($curl); 
-			curl_close($curl);
-			$response = json_decode($response);
+				$response = curl_exec($curl); 
+				curl_close($curl);
+				$response = json_decode($response);
 
-			if ( isset($response->code) && $response->code > 0) {
-				
-				return $response->data;
-			}else{
+				if ( isset($response->code) && $response->code > 0) {
 
-				return array();
+					header("Location:".BASE_PATH."clientes/");
+				}else{ 
+					#var_dump($response);
+					header("Location:".BASE_PATH."?error=true");
+				}
+
 			}
-		}
+		//Actualizar una cliente
+			public function updateCliente($name,$email,$password,$phone_number,$is_suscribed,$level_id,$id)
+			{
 
-	//Crear una cliente
-		public function createCliente($name,$email,$password,$phone_number,$is_suscribed,$level_id)
-		{
-	
-			$curl = curl_init();
-			curl_setopt_array($curl, array(
+				$curl = curl_init();
+				
+				curl_setopt_array($curl, array(
 				CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients',
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_ENCODING => '',
@@ -131,96 +171,56 @@ if($_SESSION['acceso']=="acceso"){
 				CURLOPT_TIMEOUT => 0,
 				CURLOPT_FOLLOWLOCATION => true,
 				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-				CURLOPT_CUSTOMREQUEST => 'POST',
-				CURLOPT_POSTFIELDS => array(
-				'name' => $name,
-				'email' => $email,
-				'password' => $password,
-				'phone_number' => $phone_number,
-				'is_suscribed' => $is_suscribed,
-				'level_id' => $level_id),
+				CURLOPT_CUSTOMREQUEST => 'PUT',
+				CURLOPT_POSTFIELDS => 'name='.$name.'&email='.$email.'&password='.$password.'&phone_number='.$phone_number.'&is_suscribed='.$is_suscribed.'&level_id='.$level_id.'&id='.$id,
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer '.$_SESSION['token'],
+					'Content-Type: application/x-www-form-urlencoded'
+				),
+				));
+
+				$response = curl_exec($curl); 
+				curl_close($curl);
+				$response = json_decode($response);
+
+				if ( isset($response->code) && $response->code > 0) {
+
+					header("Location:".BASE_PATH."clientes/");
+				}else{ 
+
+					header("Location:".BASE_PATH."?error=true");
+				}
+
+			}
+		//Eliminar una cliente
+			public function removeCliente($id)
+			{
+				$curl = curl_init();
+
+				curl_setopt_array($curl, array(
+				CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients/'.$id,
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'DELETE',
 				CURLOPT_HTTPHEADER => array(
 					'Authorization: Bearer '.$_SESSION['token']
 				),
-			));
+				));
 
-			$response = curl_exec($curl); 
-			curl_close($curl);
-			$response = json_decode($response);
+				$response = curl_exec($curl); 
+				curl_close($curl);
+				$response = json_decode($response);
 
-			if ( isset($response->code) && $response->code > 0) {
-
-				header("Location:".BASE_PATH."clientes/");
-			}else{ 
-				#var_dump($response);
-				header("Location:".BASE_PATH."?error=true");
+				if ( isset($response->code) && $response->code > 0) {
+					header("Location:".BASE_PATH."clientes/");
+				}else{ 
+					header("Location:".BASE_PATH."?error=true");
+				}
 			}
-
-		}
-	//Actualizar una cliente
-		public function updateCategoria($name,$email,$password,$phone_number,$is_suscribed,$level_id,$id)
-		{
-
-			$curl = curl_init();
-			
-			curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'PUT',
-			CURLOPT_POSTFIELDS => 'name='.$name.'&email='.$email.'&password='.$password.'&phone_number='.$phone_number.'&is_suscribed='.$is_suscribed.'&level_id='.$level_id.'&id='.$id,
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer '.$_SESSION['token'],
-				'Content-Type: application/x-www-form-urlencoded'
-			),
-			));
-
-			$response = curl_exec($curl); 
-			curl_close($curl);
-			$response = json_decode($response);
-
-			if ( isset($response->code) && $response->code > 0) {
-
-				header("Location:".BASE_PATH."clientes/");
-			}else{ 
-
-				header("Location:".BASE_PATH."?error=true");
-			}
-
-		}
-	//Eliminar una cliente
-		public function removeCliente($id)
-		{
-			$curl = curl_init();
-
-			curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients/'.$id,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'DELETE',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer '.$_SESSION['token']
-			),
-			));
-
-			$response = curl_exec($curl); 
-			curl_close($curl);
-			$response = json_decode($response);
-
-			if ( isset($response->code) && $response->code > 0) {
-				header("Location:".BASE_PATH."clientes/");
-			}else{ 
-				header("Location:".BASE_PATH."?error=true");
-			}
-		}
 	}
 }else{
     header("Location:".BASE_PATH."iniciar-sesion/");
