@@ -62,7 +62,7 @@
                                 <h5 class="card-title text-center">{{producto.name}}</h5>
                                 <p :class="classTruncate">{{producto.description}}</p><a @click="cambiarClass(index)" href="#">Ver Más</a>
                                 <hr>
-                                <p class="text-end me-4  text-dark">Precio: ${{producto.presentations[0]}}</p>
+                                <p class="text-end me-4  text-dark"></p>
                                 <div class="row">
                                     <button type="button" class="btn btn-warning col-6">Editar</button>
                                     <button type="button" class="btn btn-danger col-6">Eliminar</button>

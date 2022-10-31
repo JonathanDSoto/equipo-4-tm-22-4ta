@@ -1,14 +1,5 @@
 <?php 
     include_once "../app/config.php";
-    include '..\app\TagsController.php';
-    include '..\app\CategoriasController.php';
-    include '..\app\BrandController.php';
-    $brands = new BrandController();
-    $data_brands = $brands->getBrands();
-    $categorias = new CategoriasController();
-    $data_categorias = $categorias->getCategoria();
-    $tags = new TagsController();
-    $data_tags = $tags->getTags();
 ?> 
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -60,7 +51,7 @@
                     </div>
                     <!-- end page title -->
                     <!-- Formulario -->
-                    <form enctype="multipart/form-data" id="#" autocomplete="off" class="needs-validation " method="POST" action="<?= BASE_PATH ?>Controlador-productos">
+                    <form id="#" autocomplete="off" class="needs-validation " method="POST" action="<?= BASE_PATH ?>Controlador-cupones">
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="card">
@@ -84,7 +75,7 @@
                                     <div class="card-body">
                                         <div>
                                         <div class="form-floating">
-                                            <input class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></input>
+                                            <input class="form-control" name="code" placeholder="Código de Cupón" id="floatingTextarea"></input>
                                             <label for="floatingTextarea">Ingresa el codigo del descuento</label>
                                         </div>
                                         </div>
@@ -99,7 +90,7 @@
                                     <div class="card-body">
                                         <div>
                                         <div class="form-floating">
-                                            <textarea class="form-control" name="features" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                            <textarea class="form-control" name="percentage_discount" placeholder="Llenar este espacio si el cupón es por porcentaje" id="floatingTextarea"></textarea>
                                             <label for="floatingTextarea">Ingresa el porcentaje de descuento</label>
                                         </div>
                                         </div>
@@ -113,7 +104,7 @@
                                     <div class="card-body">
                                         <div>
                                         <div class="form-floating">
-                                            <input class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></input>
+                                            <input class="form-control" name="min_amount_required" placeholder="Minimo de monto requerido para usar el cupón" id="floatingTextarea"></input>
                                             <label for="floatingTextarea">Ingresa el minimo de monto requerido</label>
                                         </div>
                                         </div>
@@ -136,7 +127,7 @@
                                     <div class="card-body">
                                         <div>
                                         <div class="form-floating">
-                                            <input class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></input>
+                                            <input class="form-control" name="min_product_required" placeholder="Minimo de productos para usar el cupón" id="floatingTextarea"></input>
                                             <label for="floatingTextarea">Ingresa el minimo de productos</label>
                                         </div>
                                         </div>
@@ -150,7 +141,7 @@
                                     <div class="card-body">
                                         <div>
                                         <div class="input-group mb-3">
-                                            <input class=" form-control" type="date" name="" value="2018-07-22" style="color: #1D1D1D; font-size: 14px; border:1px solid #ECF0F1; background-color: white; width:100px">
+                                            <input class=" form-control" type="date" name="start_date" style="color: #1D1D1D; font-size: 14px; border:1px solid #ECF0F1; background-color: white; width:100px">
                                         </div>
                                         </div>
                                     </div>
@@ -163,7 +154,7 @@
                                     <div class="card-body">
                                         <div>
                                         <div class="input-group mb-3">
-                                            <input class=" form-control" type="date" name="" value="2018-07-22" style="color: #1D1D1D; font-size: 14px; border:1px solid #ECF0F1; background-color: white; width:100px">
+                                            <input class=" form-control" type="date" name="end_date" style="color: #1D1D1D; font-size: 14px; border:1px solid #ECF0F1; background-color: white; width:100px">
                                         </div>
                                         </div>
                                     </div>
@@ -174,10 +165,10 @@
                                     </div>
                                     <!-- end card body -->
                                     <div class="card-body">
-                                        <select class="form-control">
-                                            <option value=""><--Selecciona una opción--></option>
-                                            <option value="">Si</option>
-                                            <option value="">No</option>
+                                        <select class="form-control" name="valid_only_first_purchase">
+                                            <option><--Selecciona una opción--></option>
+                                            <option value="1">Si</option>
+                                            <option value="0">No</option>
                                         </select>
                                     </div>
                                 </div>
@@ -194,7 +185,7 @@
                                     <div class="card-body">
                                         <div>
                                         <div class="form-floating">
-                                            <input class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></input>
+                                            <input class="form-control" name="max_uses" placeholder="Maximo de usos que tendrá el cupón" id="floatingTextarea"></input>
                                             <label for="floatingTextarea">Ingresa el máximo de usos</label>
                                         </div>
                                         </div>
@@ -205,7 +196,7 @@
                                     <div class="card-body">
                                         <div class="mb-3">
                                             <label class="form-label" for="product-title-input">Veces usado</label>
-                                            <input type="text" class="form-control" id="product-title-input" name="name" value="0" readonly >
+                                            <input type="text" class="form-control" id="product-title-input" name="count_uses" value="0" readonly >
                                         </div>
                                     </div>
                                 </div>
@@ -216,11 +207,20 @@
                                     </div>
                                     <!-- end card body -->
                                     <div class="card-body">
-                                        <select class="form-control">
-                                            <option value=""><--Selecciona una opción--></option>
+                                        <select class="form-control" name="couponable_type">
+                                            <option><--Selecciona una opción--></option>
                                             <option value="Cupón de descuento">Cupón de descuento</option>
                                             <option value="Cupón de descuento fijo">Cupón de descuento fijo</option>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Monto descuento</h5>
+                                    </div>
+                                    <!-- end card body -->
+                                    <div class="card-body">
+                                        <input type="text" class="form-control" placeholder="Si su cupón es de un descuento fijo ingrese aqui el monto" name="amount_discount">
                                     </div>
                                 </div>
 
@@ -230,11 +230,11 @@
                                             <h5 class="ms-1">Solo para uso de primera compra</h5>
                                             <div class="w-100"></div>
                                             <div class="form-check form-check-inline ms-1">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="1" name="valid_only_first_purchase">
                                                 <label class="form-check-label" for="inlineCheckbox1">Si</label>
                                             </div>
                                             <div class="form-check form-check-inline ms-1">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="0" name="valid_only_first_purchase">
                                                 <label class="form-check-label" for="inlineCheckbox1">No</label>
                                             </div>
                                         </div>
@@ -244,11 +244,11 @@
                                             <h5 class="ms-1" id="basic-addon1">Status del cupón de descuento</h5>
                                             <div class="w-100"></div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="1" name="status">
                                                 <label class="form-check-label" for="inlineCheckbox1">Activo</label>
                                             </div>
                                             <div class="form-check form-check-inline ms-1">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="0" name="status">
                                                 <label class="form-check-label" for="inlineCheckbox1">Inactivo</label>
                                             </div>
                                         </div>
@@ -256,6 +256,8 @@
                                 </div>
                                 <div class="text-center mb-3 mt-2">
                                     <button type="submit" class="btn btn-success w-sm btn-lg  ">Crear cupón</button>
+                                    <input type="hidden" name="action" action="nuevoCupon" value="nuevoCupon">
+                                    <input type="hidden" name="global_token" value="<?= $_SESSION['global_token'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -304,10 +306,6 @@
             const app = createApp({
                 data(){
                     return {
-
-                        tags: <?php echo json_encode($data_tags);?>,
-                        brands: <?php echo json_encode($data_brands);?>,
-                        categories: <?php echo json_encode($data_categorias);?>,
 
                     }
                 },

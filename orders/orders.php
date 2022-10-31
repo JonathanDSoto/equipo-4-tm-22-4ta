@@ -114,7 +114,7 @@
                                                         <td>
                                                             <ul class="list-inline hstack gap-2 mb-0">
                                                                 <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
-                                                                    <a href="<?= BASE_PATH?>" class="text-primary d-inline-block"> <!-- RUTA VER MÁS -->
+                                                                    <a href="<?= BASE_PATH?>ordenes/orden=1" class="text-primary d-inline-block"> <!-- RUTA VER MÁS -->
                                                                         <i class="ri-eye-fill fs-16"></i>
                                                                     </a>
                                                                 </li>
