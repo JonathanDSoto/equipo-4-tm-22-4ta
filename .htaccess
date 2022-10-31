@@ -1,4 +1,5 @@
 Options +FollowSymLinks -MultiViews
+Options All -Indexes
 RewriteEngine on
 
 #Rutas
@@ -35,7 +36,7 @@ RewriteRule ^cupones/agregar-cupon$ cupons/cupons.php
 # Ordenes
 
 RewriteRule ^ordenes/$ orders/orders.php
-RewriteRule ^ordenes/orden=(.+)$ orders/orders.php?id=$1
+RewriteRule ^ordenes/orden=([a-zA-Z0-9]+)$ orders/orders.php?id=$1
 
 # Products
 RewriteRule ^productos/$ products/index.php
@@ -47,7 +48,7 @@ RewriteRule ^productos/agregar-producto$ products/add-product.php
 RewriteRule ^usuarios/$ user/users.php
 RewriteRule ^usuarios/agregar-usuario$ user/add-user.php
 RewriteRule ^usuarios/perfil$ user/profile.php
-RewriteRule ^usuarios/usuario=(.+)$ user/userDetail.php?id=$1
+RewriteRule ^usuarios/usuario=([a-zA-Z0-9]+)$ user/userDetail.php?id=$1
 
 # Login
 RewriteRule ^iniciar-sesion/$ index.php
