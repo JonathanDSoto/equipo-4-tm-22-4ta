@@ -74,7 +74,11 @@ if($_SESSION['acceso']=="acceso"){
 		echo $sumaTotal;
 	}
 
-    Class CouponsController{
+}else{
+	header("Location:".BASE_PATH."iniciar-sesion/");
+}
+
+Class CouponsController{
 
     //Cupones
         public function getCoupons()
@@ -262,8 +266,5 @@ if($_SESSION['acceso']=="acceso"){
         }
 
     }
-}else{
-	header("Location:".BASE_PATH."iniciar-sesion/");
-}
 
 ?>

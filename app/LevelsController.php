@@ -41,7 +41,11 @@ if($_SESSION['acceso']=="acceso"){
 
 		}
 	}
-	Class LevelsController
+}else{
+	header("Location:".BASE_PATH."iniciar-sesion/");
+}
+
+Class LevelsController
 	{
 	//Todos los levels
 		public function getLevels()
@@ -207,8 +211,5 @@ if($_SESSION['acceso']=="acceso"){
 	}
 
 	}
-}else{
-	header("Location:".BASE_PATH."iniciar-sesion/");
-}
 
 ?>

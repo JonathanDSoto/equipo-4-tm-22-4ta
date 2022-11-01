@@ -46,8 +46,11 @@ if($_SESSION['acceso']=="acceso"){
 
 		}
 	}
+}else{
+	header("Location:".BASE_PATH."iniciar-sesion/");
+}
 
-	Class CategoriasController
+Class CategoriasController
 	{
 	// Todos las categorias
 		public function getCategoria()
@@ -212,8 +215,4 @@ if($_SESSION['acceso']=="acceso"){
 			}
 		}
 	}
-}else{
-	header("Location:".BASE_PATH."iniciar-sesion/");
-}
-
 ?>

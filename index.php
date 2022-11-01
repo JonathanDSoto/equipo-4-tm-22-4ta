@@ -61,7 +61,7 @@
                                     <p class="text-muted">Inicia sesión para ingresar.</p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form action="<?= BASE_PATH ?>auth" method="POST" onsubmit="return validateLoginSubmit()">
+                                    <form action="<?= BASE_PATH ?>auth" method="POST" onsubmit="return validateSubmit()">
                                         <div class="mb-3">
                                             <label for="username" class="form-label">Correo electrónico</label>
                                             <input type="text" class="form-control" id="email" placeholder="ejemplo@ejemplo.com" name="email" oninput="emailCheck()" onblur="emailCheck()">
@@ -159,7 +159,7 @@
                 showPasswordError(passwordErrorDiv, passwordError, "La contraseña es necesaria");
                 return false;
             }else if(!correctPassword){
-                showPasswordError(passwordErrorDiv, passwordError, "La contraseña puede contener solo 14 caracteres alfanumericos y especiales: !@#$%&^*");
+                showPasswordError(passwordErrorDiv, passwordError, "La contraseña solo puede tener caracteres alfanumericos y especiales: !@#$%&^*");
                 return false;
             }
             hidePasswordError(passwordErrorDiv);
@@ -174,7 +174,7 @@
             passwordErrorDiv.style.display = 'none';
         }
         //Verificar si todo lo introducido esta correcto o no con el submit button
-        function validateLoginSubmit(){
+        function validateSubmit(){
             var submitErrorDiv = document.getElementById('submitErrorDiv');
             var submitError = document.getElementById('submitError');
             var emailErrorDiv = document.getElementById('emailErrorDiv');
@@ -188,16 +188,10 @@
             var correctEmail = emailRegex.test(email);
             var correctPassword = passwordRegex.test(password);
             if(!correctEmail){
-                if(!correctPassword){
-                    showPasswordError(passwordErrorDiv, passwordError, "La contraseña es incorrecta");
-                }
-                showSubmitError(submitErrorDiv, submitError, "Hay datos incorrectos");
                 showEmailError(emailErrorDiv, emailError, "El correo es invalido");
-                return false;
-            }else if(!correctPassword){
-                showSubmitError(submitErrorDiv, submitError, "Hay datos incorrectos");
+            }
+            if(!correctPassword){
                 showPasswordError(passwordErrorDiv, passwordError, "La contraseña es incorrecta");
-                return false;
             }
             if(!correctEmail || !correctPassword){
                 showSubmitError(submitErrorDiv, submitError, "Hay datos incorrectos");

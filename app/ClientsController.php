@@ -63,7 +63,12 @@ if($_SESSION['acceso']=="acceso"){
 		}
 		echo $sumaTotal;
 	}
- 	Class ClientsController
+ 	
+}else{
+    header("Location:".BASE_PATH."iniciar-sesion/");
+}
+
+Class ClientsController
 	{
 		// Todos los clientes
 			public function getClientes()
@@ -233,8 +238,5 @@ if($_SESSION['acceso']=="acceso"){
 				}
 			}
 	}
-}else{
-    header("Location:".BASE_PATH."iniciar-sesion/");
-}
 
 ?>

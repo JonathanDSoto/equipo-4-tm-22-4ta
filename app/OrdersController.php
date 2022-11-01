@@ -53,6 +53,11 @@ if($_SESSION['acceso']=="acceso"){
 	
 		}
 	}
+
+}else{
+	header("Location:".BASE_PATH."iniciar-sesion/");
+}
+
 Class OrdersController
 {
 		// Todos los ordenes
@@ -253,8 +258,5 @@ Class OrdersController
 					header("Location:".BASE_PATH."?error=true");
 				}
 			}
-}
-}else{
-	header("Location:".BASE_PATH."iniciar-sesion/");
 }
 ?>

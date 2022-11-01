@@ -56,8 +56,11 @@ if($_SESSION['acceso']=="acceso"){
 
 		}
 	}
+}else{
+	header("Location:".BASE_PATH."iniciar-sesion/");
+}
 
-	Class ProductsController
+Class ProductsController
 	{
 	// Todos los productos
 		public function getProducts()
@@ -267,10 +270,5 @@ if($_SESSION['acceso']=="acceso"){
 			}
 		}
 	}
-}else{
-	header("Location:".BASE_PATH."iniciar-sesion/");
-}
-
-
 
 ?>

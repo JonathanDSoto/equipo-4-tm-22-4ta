@@ -42,8 +42,11 @@ if($_SESSION['acceso']=="acceso"){
 
 		}
 	}
+}else{
+	header("Location:".BASE_PATH."iniciar-sesion/");
+}
 
-	Class BrandController 
+Class BrandController 
 	{
 	//Todos los brands
 		public function getBrands()
@@ -211,8 +214,4 @@ if($_SESSION['acceso']=="acceso"){
 	}
 
 	}
-}else{
-	header("Location:".BASE_PATH."iniciar-sesion/");
-}
-
 ?>

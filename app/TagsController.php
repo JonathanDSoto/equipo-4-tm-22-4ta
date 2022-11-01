@@ -42,9 +42,11 @@ if($_SESSION['acceso']=="acceso"){
 
         }
     }
+}else{
+    header("Location:".BASE_PATH."iniciar-sesion/");
+}
 
-
-    Class TagsController{
+Class TagsController{
 
     //Etiquetas
         public function getTags()
@@ -219,9 +221,4 @@ if($_SESSION['acceso']=="acceso"){
         }
 
     }
-}else{
-    header("Location:".BASE_PATH."iniciar-sesion/");
-}
-
-
 ?>
