@@ -52,8 +52,14 @@
                                 <hr>
                                 <p class="text-end me-4  text-dark"></p>
                                 <div class="row">
+                                    <form action="<?=BASE_PATH?>Controlador-productos" method="post"></form>
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-warning col-6">Editar</button>
-                                    <button type="button" class="btn btn-danger col-6">Eliminar</button>
+                                    <button type="submit" class="btn btn-danger col-6">Eliminar
+                                        <input type="hidden" name="action" action="delete" value="delete">
+                                        <input type="hidden" name="id" :value="producto.id">
+                                        <input type="hidden" name="global_token" value="<?= $_SESSION['global_token'] ?>">
+                                    </button>
+                                    </form>
                                     <a href="<?=BASE_PATH?>productos/producto=2=a" type="button" class="btn btn-info col-12">Ver más</a>
                                 </div>
                             </div>  
@@ -74,14 +80,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form enctype="multipart/form-data">
+                    <form enctype="multipart/form-data" method="POST" action="<?=BASE_PATH?>Controlador-productos">
                         <div class="row g-3">
-                            <div class="col-xxl-12">
-                                <div>
-                                    <label for="firstName" class="form-label">Id</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="Enter firstname">
-                                </div>
-                            </div><!--end col-->
                             <div class="col-xxl-12">
                                 <div>
                                     <label for="lastName" class="form-label">Name</label>
@@ -143,6 +143,7 @@
                         productos: <?= json_encode($data);?>,
                         classTruncate:'card-text text-truncate d-block',
                         mas: 'más',
+                        datos_producto: {},
                     }
                 },
                 methods:{
