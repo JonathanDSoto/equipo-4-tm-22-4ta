@@ -1,6 +1,9 @@
 <?php 
-// Listo para front
     include_once "../app/config.php";
+    include '..\app\OrdersController.php';
+    $ordenes = new OrdersController();
+    $data = $ordenes->getOrders();
+    #var_dump($data);
 ?> 
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -31,7 +34,7 @@
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="main-content">
+        <div class="main-content" id="app">
 
             <div class="page-content">
                 <div class="container-fluid">
@@ -96,21 +99,25 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="list form-check-all">
-                                                    <tr>
-                                                        <td class="id"><a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">{{Folio}}</a></td>
-                                                        <td class="customer_name">{{Productos}}</td>
-                                                        <td class="product_name">{{Total de la orden}}</td>
-                                                        <td class="date">{{}}</td>
-                                                        <td class="amount">
-                                                            <span class="badge badge-soft-primary badge-border">1</span>
-                                                            <span class="badge badge-soft-secondary badge-border">2</span>
-                                                            <span class="badge badge-soft-success badge-border">3</span>
-                                                            <span class="badge badge-soft-info badge-border">4</span>
-                                                            <span class="badge badge-soft-warning badge-border">5</span>
-                                                            <span class="badge badge-soft-danger badge-border">6</span>
+                                                    <tr v-for="(orden, index) in ordenes">
+                                                        <td class="id"><a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">{{orden.folio}}</a></td>
+                                                        <td class="customer_name">{{orden.presentations[0].description}}</td>
+                                                        <td class="product_name">{{orden.total}}</td>
+                                                        <td class="date">
+                                                        <span class="badge badge-soft-primary badge-border" v-if="orden.order_status_id == 1">Pendiente de Pago</span>
+                                                            <span class="badge badge-soft-secondary badge-border" v-if="orden.order_status_id == 2">Pagado</span>
+                                                            <span class="badge badge-soft-success badge-border" v-if="orden.order_status_id == 3">Enviado</span>
+                                                            <span class="badge badge-soft-info badge-border" v-if="orden.order_status_id == 4">Abandonado</span>
+                                                            <span class="badge badge-soft-warning badge-border" v-if="orden.order_status_id == 5">Pendiente de enviar</span>
+                                                            <span class="badge badge-soft-danger badge-border" v-if="orden.order_status_id == 6">Cancelado</span>
                                                         </td>
-                                                        <td class="payment">{{Cupón}}</td>
-                                                        <td class="status">{{Dirección}}</td>
+                                                        <td class="amount">
+                                                            <span class="badge badge-soft-success badge-border" v-if="orden.payment_type_id == 1">Efectivo</span>
+                                                            <span class="badge badge-soft-secondary badge-border" v-if="orden.payment_type_id == 2">Tarjeta</span>
+                                                            <span class="badge badge-soft-primary badge-border" v-if="orden.payment_type_id == 3">Transferencia</span>
+                                                        </td>
+                                                        <td class="payment">{{orden.coupon_id}}</td>
+                                                        <td class="status">{{orden.address_id}}</td>
                                                         <td>
                                                             <ul class="list-inline hstack gap-2 mb-0">
                                                                 <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
@@ -124,7 +131,7 @@
                                                                     </a>
                                                                 </li>
                                                                 <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
-                                                                    <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteOrder">
+                                                                    <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteOrder" @click="eliminarOrden(orden)">
                                                                         <i class="ri-delete-bin-5-fill fs-16"></i>
                                                                     </a>
                                                                 </li>
@@ -362,6 +369,9 @@
                                 <div class="hstack gap-2 justify-content-center remove">
                                     <button class="btn btn-link link-success fw-medium text-decoration-none" id="deleteRecord-close" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Cerrar</button>
                                     <button class="btn btn-danger" id="delete-record">Si, eliminar</button>
+                                    <input type="hidden" name="action" action="eliminarOrden" value="eliminarOrden">
+                                    <input type="hidden" name="id" :value="id_orden_eliminar.id">
+                                    <input type="hidden" name="global_token" value="<?= $_SESSION['global_token'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -403,6 +413,32 @@
     <script src="<?=BASE_PATH?>public/libs/sweetalert2/sweetalert2.min.js"></script>
 
     <script src="<?=BASE_PATH?>public/js/genInputs.js"></script>
+
+    <!-- Vue js -->
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <!--script vue -->
+    <script>
+            const { createApp } = Vue
+            const app = createApp({
+                data(){
+                    return {
+                        ordenes: <?= json_encode($data); ?>,
+                        id_orden_eliminar: {id: ""},
+                    }
+                },
+                methods:{
+                    eliminarOrden(orden){
+                        this.id_orden_eliminar = orden;
+                    },
+                },
+                mounted() {
+
+                },
+            }).mount('#app')
+
+
+        </script>
 
 
 </body>

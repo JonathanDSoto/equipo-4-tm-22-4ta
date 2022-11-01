@@ -1,5 +1,6 @@
 <?php 
     include_once "../app/config.php";
+    include_once "../app/ProductsController.php";
 ?> 
 
 <!doctype html>
