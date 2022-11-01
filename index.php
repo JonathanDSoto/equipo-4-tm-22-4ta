@@ -61,7 +61,7 @@
                                     <p class="text-muted">Inicia sesión para ingresar.</p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form action="<?= BASE_PATH ?>auth" method="POST" onsubmit="validateLoginSubmit()">
+                                    <form action="<?= BASE_PATH ?>auth" method="POST" onsubmit="return validateLoginSubmit()">
                                         <div class="mb-3">
                                             <label for="username" class="form-label">Correo electrónico</label>
                                             <input type="text" class="form-control" id="email" placeholder="ejemplo@ejemplo.com" name="email" oninput="emailCheck()" onblur="emailCheck()">
@@ -82,7 +82,10 @@
                                             </div>
                                         </div>
                                         <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit" :disabled='isSubmitDisabled'>Iniciar sesión</button>
+                                            <button class="btn btn-success w-100" type="submit">Iniciar sesión</button>
+                                            <div id="submitErrorDiv" style="display: none" class="alert alert-danger alert-dismissible alert-outline shadow fade show" role="alert">
+                                                <strong id="submitError"></strong>
+                                            </div>
                                             <input type="hidden" name="action" action="access" value="access">
                                             <input type="hidden" name="global_token" value="<?= $_SESSION['global_token'] ?>">
                                         </div>
@@ -99,7 +102,6 @@
             <!-- end container -->
         </div>
         <!-- end auth page content -->
-
         <!-- footer -->
         <footer class="footer">
             <div class="container">
@@ -117,11 +119,11 @@
         <!-- end Footer -->
     </div>
     <!-- end auth-page-wrapper -->
-
     <!-- JAVASCRIPT -->
     <script type="text/javascript">
         //Funciones para el checkeo de email
         function emailCheck(){
+            var submitErrorDiv = document.getElementById('submitErrorDiv');
             var emailErrorDiv = document.getElementById('emailErrorDiv');
             var emailError = document.getElementById('emailError');
             var email = document.getElementById('email').value;
@@ -135,6 +137,7 @@
                 return false;
             }
             hideEmailError(emailErrorDiv);
+            hideSubmitError(submitErrorDiv);
             return true;
         }
         function showEmailError(emailErrorDiv, emailError, message){
@@ -146,6 +149,7 @@
         }
         //Funciones para el checkeo de password
         function passwordCheck(){
+            var submitErrorDiv = document.getElementById('submitErrorDiv');
             var passwordErrorDiv = document.getElementById('passwordErrorDiv');
             var passwordError = document.getElementById('passwordError');
             var password = document.getElementById('password').value;
@@ -159,6 +163,7 @@
                 return false;
             }
             hidePasswordError(passwordErrorDiv);
+            hideSubmitError(submitErrorDiv);
             return true;
         }
         function showPasswordError(passwordErrorDiv, passwordError, message){
@@ -170,17 +175,43 @@
         }
         //Verificar si todo lo introducido esta correcto o no con el submit button
         function validateLoginSubmit(){
+            var submitErrorDiv = document.getElementById('submitErrorDiv');
+            var submitError = document.getElementById('submitError');
+            var emailErrorDiv = document.getElementById('emailErrorDiv');
+            var emailError = document.getElementById('emailError');
+            var passwordErrorDiv = document.getElementById('passwordErrorDiv');
+            var passwordError = document.getElementById('passwordError');
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
             var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             var passwordRegex = /^[a-zA-Z0-9!@#$%^&*]{14}$/;
             var correctEmail = emailRegex.test(email);
             var correctPassword = passwordRegex.test(password);
-            if(!correctEmail || !correctPassword){
-                alert('Los datos introducidos son invalidos');
+            if(!correctEmail){
+                if(!correctPassword){
+                    showPasswordError(passwordErrorDiv, passwordError, "La contraseña es incorrecta");
+                }
+                showSubmitError(submitErrorDiv, submitError, "Hay datos incorrectos");
+                showEmailError(emailErrorDiv, emailError, "El correo es invalido");
+                return false;
+            }else if(!correctPassword){
+                showSubmitError(submitErrorDiv, submitError, "Hay datos incorrectos");
+                showPasswordError(passwordErrorDiv, passwordError, "La contraseña es incorrecta");
                 return false;
             }
+            if(!correctEmail || !correctPassword){
+                showSubmitError(submitErrorDiv, submitError, "Hay datos incorrectos");
+                return false;
+            }
+            hideSubmitError(submitErrorDiv);
             return true;
+        }
+        function showSubmitError(submitErrorDiv, submitError, message){
+            submitErrorDiv.style.display = 'block';
+            submitError.innerHTML = message;
+        }
+        function hideSubmitError(submitErrorDiv){
+            submitErrorDiv.style.display = 'none';
         }
     </script>
     <script src="<?= BASE_PATH ?>public/libs/bootstrap/js/bootstrap.bundle.min.js"></script>

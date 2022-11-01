@@ -83,7 +83,7 @@
                                                     </div>
                                                     <div class="flex-shrink-0">
                                                         <div>
-                                                            <a href="#" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="ri-pencil-fill align-bottom"></i></a>
+                                                            <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-placement="top" title="Edit"><i class="ri-pencil-fill align-bottom"></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -143,7 +143,6 @@
                                                     </td>
                                                 </tr>
                                                 <td>
-                                                    
                                                     <a href="#" class="btn btn-info col-3 ms-n2"><i class="ri-shopping-cart-line "></i>Agregar</a>
                                                 </td>
                                             </tbody>
@@ -168,7 +167,58 @@
 
     </div>
     <!-- END layout-wrapper -->
-
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalgridLabel" aria-modal="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalgridLabel">Editar producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form enctype="multipart/form-data">
+                        <div class="row g-3">
+                            <div class="col-xxl-12">
+                                <div>
+                                    <label for="firstName" class="form-label">Id</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="Enter firstname">
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-xxl-12">
+                                <div>
+                                    <label for="lastName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="Enter lastname">
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-xxl-12">
+                                <label for="genderInput" class="form-label">Slug</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="Enter lastname">
+                            </div><!--end col-->
+                            <div class="col-xxl-12">
+                                <div>
+                                    <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-xxl-12">
+                                <label for="genderInput" class="form-label">Caracteristicas</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div><!--end col-->
+                            <div class="mb-3 col-xxl-12">
+                                <label for="formFile" class="form-label">Imagen</label>
+                                <input class="form-control" type="file" id="formFile">
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="hstack gap-2 justify-content-end">
+                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-primary">Agrear</button>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--preloader-->
     <div id="preloader">
         <div id="status">
