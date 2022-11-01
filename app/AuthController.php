@@ -1,6 +1,7 @@
 <?php
 include_once "config.php";
 
+
 if (isset($_POST['action'])) {
 
 	if ( isset($_POST['global_token']) && 
@@ -13,7 +14,7 @@ if (isset($_POST['action'])) {
 
 				$email = strip_tags($_POST['email']);
 				$password = strip_tags($_POST['password']);
-				//validarEntrada($email);
+
 				$authController->login($email,$password);
 				
 
@@ -44,21 +45,6 @@ if (isset($_POST['action'])) {
 	}
 }
 
-function validarEmail($email){
-	if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		echo '<script language="javascript">alert("Valido de email");</script>';
-	}else{
-		header("Location:".BASE_PATH."iniciar-sesion?email=error?password=error?error=true");
-		echo '<script language="javascript">alert("Error de email");</script>';
-	}
-}
-function validarEntrada($email){
-	if(strpos($email, '@'+'$'+'<')===false){
-	}else{
-		header("Location:".BASE_PATH."iniciar-sesion?email=error?error=true");
-		
-	}
-}
 //Iniciar sesion
 Class AuthController{
 
@@ -100,10 +86,9 @@ Class AuthController{
 
 			$_SESSION['acceso']="acceso";
 			header("Location:".BASE_PATH."productos/");
-			$acceso='entro';
 		}else{
 			#var_dump($response);
-			header("Location:".BASE_PATH."?2error=true");
+			header("Location:".BASE_PATH."?error=true");
 		}
 
 	}
@@ -146,7 +131,7 @@ Class AuthController{
 			header("Location:".BASE_PATH."productos/");
 		}else{
 			#var_dump($response);
-			header("Location:".BASE_PATH."?3error=true");
+			header("Location:".BASE_PATH."?error=true");
 		}
 
 	}
@@ -177,7 +162,7 @@ Class AuthController{
 			session_destroy();
 		}else{
 			#var_dump($response);
-			header("Location:".BASE_PATH."?4error=true");
+			header("Location:".BASE_PATH."?error=true");
 		}
 	}
 }

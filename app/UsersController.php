@@ -99,7 +99,6 @@ if($_SESSION['acceso']=="acceso"){
                 $response = json_decode($response);
 
                 if ( isset($response->code) && $response->code > 0) {
-                    
                     return $response->data;
                 }else{
 

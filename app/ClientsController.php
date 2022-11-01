@@ -1,7 +1,7 @@
 <?php  
 include_once "config.php";
 include_once "AuthController.php";
-
+$total ='aqui';
 if($_SESSION['acceso']=="acceso"){
 	if (isset($_POST['action'])) {
 
@@ -51,8 +51,19 @@ if($_SESSION['acceso']=="acceso"){
 
 		}
 	}
-
-	Class ClientsController
+	function totalOrdenes (){
+		$clientsController = new ClientsController();
+		$data = $clientsController->getClientes();
+		
+		$cantidadOrdenes = count($data[2]->orders);
+		$sumaTotal = 0;
+		for($i=0; $i<$cantidadOrdenes; $i++){
+			$cantidad = $data[2]->orders[$i]->total;
+			$sumaTotal = $sumaTotal+$cantidad;
+		}
+		echo $sumaTotal;
+	}
+ 	Class ClientsController
 	{
 		// Todos los clientes
 			public function getClientes()
