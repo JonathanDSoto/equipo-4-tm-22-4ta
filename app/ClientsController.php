@@ -51,14 +51,14 @@ if($_SESSION['acceso']=="acceso"){
 
 		}
 	}
-	function totalOrdenes (){
+	function totalOrdenes ($id){
 		$clientsController = new ClientsController();
 		$data = $clientsController->getClientes();
 		
-		$cantidadOrdenes = count($data[2]->orders);
+		$cantidadOrdenes = count($data[$id]->orders);
 		$sumaTotal = 0;
 		for($i=0; $i<$cantidadOrdenes; $i++){
-			$cantidad = $data[2]->orders[$i]->total;
+			$cantidad = $data[$id]->orders[$i]->total;
 			$sumaTotal = $sumaTotal+$cantidad;
 		}
 		echo $sumaTotal;

@@ -61,7 +61,18 @@ if($_SESSION['acceso']=="acceso"){
 
         }
     }
-
+    function totalCupones ($id){
+		$couponsController = new CouponsController();
+		$data = $couponsController->getCoupons();
+		
+		$cantidadCupones = count($data[$id]->orders);
+		$sumaTotal = 0;
+		for($i=0; $i<$cantidadCupones; $i++){
+			$cantidad = $data[$id]->orders[$i]->total;
+			$sumaTotal = $sumaTotal+$cantidad;
+		}
+		echo $sumaTotal;
+	}
 
     Class CouponsController{
 
